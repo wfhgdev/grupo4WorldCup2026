@@ -75,15 +75,6 @@ Garantizamos un historial limpio y legible siguiendo la convención:
 * Código JS modular, funciones con una única responsabilidad y nombres de variables autoexplicativos.
 * Separación estricta de responsabilidades (Lógica de API separada de la manipulación del DOM).
 
----
-
-## 📸 Captura de Pantalla del Resultado
-
-![Preview del Proyecto](https://via.placeholder.com/800x450.png?text=Inserta+aquí+tu+captura+de+pantalla+del+diseño/web)
-
-*Nota: Reemplaza esta imagen con una captura real de la plataforma en la entrega final.*
-
----
 
 ## 👥 Equipo de Desarrollo
 
