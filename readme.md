@@ -1,4 +1,4 @@
-# 🏆 World Cup 2026 Web Platform
+# 🏆 World Cup 2026 Web Grupo 4
 
 ![Texto alternativo](images/pantallazo.png)
 
