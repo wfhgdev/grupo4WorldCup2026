@@ -87,6 +87,9 @@ Garantizamos un historial limpio y legible siguiendo la convención:
 
 ## 👥 Equipo de Desarrollo
 
-* **Miembro 1** - *Frontend Developer & API Integration* - [@TuGitHub](https://github.com/...)
-* **Miembro 2** - *UI/UX Designer & CSS Styles* - [@TuGitHub](https://github.com/...)
-* **Miembro 3** - *Frontend Developer & DOM Logic* - [@TuGitHub](https://github.com/...)
+* **Carlos Javier Pérez Pérez** - *Frontend Developer* - [@TuGitHub](https://github.com/...)
+* **Konstantin Mlechka** - *Scrum Master, UI/UX Designer & CSS Styles* - [@TuGitHub](https://github.com/...)
+* **Cristina Rodríguez López** - *Frontend Developer* - [@TuGitHub](https://github.com/...)
+* **Margarita Bellido Ro** - *Frontend Developer* - [@TuGitHub](https://github.com/...)
+* **José Loero Niele** - *Frontend Developer* - [@TuGitHub](https://github.com/...)
+* **William Hernández** - *Frontend Developer* - [@wfhgdev](https://github.com/...)
