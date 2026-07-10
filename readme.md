@@ -92,4 +92,4 @@ Garantizamos un historial limpio y legible siguiendo la convención:
 * **Cristina Rodríguez López** - *Frontend Developer* - [@TuGitHub](https://github.com/...)
 * **Margarita Bellido Ro** - *Frontend Developer* - [@TuGitHub](https://github.com/...)
 * **José Loero Niele** - *Frontend Developer* - [@TuGitHub](https://github.com/...)
-* **William Hernández** - *Frontend Developer* - [@wfhgdev](https://github.com/...)
+* **William Hernández** - *Scrum Msaster* - [@wfhgdev](https://github.com/...)
