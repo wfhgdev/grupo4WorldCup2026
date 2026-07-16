@@ -80,7 +80,7 @@ Garantizamos un historial limpio y legible siguiendo la convención:
 
 * **Carlos Javier Pérez Pérez** - *Frontend Developer* - [@carlosjper](https://github.com/carlosjper)
 * **Konstantin Mlechka** - *Scrum Master* - [@kvadrakola][https://github.com/kvadrakola]
-* **Cristina Rodríguez López** - *Frontend Developer* - [@TuGitHub](https://github.com/...)
+* **Cristina Rodríguez López** - *Frontend Developer* - [@cristinarodriguezl-dev](https://github.com/cristinarodriguezl-dev)
 * **Margarita Bellido Ro** - *Frontend Developer* - [@margaritabellidoroig](https://github.com/margaritabellidoroig)
 * **José Loero Niele** - *Frontend Developer* - [@Mltiformacionjose](https://github.com/Mltiformacionjose)
 * **William Hernández** - *Product Owner* - [@wfhgdev](https://github.com/wfhgdev)
