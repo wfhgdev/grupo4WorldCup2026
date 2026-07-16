@@ -78,9 +78,9 @@ Garantizamos un historial limpio y legible siguiendo la convención:
 
 ## 👥 Equipo de Desarrollo
 
-* **Carlos Javier Pérez Pérez** - *Frontend Developer* - [@TuGitHub](https://github.com/...)
-* **Konstantin Mlechka** - *Scrum Master, UI/UX Designer & CSS Styles* - [https://github.com/kvadrakola]
+* **Carlos Javier Pérez Pérez** - *Frontend Developer* - [@carlosjper](https://github.com/carlosjper)
+* **Konstantin Mlechka** - *Scrum Master* - [@kvadrakola][https://github.com/kvadrakola]
 * **Cristina Rodríguez López** - *Frontend Developer* - [@TuGitHub](https://github.com/...)
-* **Margarita Bellido Ro** - *Frontend Developer* - [@TuGitHub](https://github.com/...)
-* **José Loero Niele** - *Frontend Developer* - [@TuGitHub](https://github.com/...)
-* **William Hernández** - *Product Owner* - [@wfhgdev](https://github.com/...)
+* **Margarita Bellido Ro** - *Frontend Developer* - [@margaritabellidoroig](https://github.com/margaritabellidoroig)
+* **José Loero Niele** - *Frontend Developer* - [@Mltiformacionjose](https://github.com/Mltiformacionjose)
+* **William Hernández** - *Product Owner* - [@wfhgdev](https://github.com/wfhgdev)
