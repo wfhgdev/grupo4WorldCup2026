@@ -76,7 +76,7 @@ Garantizamos un historial limpio y legible siguiendo la convención:
 ## 👥 Equipo de Desarrollo
 
 * **Carlos Javier Pérez Pérez** - *Scrum Master* - [@carlosjper](https://github.com/carlosjper)
-* **Konstantin Mlechka** - *Frontend Developer* - [@kvadrakola]([https://github.com/kvadrakola])
+* **Konstantin Mlechka** - *Frontend Developer* - [@kvadrakola](https://github.com/kvadrakola)
 * **Cristina Rodríguez López** - *Frontend Developer* - [@cristinarodriguezl-dev](https://github.com/cristinarodriguezl-dev)
 * **Margarita Bellido Ro** - *Frontend Developer* - [@margaritabellidoroig](https://github.com/margaritabellidoroig)
 * **José Loero Niele** - *Frontend Developer* - [@Mltiformacionjose](https://github.com/Mltiformacionjose)
