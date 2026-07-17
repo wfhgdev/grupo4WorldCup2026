@@ -10,11 +10,10 @@ Este proyecto ha sido desarrollado como parte del módulo **Frontend: JavaScript
 
 ## 🚀 Enlaces del Proyecto
 
-* **Repositorio GitHub:** [Enlace al repositorio](https://github.com/TU_USUARIO/TU_REPOSITORIO)
-* **Despliegue en Vercel:** [Ver en Vercel](https://TU_PROYECTO.vercel.app)
-* **GitHub Pages:** [Ver en GitHub Pages](https://TU_USUARIO.github.io/TU_REPOSITORIO)
-* **Tablero de Gestión (GitHub Project):** [Ver Sprint Backlog](https://github.com/users/TU_USUARIO/projects/X)
-* **Diseño en Figma:** [Ver Prototipo Figma](https://figma.com/...)
+* **Repositorio GitHub:** [Enlace al repositorio](https://github.com/wfhgdev/grupo4WorldCup2026.git)
+* **Despliegue en Vercel:** [Ver en Vercel](https://wc-2026-prueba.vercel.app/index.html)
+* **Tablero de Gestión (GitHub Project):** [Ver Sprint Backlog](https://github.com/users/wfhgdev/projects/1/views/2)
+* **Diseño en Figma:** [Ver Prototipo Figma](https://www.figma.com/design/24TjyRzS6OAZhD1D2kwCJm/PROY-WORLD-CUP26?node-id=70-96)
 
 ---
 
@@ -68,8 +67,6 @@ Para garantizar la calidad del código y una organización equitativa del equipo
 Garantizamos un historial limpio y legible siguiendo la convención:
 * `feat: add group classification tables`
 * `fix: resolve active filter bug on schedule page`
-* `style: implement responsive grid for statistics`
-* `docs: update readme links`
 
 ### Clean Code
 * Código JS modular, funciones con una única responsabilidad y nombres de variables autoexplicativos.
@@ -78,8 +75,8 @@ Garantizamos un historial limpio y legible siguiendo la convención:
 
 ## 👥 Equipo de Desarrollo
 
-* **Carlos Javier Pérez Pérez** - *Frontend Developer* - [@carlosjper](https://github.com/carlosjper)
-* **Konstantin Mlechka** - *Scrum Master* - [@kvadrakola][https://github.com/kvadrakola]
+* **Carlos Javier Pérez Pérez** - *Scrum Master* - [@carlosjper](https://github.com/carlosjper)
+* **Konstantin Mlechka** - *Frontend Developer* - [@kvadrakola][https://github.com/kvadrakola]
 * **Cristina Rodríguez López** - *Frontend Developer* - [@cristinarodriguezl-dev](https://github.com/cristinarodriguezl-dev)
 * **Margarita Bellido Ro** - *Frontend Developer* - [@margaritabellidoroig](https://github.com/margaritabellidoroig)
 * **José Loero Niele** - *Frontend Developer* - [@Mltiformacionjose](https://github.com/Mltiformacionjose)
