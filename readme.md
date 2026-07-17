@@ -14,6 +14,7 @@ Este proyecto ha sido desarrollado como parte del módulo **Frontend: JavaScript
 * **Despliegue en Vercel:** [Ver en Vercel](https://wc-2026-prueba.vercel.app/index.html)
 * **Tablero de Gestión (GitHub Project):** [Ver Sprint Backlog](https://github.com/users/wfhgdev/projects/1/views/2)
 * **Diseño en Figma:** [Ver Prototipo Figma](https://www.figma.com/design/24TjyRzS6OAZhD1D2kwCJm/PROY-WORLD-CUP26?node-id=70-96)
+* **Wiki:** [Ver Wiki y documentación](https://wc-2026-prueba.vercel.app/learn/index.html)
 
 ---
 
