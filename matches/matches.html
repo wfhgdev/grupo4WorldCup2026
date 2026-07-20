@@ -76,12 +76,27 @@
 </section>
 
 <main>
-  <div id="matches-filters">
-    <button>Todos</button>
-    <button>Programados</button>
-    <button>En Vivo</button>
-    <button>Finalizados</button>
-  </div>
+
+  <section class="w-full bg-gradient-to-br from-surface-container to-surface-container-low border-b border-outline-variant py-stack-lg">
+      <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+        <h1 class="font-headline-lg text-headline-lg mb-2 tracking-tight">Partidos y Resultados</h1>
+        <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Sigue la acción desde el campo. Marcadores en vivo, próximos partidos y resultados completos del torneo con actualizaciones en tiempo real.</p>
+      </div>
+    </section>
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg md:py-12">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 md:mb-12">
+        <div class="hidden md:block">
+        </div>
+        <div class="flex overflow-x-auto md:overflow-x-visible hide-scrollbar gap-2 pb-2 md:pb-0" id="matches-filters">
+          <button onclick="renderMatches('ALL')" class="filter-btn px-6 py-3 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold whitespace-nowrap shadow-sm border border-primary/10">Todos</button>
+          <button onclick="renderMatches('SCHEDULED')" class="filter-btn px-6 py-3 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm hover:bg-surface-variant transition-colors whitespace-nowrap">Programados</button>
+          <button onclick="renderMatches('IN_PLAY')" class="filter-btn px-6 py-3 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm hover:bg-surface-variant transition-colors whitespace-nowrap flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-error live-pulse"></span>
+            En Vivo
+          </button>
+          <button onclick="renderMatches('FINISHED')" class="filter-btn px-6 py-3 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm hover:bg-surface-variant transition-colors whitespace-nowrap">Finalizados</button>
+        </div>
+      </div>
 
       <div id="matches-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       </div>
