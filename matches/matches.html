@@ -22,13 +22,23 @@
       </button>
     </div>
 
-  <nav>
-          <a href="index.html">Inicio</a>
-    <a href="matches.html">Partidos</a>
-    <a href="#">Grupos</a>
-    <a href="#">Eliminatorias</a>
-    <a href="#">Estadísticas</a>
-  </nav>
+  <nav class="flex flex-col gap-stack-md mt-4">
+      <a class="text-on-surface text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="../index.html">
+        Inicio <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+      <a class="text-primary text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="matches.html">
+        Partidos <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+      <a class="text-on-surface text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="../groups/groups.html">
+        Grupos <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+      <a class="text-on-surface text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="../knockout/knockout.html">
+        Eliminatorias <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+      <a class="text-on-surface text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="../stats/stats.html">
+        Estadísticas <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+    </nav>
 
   <div class="mt-auto mb-stack-lg">
       <button class="gradient-btn text-on-primary w-full py-5 rounded-xl font-headline-md text-headline-md shadow-md">
@@ -36,11 +46,35 @@
       </button>
     </div>
   </div>
-
+<header
+    class="bg-surface dark:bg-surface-dim docked full-width top-0 sticky z-50 shadow-sm border-b border-outline-variant dark:border-outline">
+    <div
+      class="flex justify-between items-center px-margin-mobile lg:px-margin-desktop h-20 w-full max-w-container-max mx-auto">
+      <div class="flex items-center gap-stack-sm">
+        <a href="../index.html"
+          class="font-display-xl-mobile lg:font-display-xl text-headline-lg-mobile lg:text-headline-lg font-black text-primary dark:text-primary-fixed italic tracking-tighter whitespace-nowrap">
+          FIFA WORLD CUP 2026
+        </a>
+      </div>
+      <nav class="hidden lg:flex gap-gutter font-label-sm">
+        <a class="nav-link text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm uppercase hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all px-2 py-1 rounded" href="../index.html">Inicio</a>
+        <a class="nav-link text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1 font-label-sm text-label-sm uppercase active:scale-95 transition-transform duration-150" href="matches.html">Partidos</a>
+        <a class="nav-link text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm uppercase hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all px-2 py-1 rounded" href="../groups/groups.html">Grupos</a>
+        <a class="nav-link text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm uppercase hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all px-2 py-1 rounded" href="../knockout/knockout.html">Eliminatorias</a>
+        <a class="nav-link text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm uppercase hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all px-2 py-1 rounded" href="../stats/stats.html">Estadísticas</a>
+      </nav>
+      <div class="flex items-center gap-stack-sm">
+        <button class="lg:hidden text-on-surface-variant hover:text-primary transition-colors focus:outline-none p-2" id="open-menu">
+          <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
+        <button class="hidden lg:block gradient-btn text-on-primary px-4 py-2 rounded-lg font-label-sm text-label-sm uppercase ml-4">Entradas</button>
+      </div>
+    </div>
+  </header>
   <h1>Partidos y Resultados</h1>
   <p>Sigue la acción desde el campo. Marcadores en vivo, próximos partidos y resultados completos del torneo.</p>
 </section>
- 
+
 <main>
   <div id="matches-filters">
     <button>Todos</button>
