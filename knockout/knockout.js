@@ -89,8 +89,7 @@ async function renderKnockout() {
 
   try {
     // Fetch all match stages (including LAST_32)
-    // Usamos allSettled para que una etapa fallida no bloquee las demás
-    const results = await Promise.allSettled([
+    const [last32Data, last16Data, quarterData, semiData, thirdData, finalData] = await Promise.all([
       getMatchesByStage('LAST_32'),
       getMatchesByStage('LAST_16'),
       getMatchesByStage('QUARTER_FINALS'),
@@ -99,12 +98,12 @@ async function renderKnockout() {
       getMatchesByStage('FINAL')
     ]);
 
-    const last32 = results[0].status === 'fulfilled' ? (results[0].value?.matches || []) : [];
-    const last16 = results[1].status === 'fulfilled' ? (results[1].value?.matches || []) : [];
-    const quarters = results[2].status === 'fulfilled' ? (results[2].value?.matches || []) : [];
-    const semis = results[3].status === 'fulfilled' ? (results[3].value?.matches || []) : [];
-    const third = results[4].status === 'fulfilled' ? (results[4].value?.matches || []) : [];
-    const finals = results[5].status === 'fulfilled' ? (results[5].value?.matches || []) : [];
+    const last32 = last32Data?.matches || [];
+    const last16 = last16Data?.matches || [];
+    const quarters = quarterData?.matches || [];
+    const semis = semiData?.matches || [];
+    const third = thirdData?.matches || [];
+    const finals = finalData?.matches || [];
 
     // Map matches to bracket positions
     // Left LAST_32 (15-22): first 8 LAST_32 matches (sorted by date)
