@@ -44,7 +44,6 @@ async function renderMatches(status = 'ALL') {
 
   setActiveFilter(status);
 
-  // Show skeletons while loading
   renderSkeletons(container);
 
   try {
@@ -172,3 +171,14 @@ if (match.venue) {
 }
 
 document.addEventListener('DOMContentLoaded', () => renderMatches('ALL'));
+
+async function obtenerPartidos() {
+  const response = await fetch('https://api.football-data.org/v4/competitions/WC/matches', {
+    headers: {
+      'X-Auth-Token': API_TOKEN
+    }
+  });
+  const data = await response.json();
+  console.log(data.matches); 
+  return data.matches;
+}
