@@ -1,0 +1,1018 @@
+<![CDATA[<!doctype html>
+<html class="light" lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>COPA MUNDIAL FIFA 2026 - Eliminatorias</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="../tailwindCustom.js"></script>
+  <link rel="stylesheet" href="../index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700;900&display=swap"
+    rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-on-surface": "#f5eff7",
+            "primary-fixed": "#e9ddff",
+            "tertiary-container": "#c9a74d",
+            "secondary-fixed-dim": "#cdc0e9",
+            "on-primary": "#ffffff",
+            "inverse-surface": "#322f35",
+            "on-primary-container": "#e0d2ff",
+            "on-tertiary-fixed-variant": "#594400",
+            "primary-fixed-dim": "#cfbcff",
+            "surface-container-high": "#ece6ee",
+            "on-tertiary": "#ffffff",
+            "on-error": "#ffffff",
+            "background": "#fdf7ff",
+            "on-primary-fixed-variant": "#4f378a",
+            "primary": "#4f378a",
+            "on-secondary-container": "#645a7d",
+            "on-tertiary-fixed": "#241a00",
+            "on-surface": "#1d1b20",
+            "outline-variant": "#cbc4d2",
+            "inverse-primary": "#cfbcff",
+            "on-background": "#1d1b20",
+            "surface-tint": "#6750a4",
+            "error-container": "#ffdad6",
+            "on-secondary": "#ffffff",
+            "primary-container": "#6750a4",
+            "surface-container": "#f2ecf4",
+            "surface-container-highest": "#e6e0e9",
+            "secondary-container": "#e1d4fd",
+            "tertiary-fixed": "#ffdf93",
+            "on-secondary-fixed-variant": "#4b4263",
+            "secondary": "#63597c",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f8f2fa",
+            "tertiary-fixed-dim": "#e7c365",
+            "surface-bright": "#fdf7ff",
+            "on-error-container": "#93000a",
+            "surface-dim": "#ded8e0",
+            "on-surface-variant": "#494551",
+            "tertiary": "#765b00",
+            "outline": "#7a7582",
+            "on-tertiary-container": "#503d00",
+            "secondary-fixed": "#e9ddff",
+            "surface": "#fdf7ff",
+            "error": "#ba1a1a",
+            "on-primary-fixed": "#22005d",
+            "on-secondary-fixed": "#1f1635",
+            "surface-variant": "#e6e0e9"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "1rem",
+            "stack-md": "1rem",
+            "margin-desktop": "2rem",
+            "stack-lg": "2rem",
+            "container-max": "1280px",
+            "gutter": "1.5rem",
+            "stack-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "display-xl-mobile": ["Montserrat"],
+            "body-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "display-xl": ["Montserrat"],
+            "label-sm": ["Inter"],
+            "headline-lg-mobile": ["Montserrat"],
+            "headline-lg": ["Montserrat"],
+            "headline-md": ["Montserrat"]
+          },
+          "fontSize": {
+            "display-xl-mobile": ["40px", { "lineHeight": "1.1", "letterSpacing": "-0.01em", "fontWeight": "900" }],
+            "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+            "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "display-xl": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900" }],
+            "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+            "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+            "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .gradient-primary {
+      background: linear-gradient(45deg, #1f1635, #4f378a);
+    }
+    .bracket-line {
+      border: 2px solid #cbc4d2;
+      border-left: none;
+    }
+    .bracket-line-left {
+      border: 2px solid #cbc4d2;
+      border-right: none;
+    }
+    .gradient-btn {
+      background: linear-gradient(45deg, #4f378a, #6750a4);
+    }
+  </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+  <!-- Mobile Menu Overlay -->
+  <div class="fixed inset-0 z-[100] bg-surface flex-col p-margin-mobile hidden" id="mobile-menu-overlay">
+    <div class="flex justify-between items-center mb-stack-lg h-20">
+      <a class="font-display-xl-mobile text-headline-lg-mobile font-black text-primary italic tracking-tighter" href="../index.html">
+        FIFA WORLD CUP 2026
+      </a>
+      <button class="text-on-surface-variant p-2 rounded-full hover:bg-surface-container-low transition-colors" id="close-menu">
+        <span class="material-symbols-outlined text-3xl">close</span>
+      </button>
+    </div>
+    <nav class="flex flex-col gap-stack-md mt-4">
+      <a class="text-on-surface text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="../index.html">
+        Inicio <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+      <a class="text-on-surface text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="../matches/matches.html">
+        Partidos <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+      <a class="text-on-surface text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="../groups/groups.html">
+        Grupos <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+      <a class="text-primary text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="knockout.html">
+        Eliminatorias <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+      <a class="text-on-surface text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="../stats/stats.html">
+        Estadísticas <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+    </nav>
+    <div class="mt-auto mb-stack-lg">
+      <button class="gradient-btn text-on-primary w-full py-5 rounded-xl font-headline-md text-headline-md shadow-md">
+        Tickets
+      </button>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header
+    class="bg-surface dark:bg-surface-dim docked full-width top-0 sticky z-50 shadow-sm border-b border-outline-variant dark:border-outline">
+    <div
+      class="flex justify-between items-center px-margin-mobile lg:px-margin-desktop h-20 w-full max-w-container-max mx-auto">
+      <div class="flex items-center gap-stack-sm">
+        <a href="../index.html"
+          class="font-display-xl-mobile lg:font-display-xl text-headline-lg-mobile lg:text-headline-lg font-black text-primary dark:text-primary-fixed italic tracking-tighter whitespace-nowrap">
+          FIFA WORLD CUP 2026
+        </a>
+      </div>
+      <nav class="hidden lg:flex gap-gutter font-label-sm">
+        <a class="nav-link text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm uppercase hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all px-2 py-1 rounded" href="../index.html">Inicio</a>
+        <a class="nav-link text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm uppercase hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all px-2 py-1 rounded" href="../matches/matches.html">Partidos</a>
+        <a class="nav-link text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm uppercase hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all px-2 py-1 rounded" href="../groups/groups.html">Grupos</a>
+        <a class="nav-link text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1 font-label-sm text-label-sm uppercase active:scale-95 transition-transform duration-150" href="knockout.html">Eliminatorias</a>
+        <a class="nav-link text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm uppercase hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all px-2 py-1 rounded" href="../stats/stats.html">Estadísticas</a>
+      </nav>
+      <div class="flex items-center gap-stack-sm">
+        <button class="lg:hidden text-on-surface-variant hover:text-primary transition-colors focus:outline-none p-2" id="open-menu">
+          <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
+        <button class="hidden lg:block gradient-btn text-on-primary px-4 py-2 rounded-lg font-label-sm text-label-sm uppercase ml-4">Entradas</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow">
+    <!-- Hero Section -->
+    <section class="w-full bg-gradient-to-br from-surface-container to-surface-container-low border-b border-outline-variant py-stack-lg">
+      <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+        <h1 class="font-headline-lg text-headline-lg mb-2 tracking-tight">Eliminatorias del Torneo</h1>
+        <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">El camino hacia la gloria. Octavos de final, cuartos, semifinales y la gran final del Mundial 2026. Sigue cada eliminatoria en vivo.</p>
+      </div>
+    </section>
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+
+      <!-- Loading State -->
+      <div id="knockout-loading" class="text-center text-on-surface-variant py-stack-lg">
+        <span class="material-symbols-outlined animate-spin inline-block text-4xl">refresh</span>
+        <p class="mt-4">Cargando eliminatorias...</p>
+      </div>
+
+      <!-- Error State -->
+      <div id="knockout-error" class="text-center text-error py-stack-lg hidden">
+        <span class="material-symbols-outlined text-4xl">error</span>
+        <p class="mt-4">Error al cargar las eliminatorias. Intente más tarde.</p>
+      </div>
+
+    </div>
+
+    <!-- Full-width Bracket Section -->
+    <div class="w-full bg-surface-container-low border-y border-outline-variant overflow-hidden">
+      <!-- Bracket Container -->
+      <div id="knockout-container" class="hidden">
+        <div class="overflow-x-auto py-stack-lg px-margin-mobile md:px-margin-desktop">
+          <div class="min-w-[2200px] flex justify-between relative py-stack-lg gap-2 lg:min-w-0 lg:justify-center lg:gap-4 xl:gap-6 2xl:gap-8">
+
+            <!-- Left: Treintaidosavos de Final -->
+            <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
+              <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">Treintaidosavos de Final</div>
+              <!-- Match 15 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="15">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 16 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="16">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 17 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="17">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 18 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="18">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 19 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="19">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 20 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="20">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 21 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="21">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 22 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="22">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connectors Left LAST_32 → Left LAST_16 -->
+            <div class="w-10 relative hidden lg:block">
+              <div class="absolute top-[8%] right-0 w-full h-[12%] bracket-line rounded-r-lg"></div>
+              <div class="absolute top-[14%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
+              <div class="absolute top-[33%] right-0 w-full h-[12%] bracket-line rounded-r-lg"></div>
+              <div class="absolute top-[39%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
+              <div class="absolute top-[58%] right-0 w-full h-[12%] bracket-line rounded-r-lg"></div>
+              <div class="absolute top-[64%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
+              <div class="absolute top-[83%] right-0 w-full h-[12%] bracket-line rounded-r-lg"></div>
+              <div class="absolute top-[89%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
+            </div>
+
+            <!-- Left: Round of 32 -->
+            <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
+              <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">Octavos de Final</div>
+              <!-- Match 1 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="0">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 2 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="1">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 3 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="2">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 4 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="3">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connectors Left R32 → Left QF -->
+            <div class="w-10 relative hidden lg:block">
+              <div class="absolute top-[15%] right-0 w-full h-[25%] bracket-line rounded-r-lg"></div>
+              <div class="absolute top-[27.5%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
+              <div class="absolute top-[65%] right-0 w-full h-[25%] bracket-line rounded-r-lg"></div>
+              <div class="absolute top-[77.5%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
+            </div>
+
+            <!-- Left: Quarter Finals -->
+            <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
+              <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">cuartos de final</div>
+               <!-- Match 5 (winner of 1 & 2) -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer mt-12 mb-12" data-match-id="4">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 6 (winner of 3 & 4) -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer mt-12 mb-12" data-match-id="5">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connectors Left QF → Left SF -->
+            <div class="w-10 relative hidden lg:block">
+              <div class="absolute top-[28%] right-0 w-full h-[50%] bracket-line rounded-r-lg"></div>
+              <div class="absolute top-[53%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
+            </div>
+
+            <!-- Left: Semi Finals -->
+            <div class="flex flex-col justify-center w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
+              <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">semifinales</div>
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="13">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connectors Left SF → Center Final -->
+            <div class="w-10 relative hidden lg:block">
+              <div class="absolute top-[50%] right-0 w-1/2 border-t-2 border-outline-variant"></div>
+              <div class="absolute top-[50%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
+            </div>
+
+            <!-- Center: Final -->
+            <div class="flex flex-col justify-center w-72 lg:w-80 xl:w-88 2xl:w-96 gap-stack-lg z-20 px-2">
+              <div class="font-headline-lg text-headline-lg text-primary text-center mb-stack-lg uppercase border-b-4 border-tertiary-container pb-2">Gran Final</div>
+              <div class="match-card bg-surface-container-lowest border-2 border-tertiary-container rounded-xl p-4 shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all cursor-pointer relative overflow-hidden group" data-match-id="8">
+                <div class="absolute inset-0 bg-tertiary-container/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div class="flex justify-between items-center mb-4">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-primary text-on-primary px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex flex-col gap-4 relative z-10">
+                  <div class="flex justify-between items-center match-home">
+                    <div class="flex items-center gap-3">
+                      <img class="w-8 h-6 object-cover rounded-sm border border-outline-variant shadow-sm crest-border home-crest" src="" alt="">
+                      <span class="font-headline-md text-headline-md font-bold home-name">—</span>
+                    </div>
+                    <span class="font-display-xl-mobile text-display-xl-mobile text-primary home-score"></span>
+                  </div>
+                  <div class="w-full h-px bg-outline-variant/50"></div>
+                  <div class="flex justify-between items-center match-away">
+                    <div class="flex items-center gap-3">
+                      <img class="w-8 h-6 object-cover rounded-sm border border-outline-variant shadow-sm crest-border away-crest" src="" alt="">
+                      <span class="font-headline-md text-headline-md font-bold away-name">—</span>
+                    </div>
+                    <span class="font-display-xl-mobile text-display-xl-mobile text-primary away-score"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connectors Right SF → Center Final -->
+            <div class="w-10 relative hidden lg:block">
+              <div class="absolute top-[50%] left-0 w-1/2 border-t-2 border-outline-variant"></div>
+              <div class="absolute top-[50%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
+            </div>
+
+            <!-- Right: Semi Finals -->
+            <div class="flex flex-col justify-center w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
+              <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">semifinales</div>
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="14">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connectors Right QF → Right SF -->
+            <div class="w-10 relative hidden lg:block">
+              <div class="absolute top-[28%] left-0 w-full h-[50%] bracket-line-left rounded-l-lg"></div>
+              <div class="absolute top-[53%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
+            </div>
+
+            <!-- Right: Quarter Finals -->
+            <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
+              <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">cuartos de final</div>
+               <!-- Match 7 (winner of 9 & 10) -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer mt-12 mb-12" data-match-id="6">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 8 (winner of 11 & 12) -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer mt-12 mb-12" data-match-id="7">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connectors Right QF → Right R32 -->
+            <div class="w-10 relative hidden lg:block">
+              <div class="absolute top-[15%] left-0 w-full h-[25%] bracket-line-left rounded-l-lg"></div>
+              <div class="absolute top-[27.5%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
+              <div class="absolute top-[65%] left-0 w-full h-[25%] bracket-line-left rounded-l-lg"></div>
+              <div class="absolute top-[77.5%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
+            </div>
+
+            <!-- Right: Round of 32 -->
+            <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
+              <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">Octavos de Final</div>
+               <!-- Match 9 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="9">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 10 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="10">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 11 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="11">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 12 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="12">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connectors Right LAST_16 → Right LAST_32 -->
+            <div class="w-10 relative hidden lg:block">
+              <div class="absolute top-[8%] left-0 w-full h-[12%] bracket-line-left rounded-l-lg"></div>
+              <div class="absolute top-[14%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
+              <div class="absolute top-[33%] left-0 w-full h-[12%] bracket-line-left rounded-l-lg"></div>
+              <div class="absolute top-[39%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
+              <div class="absolute top-[58%] left-0 w-full h-[12%] bracket-line-left rounded-l-lg"></div>
+              <div class="absolute top-[64%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
+              <div class="absolute top-[83%] left-0 w-full h-[12%] bracket-line-left rounded-l-lg"></div>
+              <div class="absolute top-[89%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
+            </div>
+
+            <!-- Right: Treintaidosavos de Final -->
+            <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
+              <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">Treintaidosavos de Final</div>
+              <!-- Match 23 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="23">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 24 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="24">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 25 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="25">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 26 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="26">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 27 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="27">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 28 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="28">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 29 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="29">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+              <!-- Match 30 -->
+              <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="30">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant match-info">Partido —</span>
+                  <span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
+                </div>
+                <div class="flex justify-between items-center py-1 match-away">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <span class="font-body-md text-body-md away-name truncate">—</span>
+                  </div>
+                  <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-inverse-surface dark:bg-surface-container-lowest border-t border-outline-variant full-width mt-stack-lg">
+    <div
+      class="flex flex-col md:flex-row justify-between items-center py-stack-lg px-margin-desktop w-full max-w-container-max mx-auto gap-gutter">
+      <div class="font-headline-md text-headline-md font-black text-white italic">FIFA WORLD CUP 2026</div>
+      <nav class="flex flex-wrap justify-center gap-stack-md">
+        <a class="text-inverse-on-surface/80 dark:text-on-surface/80 hover:text-tertiary-fixed transition-colors font-label-sm text-label-sm uppercase opacity-100 hover:opacity-80" href="#">Política de Privacidad</a>
+        <a class="text-inverse-on-surface/80 dark:text-on-surface/80 hover:text-tertiary-fixed transition-colors font-label-sm text-label-sm uppercase opacity-100 hover:opacity-80" href="#">Términos del Servicio</a>
+        <a class="text-inverse-on-surface/80 dark:text-on-surface/80 hover:text-tertiary-fixed transition-colors font-label-sm text-label-sm uppercase opacity-100 hover:opacity-80" href="#">Reglamento del Torneo</a>
+        <a class="text-inverse-on-surface/80 dark:text-on-surface/80 hover:text-tertiary-fixed transition-colors font-label-sm text-label-sm uppercase opacity-100 hover:opacity-80" href="#">Centro de Medios</a>
+        <a class="text-inverse-on-surface/80 dark:text-on-surface/80 hover:text-tertiary-fixed transition-colors font-label-sm text-label-sm uppercase opacity-100 hover:opacity-80" href="#">Contáctanos</a>
+      </nav>
+      <div
+        class="text-inverse-on-surface/80 dark:text-on-surface/80 font-body-md text-body-md text-center md:text-right">©
+        2026 Proyecto Educativo. Todos los derechos reservados. Grupo 4</div>
+    </div>
+  </footer>
+
+  <script src="../js/i18n/es/teams.js"></script>
+  <script src="../js/i18n/es/enums.js"></script>
+  <script src="../js/i18n/es/competition.js"></script>
+  <script src="../js/i18n/es/ui.js"></script>
+  <script src="../js/i18n/es/index.js"></script>
+  <script src="../js/i18n/i18n.js"></script>
+  <script src="../js/menu.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/home.js"></script>
+  <script src="knockout.js"></script>
+</body>
+
+</html>
+]]>
