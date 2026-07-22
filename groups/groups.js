@@ -1,7 +1,7 @@
 // ============================================
 // PÁGINA: Clasificación de Grupos (i18n)
 // Calcula las tablas desde los partidos de la fase de grupos
-// ============================================
+// =============================================
 
 /**
  * Calcular estadísticas de un equipo a partir de los partidos del grupo
