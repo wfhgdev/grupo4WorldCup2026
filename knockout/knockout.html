@@ -109,14 +109,6 @@
     .gradient-primary {
       background: linear-gradient(45deg, #1f1635, #4f378a);
     }
-    .bracket-line {
-      border: 2px solid #cbc4d2;
-      border-left: none;
-    }
-    .bracket-line-left {
-      border: 2px solid #cbc4d2;
-      border-right: none;
-    }
     .gradient-btn {
       background: linear-gradient(45deg, #4f378a, #6750a4);
     }
@@ -202,10 +194,22 @@
         <p class="mt-4">Cargando eliminatorias...</p>
       </div>
 
+      <!-- Demo Badge -->
+      <div id="demo-badge" class="hidden max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-2">
+        <div class="bg-tertiary-container/20 text-tertiary border border-tertiary-container/30 rounded-lg px-4 py-2 flex items-center gap-2 text-sm">
+          <span class="material-symbols-outlined text-tertiary text-lg">info</span>
+          <span>Modo demostración — Mostrando datos de ejemplo. Los datos en vivo no están disponibles.</span>
+        </div>
+      </div>
+
       <!-- Error State -->
       <div id="knockout-error" class="text-center text-error py-stack-lg hidden">
         <span class="material-symbols-outlined text-4xl">error</span>
         <p class="mt-4">Error al cargar las eliminatorias. Intente más tarde.</p>
+        <button id="retry-button" class="mt-4 gradient-btn text-on-primary px-6 py-2 rounded-lg font-label-sm text-label-sm uppercase inline-flex items-center gap-2">
+          <span class="material-symbols-outlined text-lg">refresh</span>
+          Reintentar
+        </button>
       </div>
 
     </div>
@@ -215,7 +219,9 @@
       <!-- Bracket Container -->
       <div id="knockout-container" class="hidden">
         <div class="overflow-x-auto py-stack-lg px-margin-mobile md:px-margin-desktop">
-          <div class="min-w-[2200px] flex justify-between relative py-stack-lg gap-2 lg:min-w-0 lg:justify-center lg:gap-4 xl:gap-6 2xl:gap-8">
+          <div class="min-w-[2200px] flex justify-between relative py-stack-lg gap-2 lg:min-w-0 lg:justify-center lg:gap-4 xl:gap-6 2xl:gap-8" id="bracket-inner">
+            <!-- SVG Connectors Overlay -->
+            <svg id="bracket-connectors" class="absolute inset-0 w-full h-full pointer-events-none hidden lg:block"></svg>
 
             <!-- Left: Treintaidosavos de Final -->
             <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
@@ -390,19 +396,7 @@
               </div>
             </div>
 
-            <!-- Connectors Left LAST_32 → Left LAST_16 -->
-            <div class="w-10 relative hidden lg:block">
-              <div class="absolute top-[8%] right-0 w-full h-[12%] bracket-line rounded-r-lg"></div>
-              <div class="absolute top-[14%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[33%] right-0 w-full h-[12%] bracket-line rounded-r-lg"></div>
-              <div class="absolute top-[39%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[58%] right-0 w-full h-[12%] bracket-line rounded-r-lg"></div>
-              <div class="absolute top-[64%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[83%] right-0 w-full h-[12%] bracket-line rounded-r-lg"></div>
-              <div class="absolute top-[89%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-            </div>
-
-            <!-- Left: Round of 32 -->
+            <!-- Left: Octavos de Final -->
             <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
               <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">Octavos de Final</div>
               <!-- Match 1 -->
@@ -491,15 +485,7 @@
               </div>
             </div>
 
-            <!-- Connectors Left R32 → Left QF -->
-            <div class="w-10 relative hidden lg:block">
-              <div class="absolute top-[15%] right-0 w-full h-[25%] bracket-line rounded-r-lg"></div>
-              <div class="absolute top-[27.5%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[65%] right-0 w-full h-[25%] bracket-line rounded-r-lg"></div>
-              <div class="absolute top-[77.5%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-            </div>
-
-            <!-- Left: Quarter Finals -->
+            <!-- Left: Cuartos de Final -->
             <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
               <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">cuartos de final</div>
                <!-- Match 5 (winner of 1 & 2) -->
@@ -546,12 +532,6 @@
               </div>
             </div>
 
-            <!-- Connectors Left QF → Left SF -->
-            <div class="w-10 relative hidden lg:block">
-              <div class="absolute top-[28%] right-0 w-full h-[50%] bracket-line rounded-r-lg"></div>
-              <div class="absolute top-[53%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-            </div>
-
             <!-- Left: Semi Finals -->
             <div class="flex flex-col justify-center w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
               <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">semifinales</div>
@@ -575,12 +555,6 @@
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
                 </div>
               </div>
-            </div>
-
-            <!-- Connectors Left SF → Center Final -->
-            <div class="w-10 relative hidden lg:block">
-              <div class="absolute top-[50%] right-0 w-1/2 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[50%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
             </div>
 
             <!-- Center: Final -->
@@ -612,12 +586,6 @@
               </div>
             </div>
 
-            <!-- Connectors Right SF → Center Final -->
-            <div class="w-10 relative hidden lg:block">
-              <div class="absolute top-[50%] left-0 w-1/2 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[50%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-            </div>
-
             <!-- Right: Semi Finals -->
             <div class="flex flex-col justify-center w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
               <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">semifinales</div>
@@ -643,13 +611,7 @@
               </div>
             </div>
 
-            <!-- Connectors Right QF → Right SF -->
-            <div class="w-10 relative hidden lg:block">
-              <div class="absolute top-[28%] left-0 w-full h-[50%] bracket-line-left rounded-l-lg"></div>
-              <div class="absolute top-[53%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-            </div>
-
-            <!-- Right: Quarter Finals -->
+            <!-- Right: Cuartos de Final -->
             <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
               <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">cuartos de final</div>
                <!-- Match 7 (winner of 9 & 10) -->
@@ -696,15 +658,7 @@
               </div>
             </div>
 
-            <!-- Connectors Right QF → Right R32 -->
-            <div class="w-10 relative hidden lg:block">
-              <div class="absolute top-[15%] left-0 w-full h-[25%] bracket-line-left rounded-l-lg"></div>
-              <div class="absolute top-[27.5%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[65%] left-0 w-full h-[25%] bracket-line-left rounded-l-lg"></div>
-              <div class="absolute top-[77.5%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-            </div>
-
-            <!-- Right: Round of 32 -->
+            <!-- Right: Octavos de Final -->
             <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
               <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">Octavos de Final</div>
                <!-- Match 9 -->
@@ -791,18 +745,6 @@
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
                 </div>
               </div>
-            </div>
-
-            <!-- Connectors Right LAST_16 → Right LAST_32 -->
-            <div class="w-10 relative hidden lg:block">
-              <div class="absolute top-[8%] left-0 w-full h-[12%] bracket-line-left rounded-l-lg"></div>
-              <div class="absolute top-[14%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[33%] left-0 w-full h-[12%] bracket-line-left rounded-l-lg"></div>
-              <div class="absolute top-[39%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[58%] left-0 w-full h-[12%] bracket-line-left rounded-l-lg"></div>
-              <div class="absolute top-[64%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[83%] left-0 w-full h-[12%] bracket-line-left rounded-l-lg"></div>
-              <div class="absolute top-[89%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
             </div>
 
             <!-- Right: Treintaidosavos de Final -->
@@ -1011,7 +953,10 @@
   <script src="../js/menu.js"></script>
   <script src="../js/api.js"></script>
   <script src="../js/home.js"></script>
+  <script src="bracket-utils.js"></script>
+  <script src="bracket-demo-data.js"></script>
   <script src="knockout.js"></script>
+  <script src="bracket-tests.js"></script>
 </body>
 
 </html>

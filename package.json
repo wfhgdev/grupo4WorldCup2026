@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "html-validate \"**/*.html\"",
-  "test:learn": "html-validate learn/*.html"
+    "test:learn": "html-validate learn/*.html"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/wfhgdev/grupo4WorldCup2026#readme",
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "html-validate": "^11.5.6"
   }
 }
