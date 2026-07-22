@@ -204,18 +204,33 @@ background-clip: text;
     </div>
   </header>
 
-
-
-
-
-    <main>
-
+    <main class="flex-grow">
+    
+    <section class="w-full bg-gradient-to-br from-surface-container to-surface-container-low border-b border-outline-variant py-stack-lg">
+      <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+        <h1 class="font-headline-lg text-headline-lg mb-2 tracking-tight">Clasificación por Grupos</h1>
+        <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Explora la fase de grupos del Mundial 2026. Posiciones, puntos, partidos disputados y rendimiento de cada selección en tiempo real.</p>
+      </div>
+    </section>
+    <div class="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+      <div id="groups-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-gutter">
+        <p class="text-center text-on-surface-variant py-stack-lg col-span-full">Cargando clasificaciones...</p>
+      </div>
+    </div>
 
     </main>
-
 <div id="footerInjection"></div>
     
-    <script src="/components/footer/footerInjection.js"></script>
-    <script src="groups.js"></script>
+
+  <script src="/components/footer/footerInjection.js"></script>
+  <script src="/js/i18n/es/teams.js"></script>
+  <script src="/js/i18n/es/enums.js"></script>
+  <script src="/js/i18n/es/competition.js"></script>
+  <script src="/js/i18n/es/ui.js"></script>
+  <script src="/js/i18n/es/index.js"></script>
+  <script src="/js/i18n/i18n.js"></script>
+  <script src="/js/menu.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="groups.js"></script>
 </body>
 </html>

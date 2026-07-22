@@ -1,11 +1,5 @@
-// ============================================
-// PÁGINA: Clasificación de Grupos (i18n)
-// Calcula las tablas desde los partidos de la fase de grupos
-// =============================================
 
-/**
- * Calcular estadísticas de un equipo a partir de los partidos del grupo
- */
+
 function calculateTeamStats(teamTLA, teamCrest, matches) {
   const stats = {
     team: { name: teamTLA, crest: teamCrest },
@@ -57,11 +51,9 @@ function calculateTeamStats(teamTLA, teamCrest, matches) {
   return stats;
 }
 
-/**
- * Renderizar tabla de un grupo
- */
+
 function renderGroupTable(container, groupName, teamsStats) {
-  // Ordenar: Puntos > Diferencia de goles > Goles a favor
+  
   const sorted = [...teamsStats].sort((a, b) => {
     if (b.points !== a.points) return b.points - a.points;
     if (b.goalDifference !== a.goalDifference) return b.goalDifference - a.goalDifference;
@@ -118,9 +110,7 @@ function renderGroupTable(container, groupName, teamsStats) {
   container.appendChild(groupDiv);
 }
 
-/**
- * Renderizar todas las tablas de grupos
- */
+
 async function renderGroups() {
   const container = document.getElementById('groups-container');
   if (!container) return;
@@ -128,7 +118,7 @@ async function renderGroups() {
   container.innerHTML = '<p class="text-center text-on-surface-variant py-stack-lg"><span class="material-symbols-outlined animate-spin inline-block">refresh</span> ' + i18n.t('LOADING') + '</p>';
 
   try {
-    // Calcular tablas desde los partidos de la fase de grupos
+    
     const data = await getGroupMatches();
     const matches = data.matches || [];
 
@@ -137,7 +127,7 @@ async function renderGroups() {
       return;
     }
 
-    // Agrupar partidos por grupo
+    
     const groupsMap = {};
     matches.forEach(match => {
       const group = match.group || 'GROUP_UNKNOWN';
@@ -146,7 +136,7 @@ async function renderGroups() {
       }
       groupsMap[group].matches.push(match);
 
-      // Registrar equipos únicos con sus escudos (usar TLA como clave)
+      
       if (match.homeTeam) {
         const tla = i18n.getTLA(match.homeTeam) || match.homeTeam.name;
         groupsMap[group].teamsMap[tla] = match.homeTeam.crest || '';
@@ -157,7 +147,7 @@ async function renderGroups() {
       }
     });
 
-    // Ordenar grupos alfabéticamente
+    
     const sortedGroups = Object.keys(groupsMap).sort();
 
     container.innerHTML = '';
@@ -175,5 +165,5 @@ async function renderGroups() {
   }
 }
 
-// Auto-carga al entrar en la página
+
 document.addEventListener('DOMContentLoaded', renderGroups);
