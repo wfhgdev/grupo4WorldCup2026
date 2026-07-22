@@ -12,7 +12,166 @@
     rel="stylesheet" />
     <title>Document</title>
 </head>
-<body>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+  <!-- Mobile Menu Overlay -->
+  <div class="fixed inset-0 z-[100] bg-surface flex-col p-margin-mobile hidden" id="mobile-menu-overlay">
+    <div class="flex justify-between items-center mb-stack-lg h-20">
+      <a class="font-display-xl-mobile text-headline-lg-mobile font-black text-primary italic tracking-tighter" href="index.html">
+        FIFA WORLD CUP 2026
+      </a>
+      <button class="text-on-surface-variant p-2 rounded-full hover:bg-surface-container-low transition-colors" id="close-menu">
+        <span class="material-symbols-outlined text-3xl">close</span>
+      </button>
+    </div>
+    <nav class="flex flex-col gap-stack-md mt-4">
+      <a class="text-primary text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="index.html">
+        Inicio <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+      <a class="text-on-surface text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="matches/matches.html">
+        Partidos <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+      <a class="text-on-surface text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="groups/groups.html">
+        Grupos <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+      <a class="text-on-surface text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="knockout/knockout.html">
+        Eliminatorias <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+      <a class="text-on-surface text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="stats/stats.html">
+        Estadísticas <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+    </nav>
+    <div class="mt-auto mb-stack-lg">
+      <button class="gradient-btn text-on-primary w-full py-5 rounded-xl font-headline-md text-headline-md shadow-md">
+        Tickets
+      </button>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header
+    class="bg-surface dark:bg-surface-dim docked full-width top-0 sticky z-50 shadow-sm border-b border-outline-variant dark:border-outline">
+    <div
+      class="flex justify-between items-center px-margin-mobile lg:px-margin-desktop h-20 w-full max-w-container-max mx-auto">
+      <div class="flex items-center gap-stack-sm">
+        <a href="index.html"
+          class="font-display-xl-mobile lg:font-display-xl text-headline-lg-mobile lg:text-headline-lg font-black text-primary dark:text-primary-fixed italic tracking-tighter whitespace-nowrap">
+          FIFA WORLD CUP 2026
+        </a>
+      </div>
+      <nav class="hidden lg:flex gap-gutter font-label-sm">
+        <a class="nav-link text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1 font-label-sm text-label-sm uppercase active:scale-95 transition-transform duration-150" href="index.html">Inicio</a>
+        <a class="nav-link text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm uppercase hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all px-2 py-1 rounded" href="matches/matches.html">Partidos</a>
+        <a class="nav-link text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm uppercase hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all px-2 py-1 rounded" href="groups/groups.html">Grupos</a>
+        <a class="nav-link text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm uppercase hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all px-2 py-1 rounded" href="knockout/knockout.html">Eliminatorias</a>
+        <a class="nav-link text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm uppercase hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all px-2 py-1 rounded" href="stats/stats.html">Estadísticas</a>
+      </nav>
+      <div class="flex items-center gap-stack-sm">
+        <button class="lg:hidden text-on-surface-variant hover:text-primary transition-colors focus:outline-none p-2" id="open-menu">
+          <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
+        <button class="hidden lg:block gradient-btn text-on-primary px-4 py-2 rounded-lg font-label-sm text-label-sm uppercase ml-4">Entradas</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow">
+
+    <!-- Hero -->
+    <section class="relative w-full h-[600px] md:h-[700px] flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 z-0 bg-cover bg-center"
+        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCQ6Zbf5MfT6dKqE-xmAJXtJrwtrlCL8RiM1xL6722lX1rHMu6Sd1rijY0S5jRUOOHyfZjooBSPEq7ICH8NPF5rxcJ1D7tZRMHG6Pt0Fv0x-1JEGbpLeE2riG4b_Am5rRPegTjOMnzq9YgEVDHfwCo0Ofg0LaG0d7cToTpmbS-w8re_eWTfMN9d_qB15zAaI7ZV83k35qcvAino2PGVTlJjPufq_2ka8RwYYFQrjRjgmnHU9Hb4HCfGPWudoebayBPKCinrUGcN6RE')">
+      </div>
+      <div class="absolute inset-0 z-10 bg-gradient-to-t from-background via-inverse-surface/60 to-inverse-surface/30">
+      </div>
+      <div class="relative z-20 text-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mt-20">
+        <h1
+          class="font-display-xl-mobile md:font-display-xl text-display-xl-mobile md:text-display-xl font-black text-on-primary italic tracking-tighter mb-stack-md drop-shadow-lg uppercase"
+          style="color:white;text-shadow:rgba(0,0,0,0.8)0px 4px 20px,rgba(0,0,0,0.5)0px 0px 10px">
+          COPA MUNDIAL 2026: UNIDOS COMO UNO
+        </h1>
+        <p class="font-body-lg text-body-lg text-on-primary mb-stack-lg max-w-2xl mx-auto drop-shadow-md"
+          style="color:rgb(255,255,255);text-shadow:rgba(0,0,0,0.8)0px 2px 10px">
+          Vive la magnitud sin precedentes del primer torneo de 48 equipos en toda América del Norte. El viaje hacia
+          la gloria máxima comienza ahora.
+        </p>
+        <button
+          class="gradient-btn text-on-primary px-8 py-4 rounded-xl font-headline-md text-headline-md uppercase shadow-xl hover:shadow-2xl ring-2 ring-white/20">
+          Consigue tus Entradas
+        </button>
+      </div>
+    </section>
+
+    <!-- Bento Grid -->
+    <section
+      class="py-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full -mt-20 relative z-30">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+        <!-- Matches -->
+        <a href="matches/matches.html"
+          class="col-span-1 md:col-span-6 bg-surface border border-outline-variant rounded-xl p-stack-lg card-hover flex flex-col justify-between h-64 overflow-hidden relative group cursor-pointer">
+          <div
+            class="absolute inset-0 opacity-30 group-hover:opacity-40 transition-opacity duration-500 bg-cover bg-center"
+            style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuA1g87pR8KkH67cvbAyS48UTp338EA-kWDNQpis89njs-Aokzzh2MURUOJTFIQYSTYOm5EAsatvccRBTQYeM3LTz6tAf-QgudpCDog8TnAX8SyhmdMl-9pnY8OoSogk3GJOuEYMXxE3rDLciR3jrDvcdTyYafdF4zt6RCiuGDUO_sh3Ab49plCJRIvMLGA1P3MTOtxUv0D1LgI735Zsej3_GFF1ISfYF-ZkzKr-nhg736bFOgZG3jrPNpKxRHtXQwSY6EjKX1siJLI')">
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent z-0"></div>
+          <div class="relative z-10">
+            <h2
+              class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-white mb-stack-sm uppercase"
+              style="text-shadow:0 2px 4px rgba(0,0,0,0.8)">Partidos</h2>
+            <p class="font-body-md text-body-md text-white" style="text-shadow:0 1px 3px rgba(0,0,0,0.8)">Consulta el
+              calendario completo, resultados y actualizaciones en vivo.</p>
+          </div>
+          <div class="relative z-10 self-end mt-auto">
+            <span class="material-symbols-outlined text-4xl text-white">sports_soccer</span>
+          </div>
+        </a>
+        <!-- Groups -->
+        <a href="groups/groups.html"
+          class="col-span-1 md:col-span-3 bg-surface border border-outline-variant rounded-xl p-stack-lg card-hover flex flex-col justify-between h-64 cursor-pointer">
+          <div>
+            <h2 class="font-headline-md text-headline-md font-bold text-primary mb-stack-sm uppercase">Grupos</h2>
+            <p class="font-body-md text-body-md text-on-surface-variant">Clasificaciones y análisis.</p>
+          </div>
+          <div class="self-end mt-auto bg-surface-container-low p-2 rounded-full">
+            <span class="material-symbols-outlined text-2xl text-primary">table_chart</span>
+          </div>
+        </a>
+        <!-- Knockout -->
+        <a href="knockout/knockout.html"
+          class="col-span-1 md:col-span-3 bg-surface border border-outline-variant rounded-xl p-stack-lg card-hover flex flex-col justify-between h-64 cursor-pointer">
+          <div>
+            <h2 class="font-headline-md text-headline-md font-bold text-primary mb-stack-sm uppercase">Eliminatorias</h2>
+            <p class="font-body-md text-body-md text-on-surface-variant">El camino hacia la final.</p>
+          </div>
+          <div class="self-end mt-auto bg-surface-container-low p-2 rounded-full">
+            <span class="material-symbols-outlined text-2xl text-primary">account_tree</span>
+          </div>
+        </a>
+        <!-- Stats -->
+        <a href="stats/stats.html"
+          class="col-span-1 md:col-span-12 bg-primary text-on-primary rounded-xl p-stack-lg card-hover flex flex-col md:flex-row justify-between items-center h-auto md:h-48 overflow-hidden relative cursor-pointer">
+          <div class="absolute inset-0 bg-gradient-to-r from-primary to-primary-container z-0"></div>
+          <div class="absolute right-0 top-0 h-full w-1/2 opacity-20 bg-cover bg-center"
+            style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuAVqMSMmnLA64lF2srvt0j1JDtB1WgOUG5Kw8ajMwZ8dJ1uYw0cEK9uQsGoyNAGr4l-U7R6npk6HG_2wceJs_gcEYWQdzRre9p2bJtfeBhalXjo_nq45BzyEm3gfViO5gNf0j6LYwLR7rbdmWOAUNukQ6vAgC1nZvLw6lQwZNFUcNC-ZASH7w6Z4dRHAseqNuVYjh8LDjXgSecwJpFfdaZZUX7RPxvEZQZeApM_xGgpRJ8MrDNCn6zwJ33fBJzG7iX4ilNNntw20Z8')">
+          </div>
+          <div class="relative z-10 w-full md:w-1/2 text-left mb-stack-md md:mb-0">
+            <h2
+              class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold mb-stack-sm uppercase">
+              Estadísticas de Jugadores y Equipos</h2>
+            <p class="font-body-md text-body-md text-on-primary-container"
+              style="color:rgb(255,255,255);text-shadow:rgba(0,0,0,0.8)0px 2px 10px">
+              Profundiza en el análisis del deporte rey.</p>
+          </div>
+          <div
+            class="relative z-10 bg-on-primary text-primary px-6 py-3 rounded-lg font-label-sm text-label-sm uppercase font-bold flex items-center gap-2 hover:bg-surface-container-lowest transition-colors">
+            Explorar Datos
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+  </main>
     <div id="footerInjection"></div>
     <script src="components/footer/footerInjection.js"></script>
 </body>
