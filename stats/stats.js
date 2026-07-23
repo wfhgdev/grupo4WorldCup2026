@@ -8,6 +8,41 @@ let allScorersData = [];
 let showAllScorers = false;
 const SCORERS_INITIAL = 5;
 
+/**
+ * Suma goles a favor / en contra por equipo a partir de TODOS los partidos
+ * finalizados del torneo (fase de grupos + eliminatorias).
+ * Usa el marcador tras prórroga si la hubo (no cuenta penaltis).
+ * @param {Array} matches - lista de partidos (de getAllMatches())
+ * @returns {Array} filas { team, goalsFor, goalsAgainst } una por equipo
+ */
+function aggregateTeamGoals(matches) {
+  const teamsMap = new Map();
+
+  (matches || []).forEach(match => {
+    if (match.status !== 'FINISHED') return;
+
+    const homeGoals = match.score?.extraTime?.home ?? match.score?.fullTime?.home;
+    const awayGoals = match.score?.extraTime?.away ?? match.score?.fullTime?.away;
+    if (homeGoals == null || awayGoals == null) return;
+
+    [
+      { team: match.homeTeam, goalsFor: homeGoals, goalsAgainst: awayGoals },
+      { team: match.awayTeam, goalsFor: awayGoals, goalsAgainst: homeGoals }
+    ].forEach(({ team, goalsFor, goalsAgainst }) => {
+      if (!team) return;
+      const key = team.id ?? team.tla ?? team.name;
+      if (!teamsMap.has(key)) {
+        teamsMap.set(key, { team, goalsFor: 0, goalsAgainst: 0 });
+      }
+      const entry = teamsMap.get(key);
+      entry.goalsFor += goalsFor;
+      entry.goalsAgainst += goalsAgainst;
+    });
+  });
+
+  return Array.from(teamsMap.values());
+}
+
 async function renderStats() {
   const scorersList = document.getElementById('scorers-list');
   const topScoringList = document.getElementById('top-scoring-teams-list');
@@ -29,23 +64,11 @@ async function renderStats() {
       renderScorers(scorersList);
     }
 
-    // Equipos - desde standings
+    // Equipos - goles a favor / en contra de TODO el torneo (grupos + eliminatorias).
+    // Nota: getStandings() solo cubre la fase de grupos, por eso no se usa aquí.
     if (topScoringList && mostConcededList) {
-      const standingsData = await getStandings();
-      const allTeams = [];
-      const seenTeams = new Set();
-      (standingsData.standings || []).forEach(g => {
-        // La API devuelve varias tablas por grupo (TOTAL, HOME, AWAY).
-        // Solo nos interesa la tabla TOTAL para no duplicar equipos.
-        if (g.type && g.type !== 'TOTAL') return;
-
-        (g.table || []).forEach(row => {
-          const teamKey = row.team && (row.team.id ?? row.team.tla ?? row.team.name);
-          if (seenTeams.has(teamKey)) return;
-          seenTeams.add(teamKey);
-          allTeams.push(row);
-        });
-      });
+      const matchesData = await getAllMatches();
+      const allTeams = aggregateTeamGoals(matchesData.matches || []);
 
       // Top goleadores
       const topScoring = [...allTeams].sort((a, b) => b.goalsFor - a.goalsFor).slice(0, 5);
