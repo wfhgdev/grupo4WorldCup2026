@@ -218,13 +218,13 @@
     <div class="w-full bg-surface-container-low border-y border-outline-variant overflow-hidden">
       <!-- Bracket Container -->
       <div id="knockout-container" class="hidden">
-        <div class="overflow-x-auto py-stack-lg px-margin-mobile md:px-margin-desktop">
-          <div class="min-w-[2200px] flex justify-between relative py-stack-lg gap-2 lg:min-w-0 lg:justify-center lg:gap-4 xl:gap-6 2xl:gap-8" id="bracket-inner">
+        <div class="overflow-x-auto py-stack-lg px-2 sm:px-4 lg:px-6">
+          <div class="w-full flex justify-center items-stretch relative py-stack-lg gap-1 lg:gap-2 xl:gap-3 mx-auto" id="bracket-inner">
             <!-- SVG Connectors Overlay -->
             <svg id="bracket-connectors" class="absolute inset-0 w-full h-full pointer-events-none"></svg>
 
             <!-- Left: Dieciseisavos de Final -->
-            <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
+            <div class="flex flex-col justify-around w-[clamp(8.5rem,9vw,11rem)] shrink-0 gap-stack-lg z-10">
               <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">Dieciseisavos de Final</div>
               <!-- Match 15 -->
               <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="15">
@@ -397,7 +397,7 @@
             </div>
 
             <!-- Left: Octavos de Final -->
-            <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
+            <div class="flex flex-col justify-around w-[clamp(8.5rem,9vw,11rem)] shrink-0 gap-stack-lg z-10">
               <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">Octavos de Final</div>
               <!-- Match 1 -->
               <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="0">
@@ -486,7 +486,7 @@
             </div>
 
             <!-- Left: Cuartos de Final -->
-            <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
+            <div class="flex flex-col justify-around w-[clamp(8.5rem,9vw,11rem)] shrink-0 gap-stack-lg z-10">
               <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">cuartos de final</div>
                <!-- Match 5 (winner of 1 & 2) -->
               <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer mt-12 mb-12" data-match-id="4">
@@ -533,7 +533,7 @@
             </div>
 
             <!-- Left: Semi Finals -->
-            <div class="flex flex-col justify-center w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
+            <div class="flex flex-col justify-center w-[clamp(8.5rem,9vw,11rem)] shrink-0 gap-stack-lg z-10">
               <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">semifinales</div>
               <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="13">
                 <div class="flex justify-between items-center mb-2">
@@ -558,7 +558,7 @@
             </div>
 
             <!-- Center: Final -->
-            <div class="flex flex-col justify-center w-72 lg:w-80 xl:w-88 2xl:w-96 gap-stack-lg z-20 px-2">
+            <div class="flex flex-col justify-center w-[clamp(14rem,16vw,19rem)] gap-stack-lg z-20 px-2 shrink-0">
               <div class="font-headline-lg text-headline-lg text-primary text-center mb-stack-lg uppercase border-b-4 border-tertiary-container pb-2">Gran Final</div>
               <div class="match-card bg-surface-container-lowest border-2 border-tertiary-container rounded-xl p-4 shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all cursor-pointer relative overflow-hidden group" data-match-id="8">
                 <div class="absolute inset-0 bg-tertiary-container/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -567,27 +567,27 @@
                   <span class="bg-primary text-on-primary px-2 py-0.5 rounded text-[10px] font-bold match-status"></span>
                 </div>
                 <div class="flex flex-col gap-4 relative z-10">
-                  <div class="flex justify-between items-center match-home">
-                    <div class="flex items-center gap-3">
-                      <img class="w-8 h-6 object-cover rounded-sm border border-outline-variant shadow-sm crest-border home-crest" src="" alt="">
-                      <span class="font-headline-md text-headline-md font-bold home-name">—</span>
+                  <div class="flex justify-between items-center gap-2 match-home">
+                    <div class="flex items-center gap-3 min-w-0 flex-1">
+                      <img class="w-8 h-6 object-cover rounded-sm border border-outline-variant shadow-sm crest-border home-crest shrink-0" src="" alt="">
+                      <span class="font-headline-md text-headline-md font-bold home-name truncate">—</span>
                     </div>
-                    <span class="font-display-xl-mobile text-display-xl-mobile text-primary home-score"></span>
+                    <span class="font-headline-lg text-headline-lg text-primary home-score shrink-0"></span>
                   </div>
                   <div class="w-full h-px bg-outline-variant/50"></div>
-                  <div class="flex justify-between items-center match-away">
-                    <div class="flex items-center gap-3">
-                      <img class="w-8 h-6 object-cover rounded-sm border border-outline-variant shadow-sm crest-border away-crest" src="" alt="">
-                      <span class="font-headline-md text-headline-md font-bold away-name">—</span>
+                  <div class="flex justify-between items-center gap-2 match-away">
+                    <div class="flex items-center gap-3 min-w-0 flex-1">
+                      <img class="w-8 h-6 object-cover rounded-sm border border-outline-variant shadow-sm crest-border away-crest shrink-0" src="" alt="">
+                      <span class="font-headline-md text-headline-md font-bold away-name truncate">—</span>
                     </div>
-                    <span class="font-display-xl-mobile text-display-xl-mobile text-primary away-score"></span>
+                    <span class="font-headline-lg text-headline-lg text-primary away-score shrink-0"></span>
                   </div>
                 </div>
               </div>
             </div>
 
             <!-- Right: Semi Finals -->
-            <div class="flex flex-col justify-center w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
+            <div class="flex flex-col justify-center w-[clamp(8.5rem,9vw,11rem)] shrink-0 gap-stack-lg z-10">
               <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">semifinales</div>
               <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="14">
                 <div class="flex justify-between items-center mb-2">
@@ -612,7 +612,7 @@
             </div>
 
             <!-- Right: Cuartos de Final -->
-            <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
+            <div class="flex flex-col justify-around w-[clamp(8.5rem,9vw,11rem)] shrink-0 gap-stack-lg z-10">
               <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">cuartos de final</div>
                <!-- Match 7 (winner of 9 & 10) -->
               <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer mt-12 mb-12" data-match-id="6">
@@ -659,7 +659,7 @@
             </div>
 
             <!-- Right: Octavos de Final -->
-            <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
+            <div class="flex flex-col justify-around w-[clamp(8.5rem,9vw,11rem)] shrink-0 gap-stack-lg z-10">
               <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">Octavos de Final</div>
                <!-- Match 9 -->
               <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="9">
@@ -748,7 +748,7 @@
             </div>
 
             <!-- Right: Dieciseisavos de Final -->
-            <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
+            <div class="flex flex-col justify-around w-[clamp(8.5rem,9vw,11rem)] shrink-0 gap-stack-lg z-10">
               <div class="font-headline-md text-headline-md text-primary text-center mb-stack-md uppercase border-b-2 border-primary pb-2">Dieciseisavos de Final</div>
               <!-- Match 23 -->
               <div class="match-card bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:-translate-y-1 hover:border-b-2 hover:border-b-primary transition-all cursor-pointer relative group" data-match-id="23">
