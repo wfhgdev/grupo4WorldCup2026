@@ -105,6 +105,8 @@ function renderScorers(container) {
     const isEven = i % 2 === 1;
     const teamName = i18n.translateTeam(s.team);
     const nationality = s.player.nationality ? i18n.translateNationality(s.player.nationality) : '';
+    // Equipo y nacionalidad suelen ser el mismo país; mostrarlo una sola vez.
+    const countryLabel = (nationality && nationality !== teamName) ? nationality : teamName;
 
     item.className = `flex items-center justify-between px-4 py-3 border-b border-surface-variant hover:bg-surface-container-low transition-colors${isEven ? ' bg-surface-bright' : ''}`;
     item.innerHTML = `
@@ -117,7 +119,7 @@ function renderScorers(container) {
         </div>
         <div>
           <p class="font-body-md text-body-md text-on-surface font-semibold leading-tight">${s.player.name}</p>
-          <p class="font-label-sm text-label-sm text-on-surface-variant uppercase">${teamName}${nationality ? ' · ' + nationality : ''}</p>
+          <p class="font-label-sm text-label-sm text-on-surface-variant uppercase">${countryLabel}</p>
         </div>
       </div>
       <span class="w-12 text-right font-headline-md text-headline-md text-primary">${s.goals}</span>
