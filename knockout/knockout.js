@@ -12,6 +12,65 @@ const connectorLogger = createLogger('Connectors');
 const DEBUG_CONNECTORS = false;
 
 /**
+ * Referencia al ResizeObserver que vigila #bracket-inner.
+ * Se crea una única vez y se reutiliza para evitar observers duplicados.
+ */
+let bracketResizeObserver = null;
+
+/**
+ * Handle del requestAnimationFrame pendiente para el redibujado de conectores.
+ * Se usa para "debounce" múltiples disparos seguidos (resize, observer, fonts...)
+ * en un único redibujado por frame, evitando trabajo redundante.
+ */
+let connectorsRenderHandle = null;
+
+/**
+ * Programar un redibujado de conectores en el siguiente frame.
+ * Cualquier trigger (resize de ventana, cambio de zoom, cambio de tamaño
+ * del contenedor, fuentes cargadas, etc.) debe pasar por aquí en lugar de
+ * llamar a renderConnectors() directamente, para evitar renders duplicados.
+ */
+function scheduleRenderConnectors() {
+  if (connectorsRenderHandle !== null) {
+    cancelAnimationFrame(connectorsRenderHandle);
+  }
+  connectorsRenderHandle = requestAnimationFrame(() => {
+    connectorsRenderHandle = null;
+    renderConnectors();
+  });
+}
+
+/**
+ * Configurar el ResizeObserver que mantiene los conectores alineados.
+ *
+ * Por qué es necesario: el evento 'resize' de window SOLO se dispara cuando
+ * cambia el viewport del navegador. No se dispara cuando:
+ *  - Se cambia `document.body.style.zoom` (zoom CSS, usado en tests y por
+ *    algunos navegadores/paneles de accesibilidad) — sin embargo SÍ cambia
+ *    el tamaño real (getBoundingClientRect) de #bracket-inner.
+ *  - Cambia el layout por otras causas: fuentes que terminan de cargar,
+ *    nombres de equipo largos que reflowan una tarjeta, o un breakpoint de
+ *    Tailwind (lg:/xl:/2xl:) que se activa por el propio zoom.
+ *
+ * ResizeObserver detecta directamente cambios en la caja del contenedor
+ * del bracket sin importar la causa, por lo que es la fuente de verdad
+ * correcta para saber cuándo redibujar los conectores.
+ */
+function setupBracketResizeObserver() {
+  const bracket = document.getElementById('bracket-inner');
+  if (!bracket || typeof ResizeObserver === 'undefined') return;
+
+  if (bracketResizeObserver) {
+    bracketResizeObserver.disconnect();
+  }
+
+  bracketResizeObserver = new ResizeObserver(() => {
+    scheduleRenderConnectors();
+  });
+  bracketResizeObserver.observe(bracket);
+}
+
+/**
  * Llenar una tarjeta de partido en el bracket
  * @param {HTMLElement} card - Elemento .match-card
  * @param {object} match - Objeto partido (formato football-data.org)
@@ -216,9 +275,11 @@ async function renderKnockout() {
       }
     }
 
-    // Renderizar conectores después de que el DOM se haya actualizado
-    // y las tarjetas tengan sus dimensiones finales
-    scheduleConnectorRender();
+    // Renderizar conectores tras el primer pintado y activar el observer
+    // que los mantendrá alineados ante cualquier cambio de tamaño futuro
+    // (resize, zoom, reflow por contenido/fuentes, cambios de breakpoint).
+    setupBracketResizeObserver();
+    setTimeout(() => scheduleRenderConnectors(), 200);
 
     logger.log('Bracket renderizado exitosamente');
 
@@ -243,33 +304,12 @@ async function renderKnockout() {
       errorEl.classList.add('hidden');
 
       if (demoBadge) demoBadge.classList.remove('hidden');
-      scheduleConnectorRender();
+      setupBracketResizeObserver();
+      setTimeout(() => scheduleRenderConnectors(), 200);
       logger.log('Recuperación con datos demo exitosa');
     } catch (recoveryError) {
       logger.error('Recuperación fallida', { error: recoveryError.message });
     }
-  }
-}
-
-/**
- * Programar renderizado de conectores con requestAnimationFrame
- * Usa rAF con fallback a setTimeout para compatibilidad
- */
-function scheduleConnectorRender() {
-  if (window.requestAnimationFrame) {
-    requestAnimationFrame(() => {
-      // Doble rAF para asegurar que el DOM está estable
-      requestAnimationFrame(() => {
-        renderConnectors();
-        if (DEBUG_CONNECTORS) connectorLogger.log('Conectores renderizados vía requestAnimationFrame');
-      });
-    });
-  } else {
-    // Fallback para navegadores antiguos
-    setTimeout(() => {
-      renderConnectors();
-      if (DEBUG_CONNECTORS) connectorLogger.log('Conectores renderizados vía setTimeout (fallback)');
-    }, 50);
   }
 }
 
@@ -296,7 +336,10 @@ function getCardEdge(matchId, side, bracketEl) {
     default: x = r.left + r.width / 2 - bracketRect.left; break;
   }
   const y = r.top + r.height / 2 - bracketRect.top;
-  return { x, y };
+  // Redondear a 2 decimales: evita ruido de subpíxel que puede aparecer
+  // entre distintos niveles de zoom/devicePixelRatio y mantiene los paths
+  // SVG estables y fáciles de depurar.
+  return { x: Math.round(x * 100) / 100, y: Math.round(y * 100) / 100 };
 }
 
 /**
@@ -336,11 +379,6 @@ function renderConnectors() {
   // Limpiar paths existentes
   svg.innerHTML = '';
 
-  // Oculto en móvil (solo desktop)
-  if (window.innerWidth < 1024) {
-    svg.style.display = 'none';
-    return;
-  }
   svg.style.display = 'block';
 
   const bracketRect = bracket.getBoundingClientRect();
@@ -600,43 +638,21 @@ document.addEventListener('DOMContentLoaded', () => {
     setupBranchHighlight();
   });
 
-  // === ResizeObserver para cambios de tamaño en el contenedor ===
-  const bracketInner = document.getElementById('bracket-inner');
-  if (bracketInner && window.ResizeObserver) {
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        // Solo re-renderizar si el tamaño cambió significativamente
-        const { width, height } = entry.contentRect;
-        if (width > 0 && height > 0) {
-          scheduleConnectorRender();
-        }
-      }
-    });
-    resizeObserver.observe(bracketInner);
+  // Recalcular conectores al cambiar tamaño de ventana.
+  // Nota: esto es un fallback adicional; el ResizeObserver de
+  // #bracket-inner (ver setupBracketResizeObserver) es la fuente principal
+  // porque también cubre casos que 'resize' no dispara, como
+  // document.body.style.zoom.
+  window.addEventListener('resize', () => {
+    scheduleRenderConnectors();
+  });
 
-    // También observar las columnas para detectar cambios de altura
-    document.querySelectorAll('#bracket-inner > .flex.flex-col').forEach(col => {
-      resizeObserver.observe(col);
-    });
-
-    logger.log('ResizeObserver configurado para bracket-inner y columnas');
-  } else if (bracketInner) {
-    logger.warn('ResizeObserver no disponible, usando solo event resize');
-  }
-
-  // Observer para re-renderizar conectores cuando cambie el DOM
-  // (por ej: cuando se actualizan scores o estados)
-  const container = document.getElementById('knockout-container');
-  if (container) {
-    let observerTimeout;
-    const observer = new MutationObserver(() => {
-      clearTimeout(observerTimeout);
-      observerTimeout = setTimeout(() => {
-        scheduleConnectorRender();
-      }, 100); // Debounce de 100ms
-    });
-    observer.observe(container, { childList: true, subtree: true, attributes: false });
-    logger.log('MutationObserver configurado con debounce para knockout-container');
+  // Red de seguridad: si las fuentes web terminan de cargar después del
+  // primer render (FOUT/FOIT), el alto de las tarjetas puede variar
+  // ligeramente. Redibujamos una vez estén listas para que los conectores
+  // queden perfectamente alineados.
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => scheduleRenderConnectors()).catch(() => {});
   }
 
   // Botón Reintentar
@@ -653,22 +669,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
-
-  // Re-render on resize con throttling
-  let resizeTimer;
-  let lastResizeTime = 0;
-  const RESIZE_THROTTLE = 150; // ms
-
-  window.addEventListener('resize', () => {
-    const now = Date.now();
-    if (now - lastResizeTime < RESIZE_THROTTLE) return;
-    lastResizeTime = now;
-
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      scheduleConnectorRender();
-    }, RESIZE_THROTTLE);
-  });
 
   logger.log('Inicialización completa');
 });

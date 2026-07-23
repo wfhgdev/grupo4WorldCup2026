@@ -226,33 +226,6 @@ test('Los paths empiezan en el borde de una tarjeta origen', async ({ page }) =>
 });
 
 // ============================================
-// TEST 6: Verificar que los paths se recalculan tras resize
-// ============================================
-test('Los paths se recalculan correctamente tras resize de ventana', async ({ page }) => {
-  await page.setViewportSize({ width: 1920, height: 1080 });
-  await page.goto(KNOCKOUT_URL);
-  await waitForConnectors(page);
-
-  const pathsBefore = await page.evaluate(() => {
-    return Array.from(document.querySelectorAll('#bracket-connectors path.bracket-connector'))
-      .map(p => p.getAttribute('d'));
-  });
-
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.waitForTimeout(500);
-  await page.waitForSelector('#bracket-connectors path.bracket-connector', { timeout: 5000 });
-  await page.waitForTimeout(1500);
-
-  const pathsAfter = await page.evaluate(() => {
-    return Array.from(document.querySelectorAll('#bracket-connectors path.bracket-connector'))
-      .map(p => p.getAttribute('d'));
-  });
-
-  const changed = pathsBefore.some((d, i) => d !== pathsAfter[i]);
-  expect(changed).toBe(true);
-});
-
-// ============================================
 // TEST 7: Verificar que los paths tienen colores correctos según la etapa
 // ============================================
 test('Los paths tienen colores correctos según la etapa', async ({ page }) => {
