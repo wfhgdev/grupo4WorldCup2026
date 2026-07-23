@@ -1,0 +1,24 @@
+.gradient-btn {
+  background: linear-gradient(45deg, #4f378a, #6750a4);
+  transition: all 0.3s ease;
+}
+.gradient-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+.card-hover {
+  transition: all 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+/* elegant border for team crests from API so they don't blend into the background */
+.crest-border {
+  box-shadow: 0 0 0 2px rgba(50, 47, 53, 0.22), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  transition: box-shadow 0.2s ease;
+}
+.crest-border:hover {
+  box-shadow: 0 0 0 2px rgba(50, 47, 53, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
