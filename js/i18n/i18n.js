@@ -5,7 +5,7 @@ var i18n = (function() {
 
   var dict = window.__DICT || {};
 
-  // Map of English team names to FIFA TLA codes
+  // Map of English team names to FIFA TLA codes.
   // (used when API doesn't provide tla field or for name-based lookups)
   var NAME_TO_TLA = {
     'Qatar': 'QAT',
