@@ -33,8 +33,16 @@ async function renderStats() {
     if (topScoringList && mostConcededList) {
       const standingsData = await getStandings();
       const allTeams = [];
+      const seenTeams = new Set();
       (standingsData.standings || []).forEach(g => {
+        // La API devuelve varias tablas por grupo (TOTAL, HOME, AWAY).
+        // Solo nos interesa la tabla TOTAL para no duplicar equipos.
+        if (g.type && g.type !== 'TOTAL') return;
+
         (g.table || []).forEach(row => {
+          const teamKey = row.team && (row.team.id ?? row.team.tla ?? row.team.name);
+          if (seenTeams.has(teamKey)) return;
+          seenTeams.add(teamKey);
           allTeams.push(row);
         });
       });
@@ -102,8 +110,10 @@ function renderScorers(container) {
     item.innerHTML = `
       <span class="w-8 font-label-sm text-label-sm text-on-surface-variant">${i + 1}</span>
       <div class="flex-grow flex items-center gap-3">
-        <div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant shrink-0 flex items-center justify-center text-xs font-bold text-on-surface-variant">
-          ${s.player.name ? s.player.name.charAt(0).toUpperCase() : '?'}
+        <div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant shrink-0 flex items-center justify-center text-xs font-bold text-on-surface-variant scorer-avatar" data-fallback="${s.player.name ? s.player.name.charAt(0).toUpperCase() : '?'}">
+          ${s.team && s.team.crest
+            ? `<img src="${s.team.crest}" class="w-full h-full object-contain" alt="${teamName}" onerror="this.parentElement.textContent=this.parentElement.dataset.fallback">`
+            : (s.player.name ? s.player.name.charAt(0).toUpperCase() : '?')}
         </div>
         <div>
           <p class="font-body-md text-body-md text-on-surface font-semibold leading-tight">${s.player.name}</p>
