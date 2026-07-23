@@ -16,9 +16,9 @@
 
 /* elegant border for team crests from API so they don't blend into the background */
 .crest-border {
-  box-shadow: 0 0 0 2px rgba(50, 47, 53, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 2px rgba(50, 47, 53, 0.22), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
   transition: box-shadow 0.2s ease;
 }
 .crest-border:hover {
-  box-shadow: 0 0 0 2px rgba(50, 47, 53, 0.7), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 2px rgba(50, 47, 53, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
