@@ -11,7 +11,7 @@ Este proyecto ha sido desarrollado como parte del módulo **Frontend: JavaScript
 ## 🚀 Enlaces del Proyecto
 
 * **Repositorio GitHub:** [Enlace al repositorio](https://github.com/wfhgdev/grupo4WorldCup2026.git)
-* **Despliegue en Vercel:** [Ver en Vercel](https://wc-2026-prueba.vercel.app/index.html)
+* **Despliegue en Vercel:** [Ver en Vercel](https://grupo4-world-cup2026.vercel.app)
 * **Tablero de Gestión (GitHub Project):** [Ver Sprint Backlog](https://github.com/users/wfhgdev/projects/1/views/2)
 * **Diseño en Figma:** [Ver Prototipo Figma](https://www.figma.com/design/24TjyRzS6OAZhD1D2kwCJm/PROY-WORLD-CUP26?node-id=70-96)
 * **Wiki:** [Ver Wiki y documentación](https://wc-2026-prueba.vercel.app/learn/index.html)
