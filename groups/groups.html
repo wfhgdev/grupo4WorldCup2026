@@ -6,19 +6,231 @@
     <link rel="stylesheet" href="groups.css">
  <title>COPA MUNDIAL FIFA 2026 - Grupos</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script src="../js/tailwindCustom.js"></script>
-
+  <script src="/js/tailwindCustom.js"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-on-surface": "#f5eff7",
+            "primary-fixed": "#e9ddff",
+            "tertiary-container": "#c9a74d",
+            "secondary-fixed-dim": "#cdc0e9",
+            "on-primary": "#ffffff",
+            "inverse-surface": "#322f35",
+            "on-primary-container": "#e0d2ff",
+            "on-tertiary-fixed-variant": "#594400",
+            "primary-fixed-dim": "#cfbcff",
+            "surface-container-high": "#ece6ee",
+            "on-tertiary": "#ffffff",
+            "on-error": "#ffffff",
+            "background": "#fdf7ff",
+            "on-primary-fixed-variant": "#4f378a",
+            "primary": "#4f378a",
+            "on-secondary-container": "#645a7d",
+            "on-tertiary-fixed": "#241a00",
+            "on-surface": "#1d1b20",
+            "outline-variant": "#cbc4d2",
+            "inverse-primary": "#cfbcff",
+            "on-background": "#1d1b20",
+            "surface-tint": "#6750a4",
+            "error-container": "#ffdad6",
+            "on-secondary": "#ffffff",
+            "primary-container": "#6750a4",
+            "surface-container": "#f2ecf4",
+            "surface-container-highest": "#e6e0e9",
+            "secondary-container": "#e1d4fd",
+            "tertiary-fixed": "#ffdf93",
+            "on-secondary-fixed-variant": "#4b4263",
+            "secondary": "#63597c",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f8f2fa",
+            "tertiary-fixed-dim": "#e7c365",
+            "surface-bright": "#fdf7ff",
+            "on-error-container": "#93000a",
+            "surface-dim": "#ded8e0",
+            "on-surface-variant": "#494551",
+            "tertiary": "#765b00",
+            "outline": "#7a7582",
+            "on-tertiary-container": "#503d00",
+            "secondary-fixed": "#e9ddff",
+            "surface": "#fdf7ff",
+            "error": "#ba1a1a",
+            "on-primary-fixed": "#22005d",
+            "on-secondary-fixed": "#1f1635",
+            "surface-variant": "#e6e0e9",
+            "deep-navy": "#0B1D3A",
+            "vibrant-green": "#00FF87",
+            "deep-green": "#008744"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px",
+            "16": "16px"
+          },
+          "spacing": {
+            "margin-mobile": "1rem",
+            "stack-md": "1rem",
+            "margin-desktop": "2rem",
+            "stack-lg": "2rem",
+            "container-max": "1280px",
+            "gutter": "1.5rem",
+            "stack-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "display-xl-mobile": ["Montserrat"],
+            "body-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "display-xl": ["Montserrat"],
+            "label-sm": ["Inter"],
+            "headline-lg-mobile": ["Montserrat"],
+            "headline-lg": ["Montserrat"],
+            "headline-md": ["Montserrat"]
+          },
+          "fontSize": {
+            "display-xl-mobile": ["40px", {"lineHeight": "1.1", "letterSpacing": "-0.01em", "fontWeight": "900"}],
+            "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+            "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+            "display-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+            "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+            "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+            "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+            "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}]
+          }
+        }
+      }
+    }
+  </script>
     
-</head>
-<body>
-    <main>
+    <style>
+    .velocity-gradient {
+      background: linear-gradient(45deg, #008744, #00FF87);
+    }
+    .text-velocity-gradient {
+      background: linear-gradient(45deg, #008744, #00FF87);
 
+-webkit-background-clip: text;
+background-clip: text; 
+      -webkit-text-fill-color: transparent;
+    }
+    .table-row-hover:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      border-bottom: 2px solid #00FF87 !important;
+      z-index: 10;
+      position: relative;
+    }
+    .table-row-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .gradient-btn {
+      background: linear-gradient(45deg, #4f378a, #6750a4);
+      transition: all 0.3s ease;
+    }
+    .gradient-btn:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+    }
+  </style>
+  <link rel="stylesheet" href="../index.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700;900&display=swap"
+    rel="stylesheet" />
+
+
+</head>
+
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+  
+  <div class="fixed inset-0 z-[100] bg-surface flex-col p-margin-mobile hidden" id="mobile-menu-overlay">
+    <div class="flex justify-between items-center mb-stack-lg h-20">
+      <a class="font-display-xl-mobile text-headline-lg-mobile font-black text-primary italic tracking-tighter" href="../index.html">
+        FIFA WORLD CUP 2026
+      </a>
+      <button class="text-on-surface-variant p-2 rounded-full hover:bg-surface-container-low transition-colors" id="close-menu">
+        <span class="material-symbols-outlined text-3xl">close</span>
+      </button>
+    </div>
+    <nav class="flex flex-col gap-stack-md mt-4">
+      <a class="text-on-surface text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="../index.html">
+        Inicio <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+      <a class="text-on-surface text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="../matches/matches.html">
+        Partidos <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+      <a class="text-primary text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="groups.html">
+        Grupos <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+      <a class="text-on-surface text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="../knockout/knockout.html">
+        Eliminatorias <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+      <a class="text-on-surface text-3xl py-4 border-b border-outline-variant flex justify-between items-center font-bold" href="../stats/stats.html">
+        Estadísticas <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+    </nav>
+    <div class="mt-auto mb-stack-lg">
+      <button class="gradient-btn text-on-primary w-full py-5 rounded-xl font-headline-md text-headline-md shadow-md">
+        Tickets
+      </button>
+    </div>
+  </div>
+
+  
+  <header class="bg-surface dark:bg-surface-dim docked full-width top-0 sticky z-50 shadow-sm border-b border-outline-variant dark:border-outline">
+    <div class="flex justify-between items-center px-margin-mobile lg:px-margin-desktop h-20 w-full max-w-container-max mx-auto">
+      <div class="flex items-center gap-stack-sm">
+        <a href="../index.html"
+          class="font-display-xl-mobile lg:font-display-xl text-headline-lg-mobile lg:text-headline-lg font-black text-primary dark:text-primary-fixed italic tracking-tighter whitespace-nowrap">
+          FIFA WORLD CUP 2026
+        </a>
+      </div>
+      <nav class="hidden lg:flex gap-gutter font-label-sm">
+        <a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm uppercase hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all px-2 py-1 rounded" href="../index.html">Inicio</a>
+        <a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm uppercase hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all px-2 py-1 rounded" href="../matches/matches.html">Partidos</a>
+        <a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1 font-label-sm text-label-sm uppercase active:scale-95 transition-transform duration-150" href="groups.html">Grupos</a>
+        <a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm uppercase hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all px-2 py-1 rounded" href="../knockout/knockout.html">Eliminatorias</a>
+        <a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm uppercase hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all px-2 py-1 rounded" href="../stats/stats.html">Estadísticas</a>
+      </nav>
+      <div class="flex items-center gap-stack-sm">
+        <button class="lg:hidden text-on-surface-variant hover:text-primary transition-colors focus:outline-none p-2" id="open-menu">
+          <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
+        <button class="hidden lg:block gradient-btn text-on-primary px-4 py-2 rounded-lg font-label-sm text-label-sm uppercase ml-4">Entradas</button>
+      </div>
+    </div>
+  </header>
+
+    <main class="flex-grow">
+    
+    <section class="w-full bg-gradient-to-br from-surface-container to-surface-container-low border-b border-outline-variant py-stack-lg">
+      <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+        <h1 class="font-headline-lg text-headline-lg mb-2 tracking-tight">Clasificación por Grupos</h1>
+        <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Explora la fase de grupos del Mundial 2026. Posiciones, puntos, partidos disputados y rendimiento de cada selección en tiempo real.</p>
+      </div>
+    </section>
+    <div class="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+      <div id="groups-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-gutter">
+        <p class="text-center text-on-surface-variant py-stack-lg col-span-full">Cargando clasificaciones...</p>
+      </div>
+    </div>
 
     </main>
-
 <div id="footerInjection"></div>
     
-    <script src="/components/footer/footerInjection.js"></script>
-    <script src="groups.js"></script>
+
+  <script src="/components/footer/footerInjection.js"></script>
+  <script src="/js/i18n/es/teams.js"></script>
+  <script src="/js/i18n/es/enums.js"></script>
+  <script src="/js/i18n/es/competition.js"></script>
+  <script src="/js/i18n/es/ui.js"></script>
+  <script src="/js/i18n/es/index.js"></script>
+  <script src="/js/i18n/i18n.js"></script>
+  <script src="/js/menu.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="groups.js"></script>
 </body>
 </html>
