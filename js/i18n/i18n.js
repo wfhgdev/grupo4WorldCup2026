@@ -326,11 +326,17 @@ var i18n = (function() {
   // Translate nationality (for scorers table)
   function translateNationality(nationality) {
     if (!nationality) return '';
-    // Try team TLA lookup
+    // Try team TLA lookup (nationality already is a TLA)
     if (dict[nationality]) {
       return dict[nationality];
     }
-    // Try Intl.DisplayNames as fallback
+    // The API usually returns the nationality as a full English name
+    // (e.g. "France"). Resolve it to a TLA and translate from there.
+    var tla = NAME_TO_TLA[nationality];
+    if (tla && dict[tla]) {
+      return dict[tla];
+    }
+    // Try Intl.DisplayNames as fallback (covers ISO countries not in our list)
     try {
       var displayNames = new Intl.DisplayNames(['es'], { type: 'region' });
       var result = displayNames.of(nationality);
