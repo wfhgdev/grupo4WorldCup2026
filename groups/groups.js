@@ -89,7 +89,7 @@ function renderGroupTable(container, groupName, teamsStats) {
             <tr class="border-t border-outline-variant hover:bg-surface-container-low transition-colors">
               <td class="p-3 font-bold">${index + 1}</td>
               <td class="p-3 flex items-center gap-stack-sm">
-                <img src="${row.team.crest}" alt="${teamDisplayName}" class="w-6 h-6 object-contain crest-border bg-surface rounded-sm shrink-0" onerror="this.style.display='none'">
+                ${getTeamCrestHtml(row.team, 'groups', teamDisplayName?.charAt(0), teamDisplayName)}
                 <span class="font-bold">${teamDisplayName}</span>
               </td>
               <td class="p-3 text-center">${row.playedGames}</td>

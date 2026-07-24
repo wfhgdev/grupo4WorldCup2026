@@ -9,10 +9,10 @@
  */
 const CREST_CONFIG = {
   groups: {
-    size: 'w-6 h-6',
+    size: 'w-6 h-4',
     fit: 'object-contain',
     shape: 'rounded-sm',
-    cls: 'crest-border shrink-0'
+    cls: 'crest-border shrink-0 border border-outline-variant'
   },
   matches: {
     size: 'w-14 h-14',
@@ -33,10 +33,10 @@ const CREST_CONFIG = {
     cls: 'crest-border shrink-0'
   },
   stats: {
-    size: 'w-6 h-6',
-    fit: 'object-cover',
+    size: 'w-6 h-4',
+    fit: 'object-contain',
     shape: 'rounded-sm',
-    cls: 'crest-border shrink-0'
+    cls: 'crest-border shrink-0 border border-outline-variant'
   }
 };
 
