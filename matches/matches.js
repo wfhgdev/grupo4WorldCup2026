@@ -105,14 +105,15 @@ async function renderMatches(status = 'ALL') {
         </div>
       `;
 
-            innerHTML += `<div class="flex justify-between items-center">`;
+            innerHTML += `<div class="flex items-start justify-between gap-2">`;
 
             let team1Crest = getTeamCrestHtml(match.homeTeam, 'matches', homeCode, homeName);
 
       innerHTML += `
-        <div class="flex flex-col items-center gap-3 w-1/3">
+        <div class="flex min-w-0 flex-1 flex-col items-center gap-2 text-center">
           ${team1Crest}
-          <span class="font-headline-md text-headline-md font-bold text-on-surface truncate w-full text-center" title="${homeName}">${homeCode}</span>
+          <span class="font-headline-md text-headline-md font-bold text-on-surface leading-none" title="${homeName}">${homeCode}</span>
+          <span class="w-full break-words font-label-sm text-label-sm leading-tight text-on-surface-variant" title="${homeName}">${homeName}</span>
         </div>
       `;
 
@@ -124,14 +125,14 @@ async function renderMatches(status = 'ALL') {
           scoreDisplay = `${homeScore ?? '?'} - ${awayScore ?? '?'}`;
         }
         innerHTML += `
-          <div class="flex flex-col items-center justify-center w-1/3">
+          <div class="flex shrink-0 flex-col items-center justify-center px-1">
             <div class="font-display-xl-mobile text-display-xl-mobile font-black text-on-surface tracking-tighter">${scoreDisplay}</div>
             ${(isFinished && homePenalties !== undefined) ? `<div class="font-label-sm text-label-sm text-on-surface-variant mt-1">(${homePenalties} - ${awayPenalties}) pen.</div>` : ''}
           </div>
         `;
       } else {
         innerHTML += `
-          <div class="flex flex-col items-center justify-center w-1/3">
+          <div class="flex shrink-0 flex-col items-center justify-center px-1">
             <div class="font-headline-md text-headline-md font-bold text-on-surface-variant">${i18n.formatTime(match.utcDate)}</div>
             <div class="font-label-sm text-label-sm text-on-surface-variant mt-1">${i18n.getRelativeDay(match.utcDate)}</div>
           </div>
@@ -141,9 +142,10 @@ async function renderMatches(status = 'ALL') {
       let team2Crest = getTeamCrestHtml(match.awayTeam, 'matches', awayCode, awayName);
 
       innerHTML += `
-        <div class="flex flex-col items-center gap-3 w-1/3">
+        <div class="flex min-w-0 flex-1 flex-col items-center gap-2 text-center">
           ${team2Crest}
-          <span class="font-headline-md text-headline-md font-bold text-${isFinished ? 'on-surface-variant' : 'on-surface'} truncate w-full text-center" title="${awayName}">${awayCode}</span>
+          <span class="font-headline-md text-headline-md font-bold text-${isFinished ? 'on-surface-variant' : 'on-surface'} leading-none" title="${awayName}">${awayCode}</span>
+          <span class="w-full break-words font-label-sm text-label-sm leading-tight text-on-surface-variant" title="${awayName}">${awayName}</span>
         </div>
       `;
 
