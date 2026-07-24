@@ -81,6 +81,67 @@ function fillMatchCard(card, match) {
   }
 }
 
+const BRACKET_CONNECTIONS = [
+  [15, 0], [16, 0], [17, 1], [18, 1], [19, 2], [20, 2], [21, 3], [22, 3],
+  [0, 4], [1, 4], [2, 5], [3, 5], [4, 13], [5, 13], [13, 8],
+  [23, 9], [24, 9], [25, 10], [26, 10], [27, 11], [28, 11], [29, 12], [30, 12],
+  [9, 6], [10, 6], [11, 7], [12, 7], [6, 14], [7, 14], [14, 8]
+];
+
+let bracketConnectorObserver;
+
+function drawBracketConnectors() {
+  const canvas = document.getElementById('bracket-canvas');
+  const svg = document.getElementById('bracket-connectors');
+  if (!canvas || !svg) return;
+
+  const canvasRect = canvas.getBoundingClientRect();
+  const width = canvas.clientWidth;
+  const height = canvas.clientHeight;
+  if (!width || !height) return;
+
+  svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  svg.setAttribute('width', width);
+  svg.setAttribute('height', height);
+  svg.replaceChildren();
+
+  BRACKET_CONNECTIONS.forEach(([sourceId, targetId]) => {
+    const source = document.querySelector(`.match-card[data-match-id="${sourceId}"]`);
+    const target = document.querySelector(`.match-card[data-match-id="${targetId}"]`);
+    if (!source || !target) return;
+
+    const sourceRect = source.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+    const flowsRight = sourceRect.left < targetRect.left;
+    const startX = (flowsRight ? sourceRect.right : sourceRect.left) - canvasRect.left;
+    const endX = (flowsRight ? targetRect.left : targetRect.right) - canvasRect.left;
+    const startY = sourceRect.top + sourceRect.height / 2 - canvasRect.top;
+    const endY = targetRect.top + targetRect.height / 2 - canvasRect.top;
+    const bendX = (startX + endX) / 2;
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+
+    path.setAttribute('d', `M ${startX} ${startY} H ${bendX} V ${endY} H ${endX}`);
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', '#cbc4d2');
+    path.setAttribute('stroke-width', '2');
+    path.setAttribute('vector-effect', 'non-scaling-stroke');
+    svg.append(path);
+  });
+}
+
+function scheduleBracketConnectorDraw() {
+  requestAnimationFrame(drawBracketConnectors);
+}
+
+function observeBracketConnectors() {
+  const canvas = document.getElementById('bracket-canvas');
+  if (!canvas || bracketConnectorObserver) return;
+
+  bracketConnectorObserver = new ResizeObserver(scheduleBracketConnectorDraw);
+  bracketConnectorObserver.observe(canvas);
+  window.addEventListener('resize', scheduleBracketConnectorDraw);
+}
+
 async function renderKnockout() {
   const container = document.getElementById('knockout-container');
   const loadingEl = document.getElementById('knockout-loading');
@@ -196,6 +257,8 @@ async function renderKnockout() {
     container.classList.remove('hidden');
     loadingEl.classList.add('hidden');
     errorEl.classList.add('hidden');
+    observeBracketConnectors();
+    scheduleBracketConnectorDraw();
 
   } catch (error) {
     console.error('Error renderKnockout:', error);
