@@ -22,7 +22,7 @@
   <header class="bg-white border-b border-[#cbc4d2] sticky top-0 z-50">
     <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
       <a href="index.html" class="font-['Montserrat'] text-lg font-black text-[#4f378a] italic tracking-tighter">← Dashboard</a>
-      <span class="text-sm text-[#494551]">05 / 12</span>
+      <span class="text-sm text-[#494551]">05 / 13</span>
       <button type="button" id="lang-toggle" class="lang-btn bg-[#4f378a] text-white text-xs px-3 py-1.5 rounded-full font-semibold">🇬🇧 English</button>
     </div>
   </header>
@@ -32,8 +32,8 @@
       <h1 class="text-3xl font-black text-[#4f378a] mb-6">🌐 Internacionalización (i18n)</h1>
 
       <section class="mb-8">
-        <h2 class="text-xl font-bold text-[#4f378a] mb-3">¿Qué es i18n?</h2>
-        <p class="mb-3">i18n = <strong>internacionalización</strong>. En este proyecto traducimos equipos, estados y textos de UI sin duplicar páginas. Fuentes:</p>
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">¿Qué es i18n en este proyecto?</h2>
+        <p class="mb-3">i18n = <strong>internacionalización</strong>, pero aquí <strong>no es un selector de idioma del sitio</strong>. La app siempre muestra su interfaz en español. Lo que hace este sistema es traducir los <strong>datos en inglés que devuelve la API</strong> (football-data.org): nombres de equipos, estados de partido, nombres de fase, etc. Fuentes:</p>
         <ul class="list-disc pl-6 space-y-1">
           <li><a class="source-link" href="../js/i18n/i18n.js" target="_blank">[Fuente: ../js/i18n/i18n.js]</a></li>
           <li><a class="source-link" href="../js/i18n/es/teams.js" target="_blank">[Fuente: ../js/i18n/es/teams.js]</a></li>
@@ -41,7 +41,25 @@
           <li><a class="source-link" href="../js/i18n/es/competition.js" target="_blank">[Fuente: ../js/i18n/es/competition.js]</a></li>
           <li><a class="source-link" href="../js/i18n/es/ui.js" target="_blank">[Fuente: ../js/i18n/es/ui.js]</a></li>
         </ul>
+        <div class="tip-box mt-4">
+          <strong>💡 No confundir:</strong> esta carpeta <code>js/i18n/</code> es distinta del botón 🇬🇧/🇪🇸 que ves en estas páginas de <code>learn/</code> (ese es solo <code>learn/js/learn.js</code>, un interruptor ES/EN para el manual). La app real del torneo no tiene selector de idioma; solo traduce datos.
+        </div>
         <p class="mt-3"><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Glossary/Internationalization" target="_blank">[MDN — i18n EN]</a></p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Orden de carga de los scripts</h2>
+        <p class="mb-3">Los diccionarios se combinan antes de que <code>i18n.js</code> los necesite. El orden en el HTML de cada página importa:</p>
+        <pre>&lt;script src="../js/i18n/es/teams.js"&gt;&lt;/script&gt;
+&lt;script src="../js/i18n/es/enums.js"&gt;&lt;/script&gt;
+&lt;script src="../js/i18n/es/competition.js"&gt;&lt;/script&gt;
+&lt;script src="../js/i18n/es/ui.js"&gt;&lt;/script&gt;
+&lt;script src="../js/i18n/es/index.js"&gt;&lt;/script&gt;  &lt;!-- fusiona todo en window.__DICT --&gt;
+&lt;script src="../js/i18n/i18n.js"&gt;&lt;/script&gt;        &lt;!-- lee window.__DICT y expone el objeto i18n --&gt;</pre>
+        <p class="mt-3">Cada archivo <code>es/*.js</code> define una variable global (<code>window.__TEAMS_ES</code>, <code>window.__ENUMS_ES</code>...). <code>es/index.js</code> los fusiona en <code>window.__DICT</code> y borra las variables temporales. Solo entonces <code>i18n.js</code> puede leer <code>window.__DICT</code> y ofrecer sus funciones.</p>
+        <div class="tip-box mt-4">
+          <strong>⚠️ Error común:</strong> cargar <code>i18n.js</code> antes que los diccionarios — <code>window.__DICT</code> estaría vacío y todas las traducciones devolverían la clave sin traducir.
+        </div>
       </section>
 
       <section class="mb-8">
@@ -92,6 +110,22 @@ t('BRA'); // "Brasil"</pre>
       </section>
 
       <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Funciones de formato y traducción (i18n.js)</h2>
+        <p class="mb-3">Además de <code>t()</code> y <code>translateTeam()</code>, <code>i18n.js</code> expone funciones que usan todas las páginas de datos:</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><code>formatDate(dateStr)</code> — convierte una fecha ISO de la API a formato largo en español (<code>toLocaleDateString('es-ES', ...)</code>).</li>
+          <li><code>formatTime(dateStr)</code> — igual, pero solo hora y minutos.</li>
+          <li><code>getRelativeDay(dateStr)</code> — devuelve "Hoy", "Mañana" o "Ayer" comparando con la fecha actual; si no aplica, cae a fecha larga.</li>
+          <li><code>translateStatus(status)</code> / <code>translateStatusShort(status)</code> — traducen <code>SCHEDULED</code>, <code>IN_PLAY</code>, <code>FINISHED</code>, etc. a texto en español (largo o corto para badges).</li>
+          <li><code>translateStage(stage)</code> — traduce el nombre de fase (<code>GROUP_STAGE</code>, <code>LAST_16</code>, <code>QUARTER_FINALS</code>...) buscando claves <code>STAGE_*</code> en el diccionario.</li>
+        </ul>
+        <pre>i18n.formatDate('2026-06-15T18:00:00Z');   // "lunes, 15 de junio de 2026"
+i18n.translateStatus('IN_PLAY');            // "En Juego"
+i18n.translateStage('QUARTER_FINALS');      // "Cuartos de Final"</pre>
+        <p class="mt-3">Fuente: <a class="source-link" href="../js/i18n/i18n.js" target="_blank">[Fuente: ../js/i18n/i18n.js]</a>.</p>
+      </section>
+
+      <section class="mb-8">
         <h2 class="text-xl font-bold text-[#4f378a] mb-3">Recursos recomendados</h2>
         <ul class="list-disc pl-6 space-y-1">
           <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Glossary/Internationalization" target="_blank">MDN — Internationalization EN</a></li>
@@ -121,8 +155,8 @@ t('BRA'); // "Brasil"</pre>
       </section>
 
       <section class="mb-8">
-        <h2 class="text-xl font-bold text-[#4f378a] mb-3">What is i18n?</h2>
-        <p class="mb-3">i18n = <strong>internationalization</strong>. In this project we translate teams, statuses and UI texts without duplicating pages. Sources:</p>
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">What is i18n in this project?</h2>
+        <p class="mb-3">i18n = <strong>internationalization</strong>, but here it is <strong>not a site language switcher</strong>. The app UI is always in Spanish. What this system does is translate the <strong>English data the API returns</strong> (football-data.org): team names, match statuses, stage names, etc. Sources:</p>
         <ul class="list-disc pl-6 space-y-1">
           <li><a class="source-link" href="../js/i18n/i18n.js" target="_blank">[Source: ../js/i18n/i18n.js]</a></li>
           <li><a class="source-link" href="../js/i18n/es/teams.js" target="_blank">[Source: ../js/i18n/es/teams.js]</a></li>
@@ -130,7 +164,22 @@ t('BRA'); // "Brasil"</pre>
           <li><a class="source-link" href="../js/i18n/es/competition.js" target="_blank">[Source: ../js/i18n/es/competition.js]</a></li>
           <li><a class="source-link" href="../js/i18n/es/ui.js" target="_blank">[Source: ../js/i18n/es/ui.js]</a></li>
         </ul>
+        <div class="tip-box mt-4">
+          <strong>💡 Don't confuse it:</strong> this <code>js/i18n/</code> folder is unrelated to the 🇬🇧/🇪🇸 button on these <code>learn/</code> pages (that's just <code>learn/js/learn.js</code>, an ES/EN toggle for the manual itself). The real tournament app has no language switcher — it only translates data.
+        </div>
         <p class="mt-3"><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Glossary/Internationalization" target="_blank">MDN — Internationalization EN</a></p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Script load order</h2>
+        <p class="mb-3">Dictionaries are merged before <code>i18n.js</code> needs them:</p>
+        <pre>&lt;script src="../js/i18n/es/teams.js"&gt;&lt;/script&gt;
+&lt;script src="../js/i18n/es/enums.js"&gt;&lt;/script&gt;
+&lt;script src="../js/i18n/es/competition.js"&gt;&lt;/script&gt;
+&lt;script src="../js/i18n/es/ui.js"&gt;&lt;/script&gt;
+&lt;script src="../js/i18n/es/index.js"&gt;&lt;/script&gt;  &lt;!-- merges into window.__DICT --&gt;
+&lt;script src="../js/i18n/i18n.js"&gt;&lt;/script&gt;        &lt;!-- reads window.__DICT --&gt;</pre>
+        <p class="mt-3">Loading <code>i18n.js</code> before the dictionaries would leave <code>window.__DICT</code> empty, so every translation would fall back to the untranslated key.</p>
       </section>
 
       <section class="mb-8">
@@ -162,6 +211,19 @@ t('BRA'); // "Brazil"</pre>
   'United States': 'USA'
 };</pre>
         <p class="mt-3"><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" target="_blank">Map in JS — MDN EN</a></p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Format and translation functions (i18n.js)</h2>
+        <p class="mb-3">Besides <code>t()</code> and <code>translateTeam()</code>, <code>i18n.js</code> exposes helpers used across every data page:</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><code>formatDate(dateStr)</code> — converts an ISO date from the API to a long Spanish date.</li>
+          <li><code>formatTime(dateStr)</code> — same, but hour and minutes only.</li>
+          <li><code>getRelativeDay(dateStr)</code> — returns "Today"/"Tomorrow"/"Yesterday" (in Spanish) relative to now, falling back to a long date.</li>
+          <li><code>translateStatus(status)</code> / <code>translateStatusShort(status)</code> — translate <code>SCHEDULED</code>, <code>IN_PLAY</code>, <code>FINISHED</code>, etc.</li>
+          <li><code>translateStage(stage)</code> — translates stage names (<code>GROUP_STAGE</code>, <code>LAST_16</code>, <code>QUARTER_FINALS</code>...) via <code>STAGE_*</code> dictionary keys.</li>
+        </ul>
+        <p class="mt-3">Source: <a class="source-link" href="../js/i18n/i18n.js" target="_blank">[Source: ../js/i18n/i18n.js]</a>.</p>
       </section>
 
       <section class="mb-8">

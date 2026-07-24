@@ -21,7 +21,7 @@
   <header class="bg-white border-b border-[#cbc4d2] sticky top-0 z-50">
     <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
       <a href="index.html" class="font-['Montserrat'] text-lg font-black text-[#4f378a] italic tracking-tighter">← Dashboard</a>
-      <span class="text-sm text-[#494551]">07 / 12</span>
+      <span class="text-sm text-[#494551]">07 / 13</span>
       <button type="button" id="lang-toggle" class="lang-btn bg-[#4f378a] text-white text-xs px-3 py-1.5 rounded-full font-semibold">🇬🇧 English</button>
     </div>
   </header>
@@ -57,6 +57,24 @@
           <li>Aplicar estilos por estado: vivo, finalizado o programado.</li>
         </ol>
         <p class="mt-3"><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript" target="_blank">[MDN — JavaScript ES]</a></p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Filtros</h2>
+        <p class="mb-3">Cuatro botones llaman a <code>renderMatches(status)</code> con un valor distinto cada uno:</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong>Todos</strong> → <code>renderMatches('ALL')</code> → usa <code>getAllMatches()</code>.</li>
+          <li><strong>Programados</strong> → <code>renderMatches('SCHEDULED')</code> → usa <code>getMatchesByStatus('SCHEDULED')</code>.</li>
+          <li><strong>En Vivo</strong> → <code>renderMatches('IN_PLAY')</code> → usa <code>getMatchesByStatus('IN_PLAY')</code>.</li>
+          <li><strong>Finalizados</strong> → <code>renderMatches('FINISHED')</code> → usa <code>getMatchesByStatus('FINISHED')</code>.</li>
+        </ul>
+        <p class="mt-3">El botón activo se resalta actualizando sus clases con <code>setActiveFilter()</code>. Fuente: <a class="source-link" href="../matches/matches.js" target="_blank">[Fuente: ../matches/matches.js]</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Escudos de equipo</h2>
+        <p class="mb-3">Cada tarjeta pinta el escudo con la función compartida <code>getTeamCrestHtml(team, 'matches', fallback, alt)</code>, que ya incluye el tamaño (<code>crest-lg</code> en esta página) y el <code>onerror</code> de respaldo si la imagen falla. Detalle completo en <a class="source-link" href="12-componentes-compartidos.html">Lección 12 · Componentes Compartidos</a>.</p>
+        <p class="mt-3">Fuente: <a class="source-link" href="../js/teamImage.js" target="_blank">[Fuente: ../js/teamImage.js]</a>.</p>
       </section>
 
       <section class="mb-8">
@@ -121,6 +139,14 @@
       <section class="mb-8">
         <h2 class="text-xl font-bold text-[#4f378a] mb-3">Render flow</h2>
         <p class="mb-3">fetch → normalize → skeleton → render cards → status styling.</p>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Filters</h2>
+        <p class="mb-3">Four buttons call <code>renderMatches(status)</code>: All → <code>getAllMatches()</code>; Scheduled/Live/Finished → <code>getMatchesByStatus(status)</code>. The active filter button is highlighted via <code>setActiveFilter()</code>. Source: <a class="source-link" href="../matches/matches.js" target="_blank">[Source: ../matches/matches.js]</a>.</p>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Team crests</h2>
+        <p class="mb-3">Each card renders its crest with the shared <code>getTeamCrestHtml(team, 'matches', fallback, alt)</code> helper, including size and error fallback. Full details in <a class="source-link" href="12-componentes-compartidos.html">Lesson 12 · Shared Components</a>. Source: <a class="source-link" href="../js/teamImage.js" target="_blank">[Source: ../js/teamImage.js]</a>.</p>
       </section>
       <section class="mb-8">
         <h2 class="text-xl font-bold text-[#4f378a] mb-3">Recommended resources</h2>

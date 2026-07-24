@@ -22,7 +22,7 @@
   <header class="bg-white border-b border-[#cbc4d2] sticky top-0 z-50">
     <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
       <a href="index.html" class="font-['Montserrat'] text-lg font-black text-[#4f378a] italic tracking-tighter">← Dashboard</a>
-      <span class="text-sm text-[#494551]">02 / 12</span>
+      <span class="text-sm text-[#494551]">02 / 13</span>
       <button type="button" id="lang-toggle" class="lang-btn bg-[#4f378a] text-white text-xs px-3 py-1.5 rounded-full font-semibold">🇬🇧 English</button>
     </div>
   </header>
@@ -156,28 +156,31 @@ async function obtenerDatos() {
 
       <section class="mb-8">
         <h2 class="text-xl font-bold text-[#4f378a] mb-3">Fetch API</h2>
-        <p class="mb-3"><code>fetch()</code> hace peticiones HTTP desde el navegador. En el proyecto tenemos dos flujos:</p>
-        <ol class="list-decimal pl-6 space-y-1">
-          <li><strong>Proxy (serverless)</strong>: <code>fetch('/api/proxy?endpoint=...')</code></li>
-          <li><strong>Directo</strong>: <code>fetch('https://api.football-data.org/...')</code></li>
-        </ol>
-        <pre>const response = await fetch('https://api.football-data.org/v4/competitions/WC/matches');
-const data = await response.json();</pre>
+        <p class="mb-3"><code>fetch()</code> hace peticiones HTTP desde el navegador. En este proyecto <strong>todas</strong> las llamadas a datos deportivos pasan por el proxy serverless (football-data.org no permite CORS desde el navegador):</p>
+        <pre>// fetchApi() en js/api.js hace esto por ti:
+const response = await fetch('/api/proxy?endpoint=' + encodeURIComponent('/competitions/WC/matches'));
+const data = await response.json();
+
+// En la práctica usas las funciones ya envueltas:
+const data = await getAllMatches(); // ver Lección 03</pre>
         <div class="tip-box mt-4">
-          <strong>⚠️ Error común:</strong> <code>fetch()</code> solo lanza error en fallos de red; para errores HTTP debes revisar <code>response.ok</code>.
+          <strong>⚠️ Error común:</strong> <code>fetch()</code> solo lanza error en fallos de red; para errores HTTP debes revisar <code>response.ok</code>. En este proyecto <code>fetchApi()</code> ya hace esa comprobación por ti.
         </div>
         <p class="mt-3"><a class="source-link" href="https://developer.mozilla.org/es/docs/Web/API/Fetch_API" target="_blank">MDN — Fetch</a>.</p>
       </section>
 
       <section class="mb-8">
         <h2 class="text-xl font-bold text-[#4f378a] mb-3">Promise.all</h2>
-        <p class="mb-3">Ejecuta varias llamadas en paralelo y espera todas. Útil para cargar datos de eliminatoria.</p>
-        <pre>const [partidos, equipos, estadios] = await Promise.all([
-  fetch('/api/partidos'),
-  fetch('/api/equipos'),
-  fetch('/api/estadios')
+        <p class="mb-3">Ejecuta varias llamadas en paralelo y espera todas. La página de eliminatorias la usa para pedir seis rondas del torneo a la vez:</p>
+        <pre>const [last32, last16, quarters, semis, third, final] = await Promise.all([
+  getMatchesByStage('LAST_32'),
+  getMatchesByStage('LAST_16'),
+  getMatchesByStage('QUARTER_FINALS'),
+  getMatchesByStage('SEMI_FINALS'),
+  getMatchesByStage('THIRD_PLACE'),
+  getMatchesByStage('FINAL')
 ]);</pre>
-        <p class="mt-3">Ejemplo real: <a class="source-link" href="../knockout/knockout.html" target="_blank">[Fuente: ../knockout/knockout.html]</a>.</p>
+        <p class="mt-3">Ejemplo real: <a class="source-link" href="../knockout/knockout.js" target="_blank">[Fuente: ../knockout/knockout.js]</a>.</p>
       </section>
 
       <section class="mb-8">
@@ -319,29 +322,32 @@ async function fetchData() {
 
       <section class="mb-8">
         <h2 class="text-xl font-bold text-[#4f378a] mb-3">Fetch API</h2>
-        <p class="mb-3"><code>fetch()</code> makes HTTP requests from the browser. In this project we have two flows:</p>
-        <ol class="list-decimal pl-6 space-y-1">
-          <li><strong>Proxy (serverless)</strong>: <code>fetch('/api/proxy?endpoint=...')</code></li>
-          <li><strong>Direct</strong>: <code>fetch('https://api.football-data.org/...')</code></li>
-        </ol>
+        <p class="mb-3"><code>fetch()</code> makes HTTP requests from the browser. In this project <strong>every</strong> sports-data call goes through the serverless proxy (football-data.org doesn't allow CORS from the browser):</p>
         <p class="mb-3">Project source: <a class="source-link" href="../js/api.js" target="_blank">[Source: ../js/api.js]</a>.</p>
-        <pre>const response = await fetch('https://api.football-data.org/v4/competitions/WC/matches');
-const data = await response.json();</pre>
+        <pre>// fetchApi() in js/api.js does this for you:
+const response = await fetch('/api/proxy?endpoint=' + encodeURIComponent('/competitions/WC/matches'));
+const data = await response.json();
+
+// In practice you call the already-wrapped helpers:
+const data = await getAllMatches(); // see Lesson 03</pre>
         <div class="tip-box mt-4">
-          <strong>⚠️ Common mistake:</strong> <code>fetch()</code> only throws on network failures; for HTTP errors you must check <code>response.ok</code>.
+          <strong>⚠️ Common mistake:</strong> <code>fetch()</code> only throws on network failures; for HTTP errors you must check <code>response.ok</code>. In this project <code>fetchApi()</code> already does that check for you.
         </div>
         <p class="mt-3"><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank">MDN — Fetch</a>.</p>
       </section>
 
       <section class="mb-8">
         <h2 class="text-xl font-bold text-[#4f378a] mb-3">Promise.all</h2>
-        <p class="mb-3">Runs several requests in parallel and waits for all of them. Useful when loading knockout data.</p>
-        <pre>const [matches, teams, stadiums] = await Promise.all([
-  fetch('/api/matches'),
-  fetch('/api/teams'),
-  fetch('/api/stadiums')
+        <p class="mb-3">Runs several requests in parallel and waits for all of them. The knockout page uses it to fetch six tournament stages at once:</p>
+        <pre>const [last32, last16, quarters, semis, third, final] = await Promise.all([
+  getMatchesByStage('LAST_32'),
+  getMatchesByStage('LAST_16'),
+  getMatchesByStage('QUARTER_FINALS'),
+  getMatchesByStage('SEMI_FINALS'),
+  getMatchesByStage('THIRD_PLACE'),
+  getMatchesByStage('FINAL')
 ]);</pre>
-        <p class="mt-3">Real example: <a class="source-link" href="../knockout/knockout.html" target="_blank">[Source: ../knockout/knockout.html]</a>.</p>
+        <p class="mt-3">Real example: <a class="source-link" href="../knockout/knockout.js" target="_blank">[Source: ../knockout/knockout.js]</a>.</p>
       </section>
 
       <section class="mb-8">
@@ -355,8 +361,8 @@ const data = await response.json();</pre>
     </div>
 
     <div class="flex justify-between mt-10 pt-6 border-t border-[#cbc4d2]">
-      <a href="01-html-css-tailwind.html" class="text-[#4f378a] font-semibold hover:underline">← Previous: HTML, CSS & Tailwind</a>
-      <a href="03-api-proxy.html" class="bg-[#4f378a] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#6750a4] transition">Next: API & Proxy →</a>
+      <a href="01-html-css-tailwind.html" class="text-[#4f378a] font-semibold hover:underline">← Previous: HTML, CSS &amp; Tailwind</a>
+      <a href="03-api-proxy.html" class="bg-[#4f378a] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#6750a4] transition">Next: API &amp; Proxy →</a>
     </div>
   </main>
 
