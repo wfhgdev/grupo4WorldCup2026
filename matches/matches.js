@@ -107,9 +107,7 @@ async function renderMatches(status = 'ALL') {
 
             innerHTML += `<div class="flex justify-between items-center">`;
 
-            let team1Crest = match.homeTeam?.crest ? `<div class="w-14 h-14 rounded-full overflow-hidden border border-outline-variant shadow-sm bg-surface-container">
-        <img alt="${homeName}" class="w-full h-full object-cover crest-border" src="${match.homeTeam.crest}" onerror="this.parentElement.innerHTML='<div class=\\'w-full h-full flex items-center justify-center font-bold text-on-surface-variant text-xs\\'>${homeCode}</div>'">
-      </div>` : `<div class="w-14 h-14 rounded-full overflow-hidden border border-outline-variant shadow-sm bg-surface-container flex items-center justify-center font-bold text-on-surface-variant text-xs">${homeCode}</div>`;
+            let team1Crest = getTeamCrestHtml(match.homeTeam, 'matches', homeCode, homeName);
 
       innerHTML += `
         <div class="flex flex-col items-center gap-3 w-1/3">
@@ -140,9 +138,7 @@ async function renderMatches(status = 'ALL') {
         `;
       }
 
-      let team2Crest = match.awayTeam?.crest ? `<div class="w-14 h-14 rounded-full overflow-hidden border border-outline-variant shadow-sm bg-surface-container">
-        <img alt="${awayName}" class="w-full h-full object-cover crest-border" src="${match.awayTeam.crest}" onerror="this.parentElement.innerHTML='<div class=\\'w-full h-full flex items-center justify-center font-bold text-on-surface-variant text-xs\\'>${awayCode}</div>'">
-      </div>` : `<div class="w-14 h-14 rounded-full overflow-hidden border border-outline-variant shadow-sm bg-surface-container flex items-center justify-center font-bold text-on-surface-variant text-xs">${awayCode}</div>`;
+      let team2Crest = getTeamCrestHtml(match.awayTeam, 'matches', awayCode, awayName);
 
       innerHTML += `
         <div class="flex flex-col items-center gap-3 w-1/3">

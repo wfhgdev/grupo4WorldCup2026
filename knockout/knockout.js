@@ -36,12 +36,13 @@ function fillMatchCard(card, match) {
   const homeName = i18n.translateTeam(match.homeTeam);
   homeEl.querySelector('.home-name').textContent = homeName || match.homeTeam?.tla || '—';
   homeEl.querySelector('.home-name').className = 'font-body-md text-body-md font-semibold home-name';
-  const homeCrest = homeEl.querySelector('.home-crest');
-  if (match.homeTeam?.crest) {
-    homeCrest.src = match.homeTeam.crest;
-    homeCrest.style.display = '';
-  } else {
-    homeCrest.style.display = 'none';
+  const homeCrestContainer = homeEl.querySelector('.home-crest');
+  const homeContext = card.closest('.match-card')?.dataset.matchId === '8' ? 'knockoutFinal' : 'knockout';
+  const homeFallback = match.homeTeam?.tla?.charAt(0) || '?';
+  if (homeCrestContainer) {
+    const newCrest = createTeamCrest(match.homeTeam, homeContext, homeFallback, homeName);
+    homeCrestContainer.replaceWith(newCrest);
+    newCrest.classList.add('home-crest');
   }
   homeEl.querySelector('.home-score').textContent = homeScore !== null && homeScore !== undefined ? homeScore : '';
 
@@ -50,12 +51,12 @@ function fillMatchCard(card, match) {
   const awayName = i18n.translateTeam(match.awayTeam);
   awayEl.querySelector('.away-name').textContent = awayName || match.awayTeam?.tla || '—';
   awayEl.querySelector('.away-name').className = 'font-body-md text-body-md away-name';
-  const awayCrest = awayEl.querySelector('.away-crest');
-  if (match.awayTeam?.crest) {
-    awayCrest.src = match.awayTeam.crest;
-    awayCrest.style.display = '';
-  } else {
-    awayCrest.style.display = 'none';
+  const awayCrestContainer = awayEl.querySelector('.away-crest');
+  const awayFallback = match.awayTeam?.tla?.charAt(0) || '?';
+  if (awayCrestContainer) {
+    const newCrest = createTeamCrest(match.awayTeam, homeContext, awayFallback, awayName);
+    awayCrestContainer.replaceWith(newCrest);
+    newCrest.classList.add('away-crest');
   }
   awayEl.querySelector('.away-score').textContent = awayScore !== null && awayScore !== undefined ? awayScore : '';
 

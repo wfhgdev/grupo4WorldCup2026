@@ -4,40 +4,16 @@
 // ============================================
 
 /**
- * Configuración de crest por contexto de página
- * Cada entrada define: tamaño, object-fit, forma y clase CSS
+ * Mapeo de contexto de página a tamaño de crest
+ * Los tamaños se definen en CSS: .crest-sm, .crest-md, .crest-lg
+ * Todos los contenedores son cuadrados con object-fit: contain
  */
-const CREST_CONFIG = {
-  groups: {
-    size: 'w-6 h-4',
-    fit: 'object-contain',
-    shape: 'rounded-sm',
-    cls: 'crest-border shrink-0 border border-outline-variant'
-  },
-  matches: {
-    size: 'w-14 h-14',
-    fit: 'object-cover',
-    shape: 'rounded-full',
-    cls: 'crest-border shrink-0'
-  },
-  knockout: {
-    size: 'w-6 h-4',
-    fit: 'object-contain',
-    shape: 'rounded-sm',
-    cls: 'crest-border shrink-0'
-  },
-  knockoutFinal: {
-    size: 'w-8 h-6',
-    fit: 'object-contain',
-    shape: 'rounded-sm',
-    cls: 'crest-border shrink-0'
-  },
-  stats: {
-    size: 'w-6 h-4',
-    fit: 'object-contain',
-    shape: 'rounded-sm',
-    cls: 'crest-border shrink-0 border border-outline-variant'
-  }
+const CREST_SIZE_MAP = {
+  groups: 'crest-sm',
+  matches: 'crest-lg',
+  knockout: 'crest-sm',
+  knockoutFinal: 'crest-md',
+  stats: 'crest-sm'
 };
 
 /**
@@ -53,52 +29,64 @@ function getTeamCrestUrl(team) {
  * Genera HTML string para el crest (usado en template literals)
  * @param {Object} team - Objeto equipo
  * @param {string} context - Contexto: 'groups' | 'matches' | 'knockout' | 'knockoutFinal' | 'stats'
- * @param {string} fallbackText - Texto alternativo si la imagen no carga
+ * @param {string} fallbackText - Texto alternativo si la imagen no carga (normalmente inicial)
  * @param {string} altText - Texto alternativo (alt)
  * @returns {string} HTML string
  */
 function getTeamCrestHtml(team, context, fallbackText, altText) {
-  const config = CREST_CONFIG[context] || CREST_CONFIG.stats;
+  const sizeClass = CREST_SIZE_MAP[context] || CREST_SIZE_MAP.stats;
   const url = getTeamCrestUrl(team);
+  const fallback = fallbackText || '?';
 
   if (!url) {
-    return `<div class="${config.size} ${config.shape} ${config.cls} flex items-center justify-center font-bold text-on-surface-variant text-xs bg-surface-container">${fallbackText || ''}</div>`;
+    // Fallback directo si no hay URL
+    return `<div class="crest-container ${sizeClass}">
+      <span class="crest-fallback">${fallback}</span>
+    </div>`;
   }
 
-  return `<img src="${url}" alt="${altText || ''}" class="${config.size} ${config.fit} ${config.shape} ${config.cls}" onerror="this.style.display='none'">`;
+  // Contenedor cuadrado con imagen y fallback en onerror
+  return `<div class="crest-container ${sizeClass}">
+    <img src="${url}" alt="${altText || ''}" class="crest-img"
+      onerror="this.onerror=null;this.outerHTML='<span class=\\'crest-fallback\\'>${fallback}</span>'">
+  </div>`;
 }
 
 /**
- * Crea un elemento <img> para el crest (usado en manipulación DOM directa)
+ * Crea un elemento <div> para el crest (usado en manipulación DOM directa)
  * @param {Object} team - Objeto equipo
  * @param {string} context - Contexto
  * @param {string} fallbackText - Texto alternativo
  * @param {string} altText - Texto alt
- * @returns {HTMLImageElement}
+ * @returns {HTMLElement} div.crest-container
  */
 function createTeamCrest(team, context, fallbackText, altText) {
-  const config = CREST_CONFIG[context] || CREST_CONFIG.stats;
-  const img = document.createElement('img');
+  const sizeClass = CREST_SIZE_MAP[context] || CREST_SIZE_MAP.stats;
   const url = getTeamCrestUrl(team);
+  const fallback = fallbackText || '?';
+
+  const container = document.createElement('div');
+  container.className = `crest-container ${sizeClass}`;
 
   if (!url) {
-    const fallback = document.createElement('div');
-    fallback.className = `${config.size} ${config.shape} ${config.cls} flex items-center justify-center font-bold text-on-surface-variant text-xs bg-surface-container`;
-    fallback.textContent = fallbackText || '';
-    return fallback;
+    const fallbackEl = document.createElement('span');
+    fallbackEl.className = 'crest-fallback';
+    fallbackEl.textContent = fallback;
+    container.appendChild(fallbackEl);
+    return container;
   }
 
+  const img = document.createElement('img');
   img.src = url;
   img.alt = altText || '';
-  img.className = `${config.size} ${config.fit} ${config.shape} ${config.cls}`;
+  img.className = 'crest-img';
   img.onerror = function () {
-    this.style.display = 'none';
-    if (fallbackText && this.parentElement) {
-      const fallback = document.createElement('span');
-      fallback.className = 'font-bold text-on-surface-variant text-xs';
-      fallback.textContent = fallbackText;
-      this.parentElement.appendChild(fallback);
-    }
+    this.onerror = null;
+    const fallbackEl = document.createElement('span');
+    fallbackEl.className = 'crest-fallback';
+    fallbackEl.textContent = fallback;
+    this.parentNode.replaceChild(fallbackEl, this);
   };
-  return img;
+  container.appendChild(img);
+  return container;
 }

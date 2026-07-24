@@ -14,9 +14,62 @@
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
 }
 
-/* Borde contrastado para crests de equipos (flags/emblemas)
-   Evita que se fusionen con el fondo claro o la tarjeta.
-   Usa outline + una sutíl sombra blanca interior para recortar bordes oscuros. */
+/* ============================================
+   Estilos unificados para emblemas (crests) de equipos
+   ============================================ */
+
+/* Contenedor base: cuadrado, centrado, con fondo y borde */
+.crest-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Tamaños predefinidos */
+.crest-sm {
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+}
+.crest-md {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+}
+.crest-lg {
+  width: 56px;
+  height: 56px;
+  border-radius: 9999px; /* circular para matches */
+}
+
+/* Imagen dentro del contenedor */
+.crest-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Fallback cuando la imagen no carga */
+.crest-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: #494551;
+  background-color: #f2ecf4;
+  text-transform: uppercase;
+}
+
+/* Borde contrastado para crests (legacy, se mantiene por compatibilidad) */
 .crest-border {
   outline: 1.5px solid rgba(0, 0, 0, 0.15);
   outline-offset: -0.5px;
