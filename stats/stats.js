@@ -81,7 +81,7 @@ async function renderStats() {
         item.innerHTML = `
           <span class="w-8 font-label-sm text-label-sm text-on-surface-variant">${i + 1}</span>
           <div class="flex-grow flex items-center gap-3">
-            <img src="${t.team.crest}" class="w-6 h-6 object-cover crest-border" onerror="this.style.display='none'" alt="${teamName}">
+            ${getTeamCrestHtml(t.team, 'stats', teamName?.charAt(0), teamName)}
             <p class="font-body-md text-body-md text-on-surface font-semibold">${teamName}</p>
           </div>
           <span class="w-12 text-right font-headline-md text-headline-md text-on-surface">${t.goalsFor}</span>
@@ -100,7 +100,7 @@ async function renderStats() {
         item.innerHTML = `
           <span class="w-8 font-label-sm text-label-sm text-on-surface-variant">${i + 1}</span>
           <div class="flex-grow flex items-center gap-3">
-            <img src="${t.team.crest}" class="w-6 h-6 object-cover crest-border" onerror="this.style.display='none'" alt="${teamName}">
+            ${getTeamCrestHtml(t.team, 'stats', teamName?.charAt(0), teamName)}
             <p class="font-body-md text-body-md text-on-surface font-semibold">${teamName}</p>
           </div>
           <span class="w-12 text-right font-headline-md text-headline-md text-error">${t.goalsAgainst}</span>

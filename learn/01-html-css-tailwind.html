@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01 · HTML, CSS &amp; Tailwind - Aprende WC2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700,900&family=Montserrat:wght@700,900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1,h2,h3,h4 { font-family: 'Montserrat', sans-serif; }
+    code { background: #f2ecf4; padding: 0.1em 0.3em; border-radius: 4px; font-size: 0.9em; }
+    pre { background: #1d1b20; color: #fdf7ff; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85em; line-height: 1.6; }
+    .lang-btn { transition: all 0.2s ease; }
+    .lang-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(79,55,138,0.3); }
+    .source-link { color: #6750a4; }
+    .source-link:hover { text-decoration: underline; }
+    .tip-box { background: #f3edff; border-left: 4px solid #4f378a; padding: 0.75rem 1rem; border-radius: 8px; }
+  </style>
+</head>
+<body class="bg-[#fdf7ff] text-[#1d1b20] min-h-screen flex flex-col">
+  <header class="bg-white border-b border-[#cbc4d2] sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="index.html" class="font-['Montserrat'] text-lg font-black text-[#4f378a] italic tracking-tighter">← Dashboard</a>
+      <span class="text-sm text-[#494551]">01 / 13</span>
+      <button type="button" id="lang-toggle" class="lang-btn bg-[#4f378a] text-white text-xs px-3 py-1.5 rounded-full font-semibold">🇬🇧 English</button>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+    <div class="explanation-es">
+      <h1 class="text-3xl font-black text-[#4f378a] mb-6">🎨 HTML, CSS &amp; Tailwind</h1>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">📖 Para principiantes: conceptos básicos</h2>
+        <div class="tip-box mb-6">
+          <ol class="list-decimal pl-5 space-y-3">
+            <li><strong>¿Qué es una etiqueta HTML?</strong> — Es una instrucción para el navegador: <code>&lt;p&gt;</code> significa "aquí empieza un párrafo", <code>&lt;/p&gt;</code> significa "el párrafo terminó". La mayoría de etiquetas vienen en pares: apertura + cierre.<br>
+            Ejemplos: <code>&lt;h1&gt;Título&lt;/h1&gt;</code> — encabezado grande. <code>&lt;p&gt;Texto&lt;/p&gt;</code> — párrafo. <code>&lt;a href="..."&gt;Enlace&lt;/a&gt;</code> — enlace.</li>
+            <li><strong>¿Qué es un atributo?</strong> — Información adicional dentro de una etiqueta: <code>href="url"</code>, <code>class="nombre"</code>, <code>id="identificador"</code>. Se escriben dentro de la etiqueta de apertura.</li>
+            <li><strong>¿Qué es un selector CSS?</strong> — Una regla que dice "aplica este estilo a estos elementos".<br>
+            <code>.clase { color: red; }</code> — todos los elementos con <code>class="clase"</code><br>
+            <code>#id { color: red; }</code> — el elemento con <code>id="id"</code><br>
+            <code>h1 { color: red; }</code> — todas las etiquetas <code>&lt;h1&gt;</code></li>
+            <li><strong>¿Qué es una clase de Tailwind?</strong> — CSS predefinido empaquetado en un nombre corto.<br>
+            <code>text-center</code> = <code>text-align: center</code><br>
+            <code>bg-blue-500</code> = <code>background-color: #3b82f6</code><br>
+            <code>p-4</code> = <code>padding: 1rem</code><br>
+            <code>rounded-lg</code> = <code>border-radius: 0.5rem</code><br>
+            <code>flex</code> = <code>display: flex</code></li>
+            <li><strong>CDN</strong> — Content Delivery Network. Biblioteca cargada por internet en lugar de almacenarla en tu propio servidor. Ahorra espacio y acelera la carga.</li>
+            <li><strong>Responsive</strong> — Adaptación al tamaño de pantalla. mobile-first: primero estilos para móvil, luego para tablet (<code>md:</code>), luego para ordenador (<code>lg:</code>).</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">HTML: el esqueleto de la página</h2>
+        <p class="mb-3">HTML define <strong>qué hay</strong> en la página: encabezados, textos, botones, imágenes. En el proyecto este esqueleto lo revisamos en <a class="source-link" href="../index.html" target="_blank">[Fuente: ../index.html]</a>. Cada elemento empieza con una etiqueta, <strong>puede</strong> cerrarse, y los atributos describen su comportamiento o apariencia básica.</p>
+        <pre>&lt;!doctype html&gt;
+&lt;html lang="es"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"/&gt;
+    &lt;title&gt;FIFA WC 2026&lt;/title&gt;
+    &lt;link rel="stylesheet" href="index.css"/&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;...&lt;/header&gt;
+    &lt;main&gt;...&lt;/main&gt;
+    &lt;footer&gt;...&lt;/footer&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+        <p class="mt-3">Para principiantes: empieza por <code>head</code> y <code>body</code>. Dentro de <code>body</code>, además, trata de usar etiquetas semánticas como <code>header</code>, <code>main</code>, <code>section</code>, <code>footer</code> porque mejoran accesibilidad y SEO.</p>
+        <p class="mt-3">Recurso: <a class="source-link" href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank">MDN — HTML</a>.</p>
+        <div class="tip-box mt-4">
+          <strong>⚠️ Error común:</strong> olvidar cerrar etiquetas o poner <code>&amp;lt;/div&amp;gt;</code> en el lugar equivocado. Revisa la indentación y coincide aperturas y cierres.
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">CSS: cómo se ve cada elemento</h2>
+        <p class="mb-3">CSS controla colores, tipografía, espaciado y disposición. En el proyecto los estilos personalizados están en <a class="source-link" href="../index.css" target="_blank">[Fuente: ../index.css]</a>. Una regla se compone de selector + declaraciones.</p>
+        <pre>/* selector + declaraciones */
+.gradient-btn {
+  background: linear-gradient(45deg, #4f378a, #6750a4);
+  transition: all 0.3s ease;
+}
+
+/* estado hover */
+.gradient-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}</pre>
+        <p class="mt-3">Regla práctica: empieza con clases reutilizables y usa combinadores simples. No crees reglas muy largas: si se complica, probablemente es mejor moverla a una clase específica o usar utilidades.</p>
+        <p class="mt-3">Recurso: <a class="source-link" href="https://developer.mozilla.org/es/docs/Web/CSS" target="_blank">MDN — CSS</a>.</p>
+        <div class="tip-box mt-4">
+          <strong>💡 Consejo:</strong> sigue el orden base → responsive → estado (hover/focus). Así evitas peleas entre reglas.
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Tailwind: utilidades dentro del HTML</h2>
+        <p class="mb-3">Tailwind permite estilizar rápido con clases pequeñas en vez de inventar nombres nuevos en cada archivo. La configuración del proyecto está en <a class="source-link" href="../js/tailwindCustom.js" target="_blank">[Fuente: ../js/tailwindCustom.js]</a>, donde definimos paleta, fuentes y espaciado.</p>
+        <pre>&lt;button class="bg-[#4f378a] text-white p-4 rounded-lg"&gt;
+  Haz clic
+&lt;/button&gt;</pre>
+        <p class="mt-3">En este proyecto comparten la misma paleta Material-like en varias páginas, por eso se siente coherente el diseño.</p>
+        <p class="mt-3">Recursos: <a class="source-link" href="https://tailwindcss.com/docs/utility-first" target="_blank">Tailwind — Utility-First</a>, <a class="source-link" href="https://tailwindcss.com/docs/installation/play-cdn" target="_blank">Tailwind — CDN</a>.</p>
+        <div class="tip-box mt-4">
+          <strong>💡 Consejo:</strong> en Tailwind la última clase gana cuando hay conflicto. Ejemplo: <code>text-red-500 text-blue-600</code> → quedará azul.
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Responsive: mobile first</h2>
+        <p class="mb-3">Los estilos base aplican en móvil y luego sobreescribes en pantallas más grandes:</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><code>lg:</code> ≥ 1024px</li>
+          <li><code>md:</code> ≥ 768px</li>
+          <li>Sin prefijo = base, primero móvil</li>
+        </ul>
+        <p class="mt-3">Ejemplo real desde <a class="source-link" href="../index.html" target="_blank">[Fuente: ../index.html]</a>:</p>
+        <pre>&lt;nav class="hidden lg:flex gap-gutter"&gt;
+  &lt;!-- Oculto en móvil, visible en desktop --&gt;
+&lt;/nav&gt;</pre>
+        <p class="mt-3">Recurso: <a class="source-link" href="https://tailwindcss.com/docs/responsive-design" target="_blank">Tailwind — Responsive design</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Sobre las clases <code>dark:</code> (nota honesta)</h2>
+        <p class="mb-3">Verás clases con prefijo <code>dark:</code> repartidas por el HTML (por ejemplo <code>dark:bg-surface-dim</code>) y <code>darkMode: "class"</code> configurado en <a class="source-link" href="../js/tailwindCustom.js" target="_blank">[Fuente: ../js/tailwindCustom.js]</a>. Eso <strong>no significa que el modo oscuro esté implementado</strong>.</p>
+        <pre>&lt;div class="bg-surface dark:bg-surface-dim"&gt;
+  &lt;!-- Estas clases dark: existen en el HTML... --&gt;
+&lt;/div&gt;</pre>
+        <div class="tip-box mt-4">
+          <strong>⚠️ Por qué nunca se activa:</strong> con <code>darkMode: "class"</code>, Tailwind solo aplica los estilos <code>dark:</code> cuando algún elemento antepasado tiene <code>class="dark"</code> — normalmente en <code>&lt;html&gt;</code>. En este proyecto <strong>no hay ningún botón ni script que añada esa clase</strong>, así que las reglas <code>dark:</code> nunca se activan. Son restos de tokens de diseño heredados de Material Design / Figma, no una funcionalidad terminada.
+        </div>
+        <p class="mt-3">No lo enseñes como una característica del sitio: trátalo como una pista de que el diseño se generó desde un sistema de tokens (claro/oscuro) del que solo se implementó la variante clara.</p>
+        <p class="mt-3">Recurso: <a class="source-link" href="https://tailwindcss.com/docs/dark-mode" target="_blank">Tailwind — Dark mode</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Detalles de index.css</h2>
+        <p class="mb-3">Además de Tailwind, el proyecto define utilidades propias en <a class="source-link" href="../index.css" target="_blank">[Fuente: ../index.css]</a>:</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><code>.gradient-btn</code> — botón con degradado morado y efecto hover (usado en "Entradas", "Consigue tus Entradas").</li>
+          <li><code>.crest-sm / .crest-md / .crest-lg</code> — tamaños fijos para los escudos de equipos (<code>.crest-container</code>), con <code>.crest-fallback</code> cuando la imagen falla. Ver lección 12.</li>
+        </ul>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Recursos recomendados</h2>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><a class="source-link" href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank">MDN — HTML</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/es/docs/Web/CSS" target="_blank">MDN — CSS</a></li>
+          <li><a class="source-link" href="https://web.dev/learn/html" target="_blank">Web.dev — HTML básico</a></li>
+          <li><a class="source-link" href="https://tailwindcss.com/docs/utility-first" target="_blank">Tailwind — Utility-First CSS</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="explanation-en hidden">
+      <h1 class="text-3xl font-black text-[#4f378a] mb-6">🎨 HTML, CSS &amp; Tailwind</h1>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">📖 For beginners: basic concepts</h2>
+        <div class="tip-box mb-6">
+          <ol class="list-decimal pl-5 space-y-3">
+            <li><strong>What is an HTML tag?</strong> — A command for the browser: <code>&lt;p&gt;</code> means "a paragraph starts here", <code>&lt;/p&gt;</code> means "the paragraph ended". Most tags come in pairs: opening + closing.<br>
+            Examples: <code>&lt;h1&gt;Heading&lt;/h1&gt;</code> — large heading. <code>&lt;p&gt;Text&lt;/p&gt;</code> — paragraph. <code>&lt;a href="..."&gt;Link&lt;/a&gt;</code> — link.</li>
+            <li><strong>What is an attribute?</strong> — Extra information inside a tag: <code>href="url"</code>, <code>class="name"</code>, <code>id="identifier"</code>. Written inside the opening tag.</li>
+            <li><strong>What is a CSS selector?</strong> — A rule that says "apply this style to these elements".<br>
+            <code>.class { color: red; }</code> — all elements with <code>class="class"</code><br>
+            <code>#id { color: red; }</code> — the element with <code>id="id"</code><br>
+            <code>h1 { color: red; }</code> — all <code>&lt;h1&gt;</code> tags</li>
+            <li><strong>What is a Tailwind class?</strong> — Prebuilt CSS packed into a short name.<br>
+            <code>text-center</code> = <code>text-align: center</code><br>
+            <code>bg-blue-500</code> = <code>background-color: #3b82f6</code><br>
+            <code>p-4</code> = <code>padding: 1rem</code><br>
+            <code>rounded-lg</code> = <code>border-radius: 0.5rem</code><br>
+            <code>flex</code> = <code>display: flex</code></li>
+            <li><strong>CDN</strong> — Content Delivery Network. A library loaded over the internet instead of being stored on your own server. Saves space and speeds up loading.</li>
+            <li><strong>Responsive</strong> — Adaptation to screen size. mobile-first: styles for mobile first, then tablet (<code>md:</code>), then desktop (<code>lg:</code>).</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">HTML: page skeleton</h2>
+        <p class="mb-3">HTML defines <strong>what</strong> is on the page: headings, text, buttons, images. Review source in <a class="source-link" href="../index.html" target="_blank">[Source: ../index.html]</a>.</p>
+        <pre>&lt;!doctype html&gt;
+&lt;html lang="es"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"/&gt;
+    &lt;title&gt;FIFA WC 2026&lt;/title&gt;
+    &lt;link rel="stylesheet" href="index.css"/&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;...&lt;/header&gt;
+    &lt;main&gt;...&lt;/main&gt;
+    &lt;footer&gt;...&lt;/footer&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+        <p class="mt-3">For beginners: start with <code>head</code> and <code>body</code>. Inside <code>body</code>, use semantic tags like <code>header</code>, <code>main</code>, <code>section</code>, <code>footer</code> — they improve accessibility and SEO.</p>
+        <p class="mt-3"><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">MDN — HTML</a>.</p>
+        <div class="tip-box mt-4">
+          <strong>⚠️ Common mistake:</strong> forgetting to close tags or putting <code>&lt;/div&gt;</code> in the wrong place. Check indentation and match opening/closing tags.
+        </div>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">CSS: appearance</h2>
+        <p class="mb-3">CSS controls colors, typography, spacing and layout. Custom styles live in <a class="source-link" href="../index.css" target="_blank">[Source: ../index.css]</a>. A rule consists of selector + declarations.</p>
+        <pre>/* selector + declarations */
+.gradient-btn {
+  background: linear-gradient(45deg, #4f378a, #6750a4);
+  transition: all 0.3s ease;
+}
+
+/* hover state */
+.gradient-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}</pre>
+        <p class="mt-3">Start with reusable classes and simple combinators. Don't create very long rules.</p>
+        <p class="mt-3"><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">MDN — CSS</a>.</p>
+        <div class="tip-box mt-4">
+          <strong>💡 Tip:</strong> follow the order base → responsive → state (hover/focus). This avoids conflicts between rules.
+        </div>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Tailwind: utilities inside HTML</h2>
+        <p class="mb-3">Tailwind lets you style quickly with small classes instead of inventing new names. Configuration lives in <a class="source-link" href="../js/tailwindCustom.js" target="_blank">[Source: ../js/tailwindCustom.js]</a>, where we define palette, fonts and spacing.</p>
+        <pre>&lt;button class="bg-[#4f378a] text-white p-4 rounded-lg"&gt;
+  Click me
+&lt;/button&gt;</pre>
+        <p class="mt-3">All pages share the same Material-like palette, making the design feel consistent.</p>
+        <p class="mt-3"><a class="source-link" href="https://tailwindcss.com/docs/utility-first" target="_blank">Tailwind — Utility-First</a>, <a class="source-link" href="https://tailwindcss.com/docs/installation/play-cdn" target="_blank">Tailwind — CDN</a>.</p>
+        <div class="tip-box mt-4">
+          <strong>💡 Tip:</strong> in Tailwind, the last class wins when there's a conflict. Example: <code>text-red-500 text-blue-600</code> → blue wins.
+        </div>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Responsive: mobile first</h2>
+        <p class="mb-3">Base styles apply on mobile, then override on larger screens:</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><code>lg:</code> ≥ 1024px</li>
+          <li><code>md:</code> ≥ 768px</li>
+          <li>No prefix = base, mobile first</li>
+        </ul>
+        <p class="mt-3">Real example from <a class="source-link" href="../index.html" target="_blank">[Source: ../index.html]</a>:</p>
+        <pre>&lt;nav class="hidden lg:flex gap-gutter"&gt;
+  &lt;!-- Hidden on mobile, visible on desktop --&gt;
+&lt;/nav&gt;</pre>
+        <p class="mt-3"><a class="source-link" href="https://tailwindcss.com/docs/responsive-design" target="_blank">Tailwind — Responsive design</a>.</p>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">About those <code>dark:</code> classes (honest note)</h2>
+        <p class="mb-3">You'll spot <code>dark:</code>-prefixed classes scattered through the HTML (e.g. <code>dark:bg-surface-dim</code>) and <code>darkMode: "class"</code> configured in <a class="source-link" href="../js/tailwindCustom.js" target="_blank">[Source: ../js/tailwindCustom.js]</a>. That does <strong>not</strong> mean dark mode is implemented.</p>
+        <pre>&lt;div class="bg-surface dark:bg-surface-dim"&gt;
+  &lt;!-- These dark: classes exist in the markup... --&gt;
+&lt;/div&gt;</pre>
+        <div class="tip-box mt-4">
+          <strong>⚠️ Why it never activates:</strong> with <code>darkMode: "class"</code>, Tailwind only applies <code>dark:</code> styles when an ancestor element has <code>class="dark"</code> — typically on <code>&lt;html&gt;</code>. Nothing in this project ever adds that class, and there is no toggle button. So the <code>dark:</code> rules are dead code — leftover design tokens from Material Design / Figma, not a finished feature.
+        </div>
+        <p class="mt-3">Don't teach it as a working feature; treat it as a sign the design came from a light/dark token system where only the light variant was actually built.</p>
+        <p class="mt-3"><a class="source-link" href="https://tailwindcss.com/docs/dark-mode" target="_blank">Tailwind — Dark mode</a>.</p>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">index.css details</h2>
+        <p class="mb-3">Besides Tailwind, the project defines its own utilities in <a class="source-link" href="../index.css" target="_blank">[Source: ../index.css]</a>: <code>.gradient-btn</code> for the purple gradient buttons, and <code>.crest-sm / .crest-md / .crest-lg</code> for fixed-size team crests with a <code>.crest-fallback</code> for broken images (see lesson 12).</p>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Recommended resources</h2>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">MDN — HTML</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">MDN — CSS</a></li>
+          <li><a class="source-link" href="https://web.dev/learn/html" target="_blank">Web.dev — HTML basics</a></li>
+          <li><a class="source-link" href="https://tailwindcss.com/docs/utility-first" target="_blank">Tailwind — Utility-First CSS</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="flex justify-between mt-10 pt-6 border-t border-[#cbc4d2]">
+      <a href="00-intro.html" class="text-[#4f378a] font-semibold hover:underline">← Anterior: Introducción</a>
+      <a href="02-javascript.html" class="bg-[#4f378a] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#6750a4] transition">Siguiente: JavaScript →</a>
+    </div>
+  </main>
+
+  <footer class="bg-[#322f35] text-white py-4 px-4 mt-8">
+    <div class="max-w-4xl mx-auto text-center text-xs opacity-70">© 2026 Proyecto Educativo</div>
+  </footer>
+  <script src="js/learn.js"></script>
+</body>
+</html>
