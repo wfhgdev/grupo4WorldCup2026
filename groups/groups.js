@@ -1,8 +1,14 @@
-
-
-function calculateTeamStats(teamTLA, teamCrest, matches) {
+/**
+ * Calcula las estadísticas de un equipo a partir de los partidos de la fase de grupos.
+ * 
+ * @param {string} teamKey - Identificador único del equipo (TLA o nombre)
+ * @param {string} teamCrest - URL del escudo del equipo
+ * @param {Array} matches - Lista de partidos del grupo
+ * @returns {Object} Estadísticas calculadas del equipo
+ */
+function calculateTeamStats(teamKey, teamCrest, matches) {
   const stats = {
-    team: { name: teamTLA, crest: teamCrest },
+    team: { name: teamKey, crest: teamCrest },
     playedGames: 0,
     won: 0,
     draw: 0,
@@ -14,19 +20,22 @@ function calculateTeamStats(teamTLA, teamCrest, matches) {
   };
 
   matches.forEach(match => {
+    // Solo considerar partidos finalizados
     if (match.status !== 'FINISHED') return;
 
-    const homeTLA = i18n.getTLA(match.homeTeam);
-    const awayTLA = i18n.getTLA(match.awayTeam);
-    const isHome = homeTLA === teamTLA;
-    const isAway = awayTLA === teamTLA;
+    const homeKey = i18n.getTLA(match.homeTeam) || match.homeTeam?.name;
+    const awayKey = i18n.getTLA(match.awayTeam) || match.awayTeam?.name;
+    const isHome = homeKey === teamKey;
+    const isAway = awayKey === teamKey;
 
     if (!isHome && !isAway) return;
 
+    // score?.fullTime puede ser null (partido no jugado) o undefined (sin datos de marcador)
     const homeScore = match.score?.fullTime?.home;
     const awayScore = match.score?.fullTime?.away;
 
-    if (homeScore === null || awayScore === null) return;
+    // Si el marcador es null o undefined, el partido no se considera disputado
+    if (homeScore == null || awayScore == null) return;
 
     stats.playedGames++;
 
@@ -53,7 +62,12 @@ function calculateTeamStats(teamTLA, teamCrest, matches) {
 
 
 function renderGroupTable(container, groupName, teamsStats) {
-  
+  // Ordenar por: 1) Puntos (desc), 2) Diferencia de goles (desc), 3) Goles a favor (desc)
+  // IMPORTANTE: El reglamento completo de la FIFA incluye desempate por resultados
+  // cara a cara entre equipos empatados a puntos. Como la API de football-data.org
+  // no proporciona una tabla de grupos precalculada con ese criterio, esta
+  // implementación usa solo puntos, diferencia de goles y goles a favor.
+  // Para una aplicación oficial se necesitaría un algoritmo de desempate completo.
   const sorted = [...teamsStats].sort((a, b) => {
     if (b.points !== a.points) return b.points - a.points;
     if (b.goalDifference !== a.goalDifference) return b.goalDifference - a.goalDifference;
@@ -118,7 +132,7 @@ async function renderGroups() {
   container.innerHTML = '<p class="text-center text-on-surface-variant py-stack-lg"><span class="material-symbols-outlined animate-spin inline-block">refresh</span> ' + i18n.t('LOADING') + '</p>';
 
   try {
-    
+    // Obtener partidos de la fase de grupos
     const data = await getGroupMatches();
     const matches = data.matches || [];
 
@@ -127,7 +141,7 @@ async function renderGroups() {
       return;
     }
 
-    
+    // Agrupar partidos por grupo
     const groupsMap = {};
     matches.forEach(match => {
       const group = match.group || 'GROUP_UNKNOWN';
@@ -136,25 +150,26 @@ async function renderGroups() {
       }
       groupsMap[group].matches.push(match);
 
-      
+      // Usar el mismo identificador (TLA o name) tanto para el mapa como para el cálculo
+      // para garantizar que las estadísticas se asignen correctamente
       if (match.homeTeam) {
-        const tla = i18n.getTLA(match.homeTeam) || match.homeTeam.name;
-        groupsMap[group].teamsMap[tla] = match.homeTeam.crest || '';
+        const key = i18n.getTLA(match.homeTeam) || match.homeTeam.name;
+        groupsMap[group].teamsMap[key] = match.homeTeam.crest || '';
       }
       if (match.awayTeam) {
-        const tla = i18n.getTLA(match.awayTeam) || match.awayTeam.name;
-        groupsMap[group].teamsMap[tla] = match.awayTeam.crest || '';
+        const key = i18n.getTLA(match.awayTeam) || match.awayTeam.name;
+        groupsMap[group].teamsMap[key] = match.awayTeam.crest || '';
       }
     });
 
-    
+    // Ordenar grupos alfabéticamente
     const sortedGroups = Object.keys(groupsMap).sort();
 
     container.innerHTML = '';
     sortedGroups.forEach(groupName => {
       const groupData = groupsMap[groupName];
-      const teamsStats = Object.keys(groupData.teamsMap).map(teamName => {
-        return calculateTeamStats(teamName, groupData.teamsMap[teamName], groupData.matches);
+      const teamsStats = Object.keys(groupData.teamsMap).map(teamKey => {
+        return calculateTeamStats(teamKey, groupData.teamsMap[teamKey], groupData.matches);
       });
       renderGroupTable(container, groupName, teamsStats);
     });
