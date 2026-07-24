@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>09 · Eliminatorias - Aprende WC2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700,900&amp;family=Montserrat:wght@700,900&amp;display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1,h2,h3,h4 { font-family: 'Montserrat', sans-serif; }
+    code { background: #f2ecf4; padding: 0.1em 0.3em; border-radius: 4px; font-size: 0.9em; }
+    pre { background: #1d1b20; color: #fdf7ff; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85em; line-height: 1.6; }
+    .lang-btn { transition: all 0.2s ease; }
+    .lang-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(79,55,138,0.3); }
+    .source-link { color: #6750a4; }
+    .source-link:hover { text-decoration: underline; }
+    .tip-box { background: #f3edff; border-left: 4px solid #4f378a; padding: 0.75rem 1rem; border-radius: 8px; }
+  </style>
+</head>
+<body class="bg-[#fdf7ff] text-[#1d1b20] min-h-screen flex flex-col">
+  <header class="bg-white border-b border-[#cbc4d2] sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="index.html" class="font-['Montserrat'] text-lg font-black text-[#4f378a] italic tracking-tighter">← Dashboard</a>
+      <span class="text-sm text-[#494551]">09 / 13</span>
+      <button type="button" id="lang-toggle" class="lang-btn bg-[#4f378a] text-white text-xs px-3 py-1.5 rounded-full font-semibold">🇬🇧 English</button>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+    <div class="explanation-es">
+      <h1 class="text-3xl font-black text-[#4f378a] mb-6">🏆 Página de Eliminatorias</h1>
+
+      <div class="tip-box mb-8">
+        <strong>📖 Para principiantes:</strong>
+        <ul class="list-disc pl-6 mt-2 space-y-1">
+          <li><strong>Promise.all</strong> — lanzar varias peticiones en paralelo. Espera todas, devuelve un array de resultados.</li>
+          <li><strong>Bracket (cuadro del torneo)</strong> — árbol de partidos: 1/8 → 1/4 → 1/2 → final.</li>
+          <li><strong>opacity</strong> — transparencia. El perdedor recibe opacity-60 (60% de visibilidad).</li>
+        </ul>
+      </div>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">¿Qué hace esta página?</h2>
+        <p class="mb-3">Representa el árbol de torneo completo, desde dieciseisavos (<code>LAST_32</code>) hasta la final. Fuentes: <a class="source-link" href="../knockout/knockout.html" target="_blank">[Fuente: ../knockout/knockout.html]</a> y <a class="source-link" href="../knockout/knockout.js" target="_blank">[Fuente: ../knockout/knockout.js]</a>. Como en el resto de páginas, comparte el mismo footer inyectado por fetch (ver Lección 12).</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Construcción del bracket</h2>
+        <ol class="list-decimal pl-6 space-y-2">
+          <li>Pedir las seis rondas del torneo en paralelo con <code>Promise.all</code>.</li>
+          <li>Ordenar cada ronda por fecha y repartirla entre lado izquierdo/derecho del bracket.</li>
+          <li>Mapear cada partido a una posición fija (<code>data-match-id</code>) del bracket.</li>
+          <li>Rellenar cada tarjeta con <code>fillMatchCard()</code>.</li>
+        </ol>
+        <p class="mb-3">El código real usa <code>getMatchesByStage()</code> de <a class="source-link" href="../js/api.js" target="_blank">js/api.js</a>, no rutas inventadas:</p>
+        <pre>const [last32Data, last16Data, quarterData, semiData, thirdData, finalData] = await Promise.all([
+  getMatchesByStage('LAST_32'),
+  getMatchesByStage('LAST_16'),
+  getMatchesByStage('QUARTER_FINALS'),
+  getMatchesByStage('SEMI_FINALS'),
+  getMatchesByStage('THIRD_PLACE'),
+  getMatchesByStage('FINAL')
+]);</pre>
+        <p class="mt-3"><a class="source-link" href="../knockout/knockout.js" target="_blank">[Fuente: ../knockout/knockout.js]</a> · <a class="source-link" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" target="_blank">[Promise.all — MDN ES]</a> · <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" target="_blank">[Promise.all — MDN EN]</a></p>
+        <div class="tip-box mt-4">
+          <strong>⚠️ Importante:</strong> si una llamada falla, Promise.all falla completo. Si necesitas resiliencia parcial, usa Promise.allSettled().
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Conectores SVG del bracket</h2>
+        <p class="mb-3">Las líneas que unen partidos no son imágenes: son un <code>&lt;svg id="bracket-connectors"&gt;</code> dibujado por JavaScript. <code>drawBracketConnectors()</code> lee la posición real (<code>getBoundingClientRect()</code>) de cada pareja de tarjetas conectadas y traza un <code>&lt;path&gt;</code> en forma de escuadra entre ellas.</p>
+        <pre>const BRACKET_CONNECTIONS = [
+  [15, 0], [16, 0], /* ... */ [4, 13], [5, 13], [13, 8]
+];
+
+path.setAttribute('d', `M ${startX} ${startY} H ${bendX} V ${endY} H ${endX}`);</pre>
+        <p class="mt-3">Como el layout cambia con el tamaño de pantalla, un <code>ResizeObserver</code> sobre el contenedor del bracket vuelve a dibujar los conectores cada vez que cambian las dimensiones (además de escuchar <code>resize</code> de la ventana):</p>
+        <pre>bracketConnectorObserver = new ResizeObserver(scheduleBracketConnectorDraw);
+bracketConnectorObserver.observe(canvas);
+window.addEventListener('resize', scheduleBracketConnectorDraw);</pre>
+        <p class="mt-3">Fuente: <a class="source-link" href="../knockout/knockout.js" target="_blank">[Fuente: ../knockout/knockout.js]</a> · <a class="source-link" href="https://developer.mozilla.org/es/docs/Web/API/ResizeObserver" target="_blank">[ResizeObserver — MDN ES]</a></p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Winner highlighting</h2>
+        <p class="mb-3">Se atenúa al perdedor para mantener foco visual en el ganador:</p>
+        <pre>if (homeScore &gt; awayScore) {
+  awayDiv.classList.add('opacity-60');
+} else if (awayScore &gt; homeScore) {
+  homeDiv.classList.add('opacity-60');
+}</pre>
+        <p class="mt-3"><a class="source-link" href="https://tailwindcss.com/docs/opacity" target="_blank">Tailwind — opacity</a></p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Recursos recomendados</h2>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><a class="source-link" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" target="_blank">Promise.all — MDN ES</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" target="_blank">Promise.all — MDN EN</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/es/docs/Web/API/EventTarget/addEventListener" target="_blank">addEventListener — MDN ES</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener" target="_blank">addEventListener — MDN EN</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="explanation-en hidden">
+      <h1 class="text-3xl font-black text-[#4f378a] mb-6">🏆 Knockout Page</h1>
+
+      <div class="tip-box mb-8">
+        <strong>📖 For beginners:</strong>
+        <ul class="list-disc pl-6 mt-2 space-y-1">
+          <li><strong>Promise.all</strong> — launch multiple requests in parallel. Waits for all, returns an array of results.</li>
+          <li><strong>Bracket (tournament grid)</strong> — match tree: 1/8 → 1/4 → 1/2 → final.</li>
+          <li><strong>opacity</strong> — transparency. The loser gets opacity-60 (60% visibility).</li>
+        </ul>
+      </div>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">What it does</h2>
+        <p class="mb-3">Renders the full tournament bracket, from round of 32 (<code>LAST_32</code>) to the final. Source: <a class="source-link" href="../knockout/knockout.html" target="_blank">[Source: ../knockout/knockout.html]</a>, <a class="source-link" href="../knockout/knockout.js" target="_blank">[Source: ../knockout/knockout.js]</a>. Like other pages, it shares the same fetch-injected footer (see Lesson 12).</p>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Bracket mapping</h2>
+        <p class="mb-3">Fetch six stages in parallel with real helpers, map fetched matches to fixed bracket positions and fill cards with <code>fillMatchCard()</code>:</p>
+        <pre>const [last32Data, last16Data, quarterData, semiData, thirdData, finalData] = await Promise.all([
+  getMatchesByStage('LAST_32'),
+  getMatchesByStage('LAST_16'),
+  getMatchesByStage('QUARTER_FINALS'),
+  getMatchesByStage('SEMI_FINALS'),
+  getMatchesByStage('THIRD_PLACE'),
+  getMatchesByStage('FINAL')
+]);</pre>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">SVG bracket connectors</h2>
+        <p class="mb-3">The connecting lines are a JS-drawn <code>&lt;svg id="bracket-connectors"&gt;</code>, not images. <code>drawBracketConnectors()</code> reads each pair's <code>getBoundingClientRect()</code> and traces an elbow <code>&lt;path&gt;</code> between them. A <code>ResizeObserver</code> on the bracket container redraws connectors whenever the layout changes (plus a window <code>resize</code> listener).</p>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Recommended</h2>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" target="_blank">Promise.all EN</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener" target="_blank">addEventListener EN</a></li>
+          <li><a class="source-link" href="https://tailwindcss.com/docs/opacity" target="_blank">Tailwind — opacity</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="flex justify-between mt-10 pt-6 border-t border-[#cbc4d2]">
+      <a href="08-groups.html" class="text-[#4f378a] font-semibold hover:underline">← Anterior: Grupos</a>
+      <a href="10-stats.html" class="bg-[#4f378a] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#6750a4] transition">Siguiente: Estadísticas →</a>
+    </div>
+  </main>
+
+  <footer class="bg-[#322f35] text-white py-4 px-4 mt-8">
+    <div class="max-w-4xl mx-auto text-center text-xs opacity-70">© 2026 Proyecto Educativo</div>
+  </footer>
+  <script src="js/learn.js"></script>
+</body>
+</html>

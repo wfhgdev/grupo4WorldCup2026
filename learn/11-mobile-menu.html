@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11 · Menú Móvil - Aprende WC2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700,900&amp;family=Montserrat:wght@700,900&amp;display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1,h2,h3,h4 { font-family: 'Montserrat', sans-serif; }
+    code { background: #f2ecf4; padding: 0.1em 0.3em; border-radius: 4px; font-size: 0.9em; }
+    pre { background: #1d1b20; color: #fdf7ff; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85em; line-height: 1.6; }
+    .lang-btn { transition: all 0.2s ease; }
+    .lang-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(79,55,138,0.3); }
+    .source-link { color: #6750a4; }
+    .source-link:hover { text-decoration: underline; }
+    .tip-box { background: #f3edff; border-left: 4px solid #4f378a; padding: 0.75rem 1rem; border-radius: 8px; }
+  </style>
+</head>
+<body class="bg-[#fdf7ff] text-[#1d1b20] min-h-screen flex flex-col">
+  <header class="bg-white border-b border-[#cbc4d2] sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="index.html" class="font-['Montserrat'] text-lg font-black text-[#4f378a] italic tracking-tighter">← Dashboard</a>
+      <span class="text-sm text-[#494551]">11 / 13</span>
+      <button type="button" id="lang-toggle" class="lang-btn bg-[#4f378a] text-white text-xs px-3 py-1.5 rounded-full font-semibold">🇬🇧 English</button>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+    <div class="explanation-es">
+      <h1 class="text-3xl font-black text-[#4f378a] mb-6">📱 Menú Móvil Compartido</h1>
+
+      <div class="tip-box mb-8">
+        <strong>📖 Para principiantes:</strong>
+        <ul class="list-disc pl-6 mt-2 space-y-1">
+          <li><strong>IIFE</strong> — Immediately Invoked Function Expression. Función que se ejecuta inmediatamente. Sirve para aislar variables.</li>
+          <li><strong>Bloqueo de scroll</strong> — evitar que la página se desplace mientras el menú está abierto.</li>
+          <li><strong>addEventListener</strong> — suscribirse a eventos: clic, pulsación de tecla.</li>
+          <li><strong>classList.toggle</strong> — alternar una clase. Si existe la elimina, si no la agrega.</li>
+        </ul>
+      </div>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">¿Qué es?</h2>
+        <p class="mb-3">Es un overlay de pantalla completa para navegación móvil. No es una página nueva: se muestra sobre la vista actual. El mismo script <code>js/menu.js</code> se carga en <strong>todas</strong> las páginas del sitio, incluida la home. Código fuente: <a class="source-link" href="../js/menu.js" target="_blank">[Fuente: ../js/menu.js]</a>.</p>
+        <div class="tip-box mt-4">
+          <strong>🧱 Mental model:</strong> piénsalo como una ventana emergente integrada con la navegación del sitio.
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">HTML del menú</h2>
+        <p class="mb-3">En cada página hay un <code>div#mobile-menu-overlay</code> oculto con <code>hidden</code>. Ejemplo desde <a class="source-link" href="../index.html" target="_blank">[Fuente: ../index.html]</a> (rutas tal como aparecen en <code>index.html</code>, que vive en la raíz):</p>
+        <pre>&lt;div id="mobile-menu-overlay" class="fixed inset-0 z-[100] hidden"&gt;
+  &lt;nav&gt;
+    &lt;a href="matches/matches.html"&gt;Partidos&lt;/a&gt;
+    &lt;a href="groups/groups.html"&gt;Grupos&lt;/a&gt;
+    &lt;a href="knockout/knockout.html"&gt;Eliminatorias&lt;/a&gt;
+    &lt;a href="stats/stats.html"&gt;Estadísticas&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/div&gt;</pre>
+        <p class="mt-3">Cada página de sección repite el mismo bloque con rutas relativas ajustadas a su nivel de carpeta (por ejemplo <code>../matches/matches.html</code> desde dentro de <code>groups/</code>).</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">JavaScript (menu.js)</h2>
+        <p class="mb-3">La lógica está dentro de una <strong>IIFE</strong> para evitar contaminar variables globales.</p>
+        <pre>(function() {
+  'use strict';
+
+  function initMobileMenu() {
+    const openBtn = document.getElementById('open-menu');
+    const closeBtn = document.getElementById('close-menu');
+    const menu = document.getElementById('mobile-menu-overlay');
+
+    function toggleMenu(show) {
+      menu.classList.toggle('hidden', !show);
+      document.body.style.overflow = menu.classList.contains('hidden') ? '' : 'hidden';
+    }
+
+    openBtn.addEventListener('click', () => toggleMenu(true));
+    closeBtn.addEventListener('click', () => toggleMenu(false));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
+})();</pre>
+        <p class="mt-3">Fuente: <a class="source-link" href="../js/menu.js" target="_blank">[Fuente: ../js/menu.js]</a>.</p>
+        <p><a class="source-link" href="https://developer.mozilla.org/es/docs/Web/API/EventTarget/addEventListener" target="_blank">[addEventListener — MDN ES]</a> · <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener" target="_blank">[MDN EN]</a></p>
+        <div class="tip-box mt-4">
+          <strong>⚠️ Error común:</strong> usar solo <code>stopPropagation()</code> sin bloquear el scroll real del body. En móviles no alcanza.
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Cerrar al hacer clic fuera y con Escape</h2>
+        <p class="mb-3">Además de los botones abrir/cerrar, <code>menu.js</code> escucha dos casos más para que el overlay se sienta natural:</p>
+        <pre>// Cerrar al hacer clic fuera del contenido del menú
+menu.addEventListener('click', function(e) {
+  if (e.target === menu) toggleMenu(false);
+});
+
+// Cerrar con tecla Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' &amp;&amp; !menu.classList.contains('hidden')) {
+    toggleMenu(false);
+  }
+});</pre>
+        <p class="mt-3">El truco de <code>e.target === menu</code> funciona porque el clic solo llega directamente al overlay (el fondo) cuando no golpea ninguno de sus elementos hijos — los clics dentro del contenido del menú no cierran el overlay.</p>
+        <p class="mt-3">Fuente: <a class="source-link" href="../js/menu.js" target="_blank">[Fuente: ../js/menu.js]</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Body Scroll Lock</h2>
+        <p class="mb-3">Bloqueamos scroll del fondo mientras el menú está abierto.</p>
+        <pre>document.body.style.overflow = 'hidden'; // abrir
+document.body.style.overflow = '';        // cerrar</pre>
+        <p class="mt-3">Fuente: <a class="source-link" href="../js/menu.js" target="_blank">[Fuente: ../js/menu.js]</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">IIFE explicada</h2>
+        <p class="mb-3">IIFE = función que se ejecuta inmediatamente, encapsulando variables internas.</p>
+        <pre>(function() {
+  var mensaje = 'Esto está encapsulado';
+  console.log(mensaje);
+})();</pre>
+        <p class="mt-3">Hoy se usan más los módulos ES, pero sigue siendo útil para scripts pequeños. <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Glossary/IIFE" target="_blank">[MDN — IIFE EN]</a></p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Recursos recomendados</h2>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><a class="source-link" href="https://developer.mozilla.org/es/docs/Web/API/EventTarget/addEventListener" target="_blank">addEventListener — MDN ES</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener" target="_blank">addEventListener — MDN EN</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/es/docs/Web/API/KeyboardEvent/key/values" target="_blank">Código Escape — MDN ES</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/values" target="_blank">Código Escape — MDN EN</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/es/docs/Web/API/Document/readyState" target="_blank">readyState — MDN ES</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState" target="_blank">readyState — MDN EN</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Glossary/IIFE" target="_blank">MDN — IIFE EN</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="explanation-en hidden">
+      <h1 class="text-3xl font-black text-[#4f378a] mb-6">📱 Shared Mobile Menu</h1>
+
+      <div class="tip-box mb-8">
+        <strong>📖 For beginners:</strong>
+        <ul class="list-disc pl-6 mt-2 space-y-1">
+          <li><strong>IIFE</strong> — Immediately Invoked Function Expression. Runs as soon as it's defined. Used for variable isolation.</li>
+          <li><strong>Scroll lock</strong> — prevent the page from scrolling while the menu is open.</li>
+          <li><strong>addEventListener</strong> — subscribe to events: click, key press.</li>
+          <li><strong>classList.toggle</strong> — toggle a class. Removes it if present, adds it if absent.</li>
+        </ul>
+      </div>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">What it is</h2>
+        <p class="mb-3">A fullscreen overlay for mobile navigation, not a new page. Source: <a class="source-link" href="../js/menu.js" target="_blank">[Source: ../js/menu.js]</a>.</p>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">HTML</h2>
+        <p class="mb-3">Each page includes <code>div#mobile-menu-overlay</code> initially hidden. Example: <a class="source-link" href="../index.html" target="_blank">[Source: ../index.html]</a>.</p>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">JavaScript</h2>
+        <p class="mb-3">Uses an IIFE for encapsulation. Handles open, close, click-outside, Escape, and body scroll lock. The same <code>js/menu.js</code> is loaded on every page, including the static home page.</p>
+        <pre>// Close when clicking outside the menu content
+menu.addEventListener('click', function(e) {
+  if (e.target === menu) toggleMenu(false);
+});
+
+// Close on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' &amp;&amp; !menu.classList.contains('hidden')) {
+    toggleMenu(false);
+  }
+});</pre>
+        <p class="mt-3">Docs: <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener" target="_blank">addEventListener EN</a>, <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Glossary/IIFE" target="_blank">IIFE EN</a>, <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/values" target="_blank">Escape EN</a></p>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Body Scroll Lock</h2>
+        <p class="mb-3">Toggles <code>document.body.style.overflow</code> while the menu is open.</p>
+      </section>
+    </div>
+
+    <div class="flex justify-between mt-10 pt-6 border-t border-[#cbc4d2]">
+      <a href="10-stats.html" class="text-[#4f378a] font-semibold hover:underline">← Anterior: Estadísticas</a>
+      <a href="12-componentes-compartidos.html" class="bg-[#4f378a] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#6750a4] transition">Siguiente: Componentes Compartidos →</a>
+    </div>
+  </main>
+
+  <footer class="bg-[#322f35] text-white py-4 px-4 mt-8">
+    <div class="max-w-4xl mx-auto text-center text-xs opacity-70">© 2026 Proyecto Educativo</div>
+  </footer>
+  <script src="js/learn.js"></script>
+</body>
+</html>

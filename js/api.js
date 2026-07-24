@@ -1,20 +1,10 @@
 // ============================================
 // API Football Data - World Cup 2026
-// Conexión con https://www.football-data.org/
+// Cliente unificado para api/proxy
 // ============================================
 
 const API_CONFIG = {
-  proxyUrl: (function() {
-    // Detectar entorno: Vercel (sin PHP) vs hosting con PHP
-    var hostname = window.location.hostname;
-    if (hostname.indexOf('vercel.app') !== -1) {
-      return '/api/proxy';
-    }
-    // Fallback: para desarrollo local o GitHub Pages usamos /api/proxy
-    return '/api/proxy';
-  })(),
-  directUrl: 'https://api.football-data.org/v4',
-  token: '244ff96cf28140c8b82341ecff5239b8'
+  proxyUrl: '/api/proxy'
 };
 
 // ============================================
@@ -22,10 +12,28 @@ const API_CONFIG = {
 // ============================================
 
 const CACHE_CONFIG = {
-  ttl: 5 * 60 * 1000,       // 5 minutos en milisegundos
-  prefix: 'wc2026_cache_',   // prefijo de claves en localStorage
-  maxEntries: 30             // máx. entradas en caché (limpieza de antiguas)
+  ttl: 5 * 60 * 1000,           // 5 minutos en milisegundos
+  prefix: 'wc2026_cache_',      // prefijo de claves en localStorage
+  maxEntries: 30                // máx. entradas en caché (limpieza de antiguas)
 };
+
+/**
+ * Clase de error personalizado para la API
+ * Separa el mensaje técnico del mensaje amigable para la UI
+ */
+class ApiError extends Error {
+  /**
+   * @param {number} status - Código HTTP del error
+   * @param {string} message - Mensaje técnico (para consola)
+   * @param {string} userMessage - Mensaje amigable para el usuario
+   */
+  constructor(status, message, userMessage) {
+    super(message);
+    this.name = 'ApiError';
+    this.status = status;
+    this.userMessage = userMessage || 'API no disponible. Intente actualizar la página más tarde.';
+  }
+}
 
 /**
  * Obtener datos de la caché
@@ -141,17 +149,16 @@ function cleanupCache() {
 }
 
 /**
- * Función universal para llamar a la API
+ * Función universal para llamar a la API a través del proxy
  * Con caché de respuestas de 5 minutos
  * Estrategia:
  * 1. Verificar caché (localStorage)
- * 2. Si la caché está vacía — probar proxy (resuelve CORS)
- * 3. Si el proxy falla — probar fetch directo (como plan de respaldo)
+ * 2. Si la caché está vacía — llamar al proxy serverless
+ * 3. Validar respuesta (HTTP status + content-type)
  * 4. Guardar respuesta exitosa en caché
  *
- * IMPORTANTE: football-data.org devuelve la cabecera CORS Access-Control-Allow-Origin: http://localhost,
- * por lo que el fetch directo desde un dominio externo NO FUNCIONA.
- * Usamos /api/proxy (Vercel Serverless Function) como método principal.
+ * IMPORTANTE: football-data.org no permite CORS desde dominios externos.
+ * Todas las peticiones pasan por /api/proxy (Vercel Serverless Function).
  */
 async function fetchApi(endpoint) {
   // === Paso 1: Verificar caché ===
@@ -160,50 +167,41 @@ async function fetchApi(endpoint) {
     return cached;
   }
 
-  // === Paso 2: Probar proxy serverless /api/proxy (método principal) ===
-  let data = null;
-  let fromProxy = false;
+  // === Paso 2: Llamar al proxy serverless /api/proxy (único método) ===
+  const response = await fetch(`${API_CONFIG.proxyUrl}?endpoint=${encodeURIComponent(endpoint)}`);
 
-  try {
-    const proxyResponse = await fetch(`${API_CONFIG.proxyUrl}?endpoint=${encodeURIComponent(endpoint)}`);
+  // === Paso 3: Validar respuesta ===
 
-    // Verificar que la respuesta sea JSON
-    const contentType = proxyResponse.headers.get('content-type') || '';
-    if (!contentType.includes('application/json')) {
-      throw new Error(`El proxy devolvió contenido no-JSON (${contentType}). Es posible que la función serverless no esté disponible.`);
-    }
-
-    if (!proxyResponse.ok) {
-      const errorText = await proxyResponse.text();
-      throw new Error(`Error del proxy ${proxyResponse.status}: ${errorText}`);
-    }
-
-    data = await proxyResponse.json();
-    fromProxy = true;
-  } catch (proxyError) {
-    console.warn('Proxy falló, intentando API directa como respaldo:', proxyError.message);
-  }
-
-  // === Paso 3: Fallback — petición directa (si el proxy falló) ===
-  if (!data) {
+  // 3a. Verificar código HTTP primero
+  if (!response.ok) {
+    let errorBody;
     try {
-      const directResponse = await fetch(`${API_CONFIG.directUrl}${endpoint}`, {
-        headers: { 'X-Auth-Token': API_CONFIG.token }
-      });
-      if (!directResponse.ok) {
-        throw new Error(`Error ${directResponse.status}: ${directResponse.statusText}`);
-      }
-      data = await directResponse.json();
-    } catch (directError) {
-      console.error('API directa también falló:', directError.message);
-      throw new Error('API no disponible. Intente actualizar la página más tarde.');
+      errorBody = await response.json();
+    } catch {
+      errorBody = {};
     }
+    throw new ApiError(
+      response.status,
+      `Error del proxy ${response.status}: ${errorBody.error || 'Respuesta no válida'}`,
+      'Error al cargar los datos. Intente de nuevo más tarde.'
+    );
   }
+
+  // 3b. Verificar que la respuesta sea JSON
+  const contentType = response.headers.get('content-type') || '';
+  if (!contentType.includes('application/json')) {
+    throw new ApiError(
+      502,
+      `El proxy devolvió contenido no-JSON (${contentType})`,
+      'Error de formato en la respuesta del servidor.'
+    );
+  }
+
+  // 3c. Parsear JSON
+  const data = await response.json();
 
   // === Paso 4: Guardar en caché ===
-  if (data) {
-    setToCache(endpoint, data);
-  }
+  setToCache(endpoint, data);
 
   return data;
 }

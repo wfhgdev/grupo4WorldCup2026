@@ -36,6 +36,7 @@ window.__ENUMS_ES = {
   STAGE_GROUP_PHASE: 'Fase de Grupos',
   STAGE_KNOCKOUT_PHASE: 'Fase Eliminatoria',
   STAGE_ROUND_OF_16: 'Octavos de Final',
+  STAGE_LAST_32: '1/32 de Final',
   STAGE_LAST_16: 'Octavos de Final',
   STAGE_QUARTER_FINALS: 'Cuartos de Final',
   STAGE_SEMI_FINALS: 'Semifinales',

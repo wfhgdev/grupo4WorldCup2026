@@ -1,10 +1,15 @@
-<![CDATA[<!doctype html>
+<!doctype html>
 <html class="light" lang="es">
 
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>COPA MUNDIAL FIFA 2026 - Eliminatorias</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/images/favicon/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script src="../js/tailwindCustom.js"></script>
   <link rel="stylesheet" href="../index.css">
@@ -12,115 +17,6 @@
     rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700;900&display=swap"
     rel="stylesheet" />
-  <script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          "colors": {
-            "inverse-on-surface": "#f5eff7",
-            "primary-fixed": "#e9ddff",
-            "tertiary-container": "#c9a74d",
-            "secondary-fixed-dim": "#cdc0e9",
-            "on-primary": "#ffffff",
-            "inverse-surface": "#322f35",
-            "on-primary-container": "#e0d2ff",
-            "on-tertiary-fixed-variant": "#594400",
-            "primary-fixed-dim": "#cfbcff",
-            "surface-container-high": "#ece6ee",
-            "on-tertiary": "#ffffff",
-            "on-error": "#ffffff",
-            "background": "#fdf7ff",
-            "on-primary-fixed-variant": "#4f378a",
-            "primary": "#4f378a",
-            "on-secondary-container": "#645a7d",
-            "on-tertiary-fixed": "#241a00",
-            "on-surface": "#1d1b20",
-            "outline-variant": "#cbc4d2",
-            "inverse-primary": "#cfbcff",
-            "on-background": "#1d1b20",
-            "surface-tint": "#6750a4",
-            "error-container": "#ffdad6",
-            "on-secondary": "#ffffff",
-            "primary-container": "#6750a4",
-            "surface-container": "#f2ecf4",
-            "surface-container-highest": "#e6e0e9",
-            "secondary-container": "#e1d4fd",
-            "tertiary-fixed": "#ffdf93",
-            "on-secondary-fixed-variant": "#4b4263",
-            "secondary": "#63597c",
-            "surface-container-lowest": "#ffffff",
-            "surface-container-low": "#f8f2fa",
-            "tertiary-fixed-dim": "#e7c365",
-            "surface-bright": "#fdf7ff",
-            "on-error-container": "#93000a",
-            "surface-dim": "#ded8e0",
-            "on-surface-variant": "#494551",
-            "tertiary": "#765b00",
-            "outline": "#7a7582",
-            "on-tertiary-container": "#503d00",
-            "secondary-fixed": "#e9ddff",
-            "surface": "#fdf7ff",
-            "error": "#ba1a1a",
-            "on-primary-fixed": "#22005d",
-            "on-secondary-fixed": "#1f1635",
-            "surface-variant": "#e6e0e9"
-          },
-          "borderRadius": {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          "spacing": {
-            "margin-mobile": "1rem",
-            "stack-md": "1rem",
-            "margin-desktop": "2rem",
-            "stack-lg": "2rem",
-            "container-max": "1280px",
-            "gutter": "1.5rem",
-            "stack-sm": "0.5rem"
-          },
-          "fontFamily": {
-            "display-xl-mobile": ["Montserrat"],
-            "body-md": ["Inter"],
-            "body-lg": ["Inter"],
-            "display-xl": ["Montserrat"],
-            "label-sm": ["Inter"],
-            "headline-lg-mobile": ["Montserrat"],
-            "headline-lg": ["Montserrat"],
-            "headline-md": ["Montserrat"]
-          },
-          "fontSize": {
-            "display-xl-mobile": ["40px", { "lineHeight": "1.1", "letterSpacing": "-0.01em", "fontWeight": "900" }],
-            "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
-            "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
-            "display-xl": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900" }],
-            "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
-            "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
-            "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
-            "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }]
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    .gradient-primary {
-      background: linear-gradient(45deg, #1f1635, #4f378a);
-    }
-    .bracket-line {
-      border: 2px solid #cbc4d2;
-      border-left: none;
-    }
-    .bracket-line-left {
-      border: 2px solid #cbc4d2;
-      border-right: none;
-    }
-    .gradient-btn {
-      background: linear-gradient(45deg, #4f378a, #6750a4);
-    }
-  </style>
 </head>
 
 <body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
@@ -152,9 +48,9 @@
       </a>
     </nav>
     <div class="mt-auto mb-stack-lg">
-      <button class="gradient-btn text-on-primary w-full py-5 rounded-xl font-headline-md text-headline-md shadow-md">
-        Tickets
-      </button>
+      <a href="https://www.fifa.com/tournaments/mens/worldcup/canadamexicousa2026" target="_blank" rel="noopener noreferrer" class="gradient-btn text-on-primary w-full py-5 rounded-xl font-headline-md text-headline-md shadow-md block text-center">
+        Entradas
+      </a>
     </div>
   </div>
 
@@ -180,7 +76,7 @@
         <button class="lg:hidden text-on-surface-variant hover:text-primary transition-colors focus:outline-none p-2" id="open-menu">
           <span class="material-symbols-outlined text-3xl">menu</span>
         </button>
-        <button class="hidden lg:block gradient-btn text-on-primary px-4 py-2 rounded-lg font-label-sm text-label-sm uppercase ml-4">Entradas</button>
+        <a href="https://www.fifa.com/tournaments/mens/worldcup/canadamexicousa2026" target="_blank" rel="noopener noreferrer" class="hidden lg:block gradient-btn text-on-primary px-4 py-2 rounded-lg font-label-sm text-label-sm uppercase ml-4 text-center">Entradas</a>
       </div>
     </div>
   </header>
@@ -215,7 +111,8 @@
       <!-- Bracket Container -->
       <div id="knockout-container" class="hidden">
         <div class="overflow-x-auto py-stack-lg px-margin-mobile md:px-margin-desktop">
-          <div class="min-w-[2200px] flex justify-between relative py-stack-lg gap-2 lg:min-w-0 lg:justify-center lg:gap-4 xl:gap-6 2xl:gap-8">
+          <div id="bracket-canvas" class="min-w-[2200px] flex justify-between relative py-stack-lg gap-2 lg:min-w-0 lg:justify-center lg:gap-4 xl:gap-6 2xl:gap-8">
+            <svg id="bracket-connectors" class="absolute inset-0 z-0 pointer-events-none overflow-visible" aria-hidden="true"></svg>
 
             <!-- Left: Treintaidosavos de Final -->
             <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
@@ -228,14 +125,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -249,14 +146,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -270,14 +167,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -291,14 +188,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -312,14 +209,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -333,14 +230,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -354,14 +251,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -375,14 +272,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -391,16 +288,7 @@
             </div>
 
             <!-- Connectors Left LAST_32 → Left LAST_16 -->
-            <div class="w-10 relative hidden lg:block">
-              <div class="absolute top-[8%] right-0 w-full h-[12%] bracket-line rounded-r-lg"></div>
-              <div class="absolute top-[14%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[33%] right-0 w-full h-[12%] bracket-line rounded-r-lg"></div>
-              <div class="absolute top-[39%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[58%] right-0 w-full h-[12%] bracket-line rounded-r-lg"></div>
-              <div class="absolute top-[64%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[83%] right-0 w-full h-[12%] bracket-line rounded-r-lg"></div>
-              <div class="absolute top-[89%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-            </div>
+            <div class="w-10 shrink-0" aria-hidden="true"></div>
 
             <!-- Left: Round of 32 -->
             <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
@@ -413,14 +301,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -434,14 +322,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -455,14 +343,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -476,14 +364,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -492,12 +380,7 @@
             </div>
 
             <!-- Connectors Left R32 → Left QF -->
-            <div class="w-10 relative hidden lg:block">
-              <div class="absolute top-[15%] right-0 w-full h-[25%] bracket-line rounded-r-lg"></div>
-              <div class="absolute top-[27.5%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[65%] right-0 w-full h-[25%] bracket-line rounded-r-lg"></div>
-              <div class="absolute top-[77.5%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-            </div>
+            <div class="w-10 shrink-0" aria-hidden="true"></div>
 
             <!-- Left: Quarter Finals -->
             <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
@@ -510,14 +393,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -531,14 +414,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -547,10 +430,7 @@
             </div>
 
             <!-- Connectors Left QF → Left SF -->
-            <div class="w-10 relative hidden lg:block">
-              <div class="absolute top-[28%] right-0 w-full h-[50%] bracket-line rounded-r-lg"></div>
-              <div class="absolute top-[53%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-            </div>
+            <div class="w-10 shrink-0" aria-hidden="true"></div>
 
             <!-- Left: Semi Finals -->
             <div class="flex flex-col justify-center w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
@@ -562,14 +442,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -578,10 +458,7 @@
             </div>
 
             <!-- Connectors Left SF → Center Final -->
-            <div class="w-10 relative hidden lg:block">
-              <div class="absolute top-[50%] right-0 w-1/2 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[50%] right-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-            </div>
+            <div class="w-10 shrink-0" aria-hidden="true"></div>
 
             <!-- Center: Final -->
             <div class="flex flex-col justify-center w-72 lg:w-80 xl:w-88 2xl:w-96 gap-stack-lg z-20 px-2">
@@ -595,7 +472,7 @@
                 <div class="flex flex-col gap-4 relative z-10">
                   <div class="flex justify-between items-center match-home">
                     <div class="flex items-center gap-3">
-                      <img class="w-8 h-6 object-cover rounded-sm border border-outline-variant shadow-sm crest-border home-crest" src="" alt="">
+                      <img class="w-8 h-6 object-contain rounded-sm border border-outline-variant shadow-sm crest-border home-crest bg-surface" src="" alt="">
                       <span class="font-headline-md text-headline-md font-bold home-name">—</span>
                     </div>
                     <span class="font-display-xl-mobile text-display-xl-mobile text-primary home-score"></span>
@@ -603,7 +480,7 @@
                   <div class="w-full h-px bg-outline-variant/50"></div>
                   <div class="flex justify-between items-center match-away">
                     <div class="flex items-center gap-3">
-                      <img class="w-8 h-6 object-cover rounded-sm border border-outline-variant shadow-sm crest-border away-crest" src="" alt="">
+                      <img class="w-8 h-6 object-contain rounded-sm border border-outline-variant shadow-sm crest-border away-crest bg-surface" src="" alt="">
                       <span class="font-headline-md text-headline-md font-bold away-name">—</span>
                     </div>
                     <span class="font-display-xl-mobile text-display-xl-mobile text-primary away-score"></span>
@@ -613,10 +490,7 @@
             </div>
 
             <!-- Connectors Right SF → Center Final -->
-            <div class="w-10 relative hidden lg:block">
-              <div class="absolute top-[50%] left-0 w-1/2 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[50%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-            </div>
+            <div class="w-10 shrink-0" aria-hidden="true"></div>
 
             <!-- Right: Semi Finals -->
             <div class="flex flex-col justify-center w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
@@ -628,14 +502,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -644,10 +518,7 @@
             </div>
 
             <!-- Connectors Right QF → Right SF -->
-            <div class="w-10 relative hidden lg:block">
-              <div class="absolute top-[28%] left-0 w-full h-[50%] bracket-line-left rounded-l-lg"></div>
-              <div class="absolute top-[53%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-            </div>
+            <div class="w-10 shrink-0" aria-hidden="true"></div>
 
             <!-- Right: Quarter Finals -->
             <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
@@ -660,14 +531,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -681,14 +552,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -697,12 +568,7 @@
             </div>
 
             <!-- Connectors Right QF → Right R32 -->
-            <div class="w-10 relative hidden lg:block">
-              <div class="absolute top-[15%] left-0 w-full h-[25%] bracket-line-left rounded-l-lg"></div>
-              <div class="absolute top-[27.5%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[65%] left-0 w-full h-[25%] bracket-line-left rounded-l-lg"></div>
-              <div class="absolute top-[77.5%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-            </div>
+            <div class="w-10 shrink-0" aria-hidden="true"></div>
 
             <!-- Right: Round of 32 -->
             <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
@@ -715,14 +581,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -736,14 +602,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -757,14 +623,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -778,14 +644,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -794,16 +660,7 @@
             </div>
 
             <!-- Connectors Right LAST_16 → Right LAST_32 -->
-            <div class="w-10 relative hidden lg:block">
-              <div class="absolute top-[8%] left-0 w-full h-[12%] bracket-line-left rounded-l-lg"></div>
-              <div class="absolute top-[14%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[33%] left-0 w-full h-[12%] bracket-line-left rounded-l-lg"></div>
-              <div class="absolute top-[39%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[58%] left-0 w-full h-[12%] bracket-line-left rounded-l-lg"></div>
-              <div class="absolute top-[64%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-              <div class="absolute top-[83%] left-0 w-full h-[12%] bracket-line-left rounded-l-lg"></div>
-              <div class="absolute top-[89%] left-[-1rem] w-4 border-t-2 border-outline-variant"></div>
-            </div>
+            <div class="w-10 shrink-0" aria-hidden="true"></div>
 
             <!-- Right: Treintaidosavos de Final -->
             <div class="flex flex-col justify-around w-52 lg:w-56 xl:w-60 2xl:w-64 gap-stack-lg z-10">
@@ -816,14 +673,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -837,14 +694,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -858,14 +715,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -879,14 +736,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -900,14 +757,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -921,14 +778,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -942,14 +799,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -963,14 +820,14 @@
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-outline-variant/30 match-home">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border home-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border home-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md font-semibold home-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md home-score shrink-0 ml-2"></span>
                 </div>
                 <div class="flex justify-between items-center py-1 match-away">
                   <div class="flex items-center gap-2 min-w-0 flex-1">
-                    <img class="w-6 h-4 object-cover rounded-sm border border-outline-variant crest-border away-crest shrink-0" src="" alt="">
+                    <img class="w-6 h-4 object-contain rounded-sm border border-outline-variant crest-border away-crest shrink-0 bg-surface" src="" alt="">
                     <span class="font-body-md text-body-md away-name truncate">—</span>
                   </div>
                   <span class="font-headline-md text-headline-md away-score shrink-0 ml-2"></span>
@@ -984,24 +841,10 @@
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-inverse-surface dark:bg-surface-container-lowest border-t border-outline-variant full-width mt-stack-lg">
-    <div
-      class="flex flex-col md:flex-row justify-between items-center py-stack-lg px-margin-desktop w-full max-w-container-max mx-auto gap-gutter">
-      <div class="font-headline-md text-headline-md font-black text-white italic">FIFA WORLD CUP 2026</div>
-      <nav class="flex flex-wrap justify-center gap-stack-md">
-        <a class="text-inverse-on-surface/80 dark:text-on-surface/80 hover:text-tertiary-fixed transition-colors font-label-sm text-label-sm uppercase opacity-100 hover:opacity-80" href="#">Política de Privacidad</a>
-        <a class="text-inverse-on-surface/80 dark:text-on-surface/80 hover:text-tertiary-fixed transition-colors font-label-sm text-label-sm uppercase opacity-100 hover:opacity-80" href="#">Términos del Servicio</a>
-        <a class="text-inverse-on-surface/80 dark:text-on-surface/80 hover:text-tertiary-fixed transition-colors font-label-sm text-label-sm uppercase opacity-100 hover:opacity-80" href="#">Reglamento del Torneo</a>
-        <a class="text-inverse-on-surface/80 dark:text-on-surface/80 hover:text-tertiary-fixed transition-colors font-label-sm text-label-sm uppercase opacity-100 hover:opacity-80" href="#">Centro de Medios</a>
-        <a class="text-inverse-on-surface/80 dark:text-on-surface/80 hover:text-tertiary-fixed transition-colors font-label-sm text-label-sm uppercase opacity-100 hover:opacity-80" href="#">Contáctanos</a>
-      </nav>
-      <div
-        class="text-inverse-on-surface/80 dark:text-on-surface/80 font-body-md text-body-md text-center md:text-right">©
-        2026 Proyecto Educativo. Todos los derechos reservados. Grupo 4</div>
-    </div>
-  </footer>
-
+  <div id="footerInjection"></div>
+  <script src="../components/footer/footerInjection.js"></script>
+  <script src="../js/cookieConsent.js"></script>
+  <script>initCookieConsent();</script>
   <script src="../js/i18n/es/teams.js"></script>
   <script src="../js/i18n/es/enums.js"></script>
   <script src="../js/i18n/es/competition.js"></script>
@@ -1010,9 +853,8 @@
   <script src="../js/i18n/i18n.js"></script>
   <script src="../js/menu.js"></script>
   <script src="../js/api.js"></script>
-  <script src="../js/home.js"></script>
+  <script src="../js/teamImage.js"></script>
   <script src="knockout.js"></script>
 </body>
 
 </html>
-]]>

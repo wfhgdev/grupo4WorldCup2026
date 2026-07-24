@@ -1,2 +1,9 @@
 node_modules/
 apitoken.js
+.vercel
+.clinerules
+.vscode/settings.json
+PROJECT_RULES.md
+proxy.php
+package-lock.json
+package.json
