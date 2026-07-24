@@ -81,3 +81,18 @@ Garantizamos un historial limpio y legible siguiendo la convención:
 * **Margarita Bellido Ro** - *Frontend Developer* - [@margaritabellidoroig](https://github.com/margaritabellidoroig)
 * **José Loero Niele** - *Frontend Developer* - [@Mltiformacionjose](https://github.com/Mltiformacionjose)
 * **William Hernández** - *Product Owner* - [@wfhgdev](https://github.com/wfhgdev)
+
+---
+
+## 🍪 Banner de Consentimiento de Cookies
+
+La aplicación incluye un banner de consentimiento de cookies accesible, implementado en `js/cookieConsent.js`.
+
+**Funcionalidad:**
+- En la primera visita, se muestra un banner informativo con dos botones de igual relevancia visual: **Aceptar** y **Rechazar**.
+- El usuario puede cambiar su decisión en cualquier momento haciendo clic en el enlace **Cookies** situado en el pie de página.
+- La preferencia se almacena en `localStorage` bajo la clave `wc2026_cookie_consent`.
+
+**Transparencia:** Este sitio web **no utiliza cookies de publicidad ni de seguimiento**. Solo se almacena la preferencia del usuario y se utiliza un caché técnico para el correcto funcionamiento de la aplicación. No se comparten datos con terceros ni se realizan perfiles de usuario.
+
+> ⚠️ **Aviso educativo:** Esta es una implementación didáctica con fines de aprendizaje. No se emplean servicios de analítica, redes de anuncios ni plataformas CMP de terceros.
