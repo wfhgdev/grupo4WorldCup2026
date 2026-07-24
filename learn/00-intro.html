@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>00 · Introducción - Aprende WC2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700,900&amp;family=Montserrat:wght@700,900&amp;display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1,h2,h3,h4 { font-family: 'Montserrat', sans-serif; }
+    code { background: #f2ecf4; padding: 0.1em 0.3em; border-radius: 4px; font-size: 0.9em; }
+    pre { background: #1d1b20; color: #fdf7ff; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85em; line-height: 1.6; }
+    .lang-btn { transition: all 0.2s ease; }
+    .lang-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(79,55,138,0.3); }
+    .source-link { color: #6750a4; }
+    .source-link:hover { text-decoration: underline; }
+    .tip-box { background: #f3edff; border-left: 4px solid #4f378a; padding: 0.75rem 1rem; border-radius: 8px; }
+  </style>
+</head>
+<body class="bg-[#fdf7ff] text-[#1d1b20] min-h-screen flex flex-col">
+  <header class="bg-white border-b border-[#cbc4d2] sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="index.html" class="font-['Montserrat'] text-lg font-black text-[#4f378a] italic tracking-tighter">← Dashboard</a>
+      <span class="text-sm text-[#494551]">00 / 12</span>
+      <button type="button" id="lang-toggle" class="lang-btn bg-[#4f378a] text-white text-xs px-3 py-1.5 rounded-full font-semibold">🇬🇧 English</button>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+    <div class="explanation-es">
+      <h1 class="text-3xl font-black text-[#4f378a] mb-6">🌍 Introducción</h1>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">¿Qué vamos a aprender?</h2>
+        <p class="mb-3">Vamos a reconstruir paso a paso un sitio web real: <strong>FIFA World Cup 2026</strong>. Cada página de esta serie muestra una parte del proyecto, el código real y los archivos fuente.</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong>Estructura:</strong> carpetas, flujo de navegación y cómo se conectan las páginas <a class="source-link" href="../index.html" target="_blank">[Fuente: ../index.html]</a></li>
+          <li><strong>HTML:</strong> elementos semánticos, atributos y accesibilidad básica <a class="source-link" href="../index.html" target="_blank">[Fuente: ../index.html]</a></li>
+          <li><strong>CSS:</strong> estilos personalizados en <a class="source-link" href="../index.css" target="_blank">index.css</a> y clases de Tailwind <a class="source-link" href="../tailwindCustom.js" target="_blank">[Fuente: ../tailwindCustom.js]</a></li>
+          <li><strong>JavaScript:</strong> DOM, eventos, async/await y fetch en <a class="source-link" href="../js/api.js" target="_blank">[Fuente: ../js/api.js]</a></li>
+          <li><strong>API:</strong> consumo de datos deportivos y proxy en <a class="source-link" href="../api/proxy.js" target="_blank">[Fuente: ../api/proxy.js]</a></li>
+          <li><strong>Datos:</strong> cómo se transforman partidos, grupos, eliminatorias y estadísticas</li>
+          <li><strong>i18n:</strong> textos en español e inglés desde <a class="source-link" href="../js/i18n/i18n.js" target="_blank">[Fuente: ../js/i18n/i18n.js]</a> y diccionarios en <a class="source-link" href="../js/i18n/es/" target="_blank">[Fuente: ../js/i18n/es/]</a></li>
+        </ul>
+
+        <div class="tip-box mt-4">
+          <h3 class="font-bold text-[#4f378a] mb-2">📖 Para principiantes: ¿qué es cada cosa?</h3>
+          <ul class="list-disc pl-5 space-y-1 text-sm">
+            <li><strong>HTML</strong> – lenguaje de marcado. Son los huesos: los tags (<code><div></code>, <code><h1></code>, <code><p></code>) forman el esqueleto de la página.</li>
+            <li><strong>CSS</strong> – lenguaje de estilos. Es la ropa y el maquillaje: colores, fuentes, posición en la pantalla.</li>
+            <li><strong>JavaScript</strong> – lenguaje de programación. Es el cerebro y los músculos: reacciona a clics, carga datos del servidor.</li>
+            <li><strong>Tailwind CSS</strong> – librería de clases CSS ya hechas. En vez de escribir <code>color: red;</code>, pones <code>class="text-red-500"</code> en el HTML.</li>
+            <li><strong>API</strong> – contrato entre programas. Como un camarero: tú dices "tráeme el menú" (petición), él va a la cocina y te lo trae (respuesta).</li>
+            <li><strong>CORS</strong> – política de seguridad del navegador. El camarero solo puede servir comida de su propia cocina, no del restaurante de al lado.</li>
+            <li><strong>Proxy</strong> – intermediario. El camarero va al restaurante de al lado por ti porque a ti no te dejan entrar.</li>
+            <li><strong>localStorage</strong> – caja de almacenamiento en el navegador. Como una libreta: los datos siguen ahí aunque cierres la página.</li>
+            <li><strong>JSON</strong> – formato de intercambio de datos. Como un formulario: <code>{ "nombre": "Brasil", "goles": 2 }</code>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Estructura real del proyecto</h2>
+        <p class="mb-3">Este es el árbol que vas a reconstruir:</p>
+        <pre>D:\a_study\WC2026_Prueba\
+├── index.html              # Página principal
+├── index.css               # Estilos base del proyecto
+├── tailwindCustom.js       # Configuración de Tailwind
+├── api/
+│   └── proxy.js           # Proxy serverless para evitar CORS
+├── js/
+│   ├── api.js             # fetch, cache TTL 5 min
+│   ├── home.js            # lógica página principal
+│   ├── menu.js            # menú móvil
+│   └── i18n/
+│       ├── i18n.js
+│       └── es/            # diccionarios español
+├── matches/
+├── groups/
+├── knockout/
+└── stats/</pre>
+        <p class="mt-3">Cada carpeta de sección tiene su propio HTML/JS, pero comparten recursos comunes en <code>js/</code>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Cómo usar este manual</h2>
+        <p class="mb-3">Recorre las páginas <strong>de 00 a 12</strong>. En cada una:</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Lees la teoría paso a paso.</li>
+          <li>Revisas fragmentos de código real con enlaces al archivo fuente.</li>
+          <li>Practicas el mismo bloque en tu proyecto.</li>
+          <li>Amplías con recursos externos recomendados.</li>
+        </ul>
+        <p class="mt-3">Consejo: no copies y pegues sin entender. Escribe cada línea, aunque al principio parezca más lento.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Mental model del proyecto</h2>
+        <p class="mb-3">Imagina el sitio como una casa:</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong>HTML</strong> = la estructura: paredes, puertas y ventanas.</li>
+          <li><strong>CSS</strong> = la decoración: colores, luces,mobiliario.</li>
+          <li><strong>JS</strong> = la electricidad y automatismos: responde a tus acciones.</li>
+          <li><strong>API</strong> = el servicio de delivery que trae información real.</li>
+          <li><strong>Proxy</strong> = el recepcionista que evita problemas de identidad.</li>
+          <li><strong>Cache</strong> = la nevera: guarda lo último para no pedirlo otra vez.</li>
+          <li><strong>i18n</strong> = el sistema de idiomas de la casa.</li>
+        </ul>
+
+        <div class="tip-box mt-4">
+          <h4 class="font-bold text-[#4f378a] mb-1 text-sm">Código real que verás</h4>
+          <table class="text-xs w-full border-collapse">
+            <thead>
+              <tr class="border-b border-[#cbc4d2]">
+                <th class="text-left pr-4 py-1">Tecnología</th>
+                <th class="text-left py-1">Ejemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-[#cbc4d2]">
+                <td class="pr-4 py-1 font-mono text-[#6750a4]">HTML</td>
+                <td class="py-1"><code><div></code> · <code><h1></code> · <code><p></code></td>
+              </tr>
+              <tr class="border-b border-[#cbc4d2]">
+                <td class="pr-4 py-1 font-mono text-[#6750a4]">CSS</td>
+                <td class="py-1"><code>color</code> · <code>background</code> · <code>font-size</code></td>
+              </tr>
+              <tr class="border-b border-[#cbc4d2]">
+                <td class="pr-4 py-1 font-mono text-[#6750a4]">JS</td>
+                <td class="py-1"><code>fetch()</code> · <code>addEventListener()</code></td>
+              </tr>
+              <tr>
+                <td class="pr-4 py-1 font-mono text-[#6750a4]">API</td>
+                <td class="py-1"><code>api.football-data.org/v4/matches</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Recursos recomendados</h2>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><a class="source-link" href="https://developer.mozilla.org/es/docs/Learn" target="_blank">MDN — Aprender desarrollo web</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/es/docs/Web/JavaScript" target="_blank">MDN — JavaScript en español</a></li>
+          <li><a class="source-link" href="https://web.dev/learn" target="_blank">Web.dev — Guías prácticas</a></li>
+          <li><a class="source-link" href="https://tailwindcss.com/docs/utility-first" target="_blank">Tailwind CSS — Utility-First</a></li>
+        </ul>
+      </section>
+
+    </div>
+
+    <div class="explanation-en hidden">
+      <h1 class="text-3xl font-black text-[#4f378a] mb-6">🌍 Introduction</h1>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">What will you learn?</h2>
+        <p class="mb-3">You will rebuild a real website step by step: <strong>FIFA World Cup 2026</strong>.</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong>Project structure</strong>: folders, navigation, shared modules in <a class="source-link" href="../index.html" target="_blank">[Source: ../index.html]</a></li>
+          <li><strong>HTML semantics</strong> and accessible markup <a class="source-link" href="../index.html" target="_blank">[Source: ../index.html]</a></li>
+          <li><strong>CSS</strong>: custom styles in <a class="source-link" href="../index.css" target="_blank">index.css</a> and Tailwind utilities <a class="source-link" href="../tailwindCustom.js" target="_blank">[Source: ../tailwindCustom.js]</a></li>
+          <li><strong>JavaScript</strong>: DOM, events, async/await, fetch in <a class="source-link" href="../js/api.js" target="_blank">[Source: ../js/api.js]</a></li>
+          <li><strong>API integration</strong>: external data and proxy in <a class="source-link" href="../api/proxy.js" target="_blank">[Source: ../api/proxy.js]</a></li>
+          <li><strong>Data flow</strong>: matches, groups, knockout, stats rendering</li>
+          <li><strong>i18n</strong>: English/Spanish strings in <a class="source-link" href="../js/i18n/i18n.js" target="_blank">[Source: ../js/i18n/i18n.js]</a></li>
+        </ul>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Real project structure</h2>
+        <p class="mb-3">You will rebuild this tree:</p>
+        <pre>D:\a_study\WC2026_Prueba\
+├── index.html
+├── index.css
+├── tailwindCustom.js
+├── api/
+│   └── proxy.js
+├── js/
+│   ├── api.js
+│   ├── home.js
+│   ├── menu.js
+│   └── i18n/
+│       ├── i18n.js
+│       └── es/
+├── matches/
+├── groups/
+├── knockout/
+└── stats/</pre>
+        <p class="mt-3">Each section has its own HTML/JS, but shares common modules under <code>js/</code>.</p>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">How to use this guide</h2>
+        <p class="mb-3">Go through pages <strong>00 to 12</strong>. On each page:</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Read the explanation step by step.</li>
+          <li>Review code fragments linked to their source files.</li>
+          <li>Practice writing the same block yourself.</li>
+          <li>Use external references to go deeper.</li>
+        </ul>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Mental model</h2>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong>HTML</strong> = structure</li>
+          <li><strong>CSS</strong> = styling</li>
+          <li><strong>JS</strong> = interactivity</li>
+          <li><strong>API</strong> = real data delivery</li>
+          <li><strong>Proxy</strong> = compatibility layer</li>
+          <li><strong>Cache</strong> = saved requests</li>
+          <li><strong>i18n</strong> = language system</li>
+        </ul>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Recommended resources</h2>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Learn" target="_blank">MDN — Learn Web Development</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">MDN — JavaScript</a></li>
+          <li><a class="source-link" href="https://web.dev/learn" target="_blank">Web.dev — Practical guides</a></li>
+          <li><a class="source-link" href="https://tailwindcss.com/docs/utility-first" target="_blank">Tailwind CSS — Utility-First CSS</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="flex justify-between mt-10 pt-6 border-t border-[#cbc4d2]">
+      <a href="index.html" class="text-[#4f378a] font-semibold hover:underline">← Volver al Dashboard</a>
+      <a href="01-html-css-tailwind.html" class="bg-[#4f378a] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#6750a4] transition">Empezar: HTML, CSS &amp; Tailwind →</a>
+    </div>
+  </main>
+
+  <footer class="bg-[#322f35] text-white py-4 px-4 mt-8">
+    <div class="max-w-4xl mx-auto text-center text-xs opacity-70">© 2026 Proyecto Educativo</div>
+  </footer>
+  <script src="js/learn.js"></script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02 · JavaScript - Aprende WC2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700,900&family=Montserrat:wght@700,900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1,h2,h3,h4 { font-family: 'Montserrat', sans-serif; }
+    code { background: #f2ecf4; padding: 0.1em 0.3em; border-radius: 4px; font-size: 0.9em; }
+    pre { background: #1d1b20; color: #fdf7ff; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85em; line-height: 1.6; }
+    .lang-btn { transition: all 0.2s ease; }
+    .lang-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(79,55,138,0.3); }
+    .source-link { color: #6750a4; }
+    .source-link:hover { text-decoration: underline; }
+    .tip-box { background: #f3edff; border-left: 4px solid #4f378a; padding: 0.75rem 1rem; border-radius: 8px; }
+  </style>
+</head>
+<body class="bg-[#fdf7ff] text-[#1d1b20] min-h-screen flex flex-col">
+  <header class="bg-white border-b border-[#cbc4d2] sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="index.html" class="font-['Montserrat'] text-lg font-black text-[#4f378a] italic tracking-tighter">← Dashboard</a>
+      <span class="text-sm text-[#494551]">02 / 12</span>
+      <button type="button" id="lang-toggle" class="lang-btn bg-[#4f378a] text-white text-xs px-3 py-1.5 rounded-full font-semibold">🇬🇧 English</button>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+    <div class="explanation-es">
+      <h1 class="text-3xl font-black text-[#4f378a] mb-6">⚡ JavaScript</h1>
+
+      <div class="tip-box mb-8">
+        <strong>📖 Para principiantes: conceptos básicos de JS</strong>
+        <ol class="list-decimal pl-5 mt-2 space-y-2 text-sm">
+          <li>
+            <strong>Variable</strong> — Una caja con nombre donde guardas un valor.<br>
+            <code>let nombre = 'Brasil';</code> // string<br>
+            <code>const PI = 3.14;</code> // number, no se puede reasignar<br>
+            <code>var viejo = 'no usar';</code> // obsoleto<br>
+            <code>let equipos = [];</code> // array vacío<br>
+            <code>let datos = {};</code> // objeto vacío
+          </li>
+          <li>
+            <strong>Array</strong> — Lista ordenada de valores. El índice empieza en 0.<br>
+            <code>let paises = ['Brasil', 'Argentina', 'España'];</code><br>
+            <code>paises[0]</code> → <code>'Brasil'</code> &nbsp;|&nbsp; <code>paises.length</code> → <code>3</code> &nbsp;|&nbsp; <code>paises.push('México')</code> // añade al final
+          </li>
+          <li>
+            <strong>Objeto</strong> — Colección de propiedades <code>clave: valor</code>.<br>
+            <code>let equipo = { nombre: 'Brasil', goles: 2, clasificado: true };</code><br>
+            <code>equipo.nombre</code> → <code>'Brasil'</code> &nbsp;|&nbsp; <code>equipo['goles']</code> → <code>2</code>
+          </li>
+          <li>
+            <strong>Función</strong> — Bloque de código reutilizable que se invoca por su nombre.<br>
+            <code>function sumar(a, b) { return a + b; }</code><br>
+            <code>sumar(2, 3)</code> → <code>5</code><br>
+            <code>const restar = (a, b) => a - b;</code> // arrow function
+          </li>
+          <li>
+            <strong>DOM</strong> — Document Object Model. El navegador convierte el HTML en un árbol de objetos con los que JS puede interactuar:<br>
+            <code>document.getElementById('id')</code><br>
+            <code>document.querySelector('.clase')</code><br>
+            <code>document.querySelectorAll('div')</code>
+          </li>
+          <li>
+            <strong>Evento</strong> — Acción del usuario: clic, tecla pulsada, envío de formulario.<br>
+            <code>button.addEventListener('click', () => { alert('¡Click!'); });</code>
+          </li>
+          <li>
+            <strong>Promise</strong> — "Todavía no sé el resultado, pero lo sabré pronto". Tiene 3 estados: <code>pending</code> (esperando), <code>resolved</code> (éxito), <code>rejected</code> (error).
+          </li>
+          <li>
+            <strong>async/await</strong> — Azúcar sintáctico para Promises. <code>async</code> marca una función como asíncrona; <code>await</code> espera el resultado.<br>
+            <code>async function cargarDatos() {</code><br>
+            <code>&nbsp;&nbsp;const respuesta = await fetch('url');</code><br>
+            <code>&nbsp;&nbsp;const datos = await respuesta.json();</code><br>
+            <code>&nbsp;&nbsp;return datos;</code><br>
+            <code>}</code>
+          </li>
+        </ol>
+      </div>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">¿Qué es JavaScript?</h2>
+        <p class="mb-3">JavaScript es el lenguaje que convierte una página estática en una experiencia <strong>interactiva</strong>: responde clics, carga datos y actualiza contenido sin recargar. En este proyecto usamos JavaScript "Vanilla", sin frameworks adicionales.</p>
+        <p class="mb-3">Fuente del proyecto en <a class="source-link" href="../js/api.js" target="_blank">[Fuente: ../js/api.js]</a>.</p>
+        <p class="mt-3">Recurso: <a class="source-link" href="https://developer.mozilla.org/es/docs/Web/JavaScript" target="_blank">MDN — JavaScript en español</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">DOM: relación entre HTML y JS</h2>
+        <p class="mb-3">El DOM representa el HTML como un árbol de nodos. Con JS puedes:</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Buscar elementos por id, clase o selector <a class="source-link" href="https://developer.mozilla.org/es/docs/Web/API/Document/getElementById" target="_blank">MDN — getElementById</a></li>
+          <li>Crear, modificar y eliminar nodos <a class="source-link" href="https://developer.mozilla.org/es/docs/Web/API/Document/createElement" target="_blank">MDN — createElement</a></li>
+          <li>Responder a eventos del usuario <a class="source-link" href="https://developer.mozilla.org/es/docs/Web/API/EventTarget/addEventListener" target="_blank">MDN — addEventListener</a></li>
+        </ul>
+        <pre>// Buscar por id
+const menu = document.getElementById('mobile-menu-overlay');
+
+// Buscar por clase
+const cards = document.querySelectorAll('.match-card');
+
+// Crear elemento
+const div = document.createElement('div');
+
+// Modificar clases
+div.classList.add('hidden');
+div.classList.remove('hidden');
+
+// Escuchar un clic
+button.addEventListener('click', () => {
+  menu.classList.remove('hidden');
+});</pre>
+        <div class="tip-box mt-4">
+          <strong>💡 Regla:</strong> usa <code>querySelector('#id')</code> o <code>querySelector('.clase')</code> para un solo elemento y <code>querySelectorAll</code> para muchos.
+        </div>
+        <p class="mt-3">Recurso: <a class="source-link" href="https://developer.mozilla.org/es/docs/Web/API/Document_Object_Model" target="_blank">MDN — DOM</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Funciones</h2>
+        <p class="mb-3">Una función agrupa pasos reutilizables. En el proyecto, funciones como <code>fetchApi()</code> se comparten desde <a class="source-link" href="../js/api.js" target="_blank">[Fuente: ../js/api.js]</a>.</p>
+        <pre>// Declaración tradicional
+function saludar(nombre) {
+  return 'Hola, ' + nombre;
+}
+
+// Función flecha
+const sumar = (a, b) => a + b;
+
+// Función asíncrona
+async function obtenerDatos() {
+  // ...
+}</pre>
+        <p class="mt-3">Recurso: <a class="source-link" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Functions" target="_blank">MDN — Funciones en español</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Async / Await</h2>
+        <p class="mb-3">Sirve para esperar sin congelar la página. <code>async</code> declara la función; <code>await</code> pausa esa línea hasta resolver la operación.</p>
+        <pre>async function obtenerDatos() {
+  try {
+    const respuesta = await fetch('https://api.ejemplo.com/datos');
+    const datos = await respuesta.json();
+    return datos;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}</pre>
+        <p class="mt-3">En el proyecto se usa para cargar partidos, grupos, eliminatorias y estadísticas desde <a class="source-link" href="../js/api.js" target="_blank">[Fuente: ../js/api.js]</a>.</p>
+        <p class="mt-3">Recurso: <a class="source-link" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/async_function" target="_blank">MDN — async function</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Fetch API</h2>
+        <p class="mb-3"><code>fetch()</code> hace peticiones HTTP desde el navegador. En el proyecto tenemos dos flujos:</p>
+        <ol class="list-decimal pl-6 space-y-1">
+          <li><strong>Proxy (serverless)</strong>: <code>fetch('/api/proxy?endpoint=...')</code></li>
+          <li><strong>Directo</strong>: <code>fetch('https://api.football-data.org/...')</code></li>
+        </ol>
+        <pre>const response = await fetch('https://api.football-data.org/v4/competitions/WC/matches');
+const data = await response.json();</pre>
+        <div class="tip-box mt-4">
+          <strong>⚠️ Error común:</strong> <code>fetch()</code> solo lanza error en fallos de red; para errores HTTP debes revisar <code>response.ok</code>.
+        </div>
+        <p class="mt-3"><a class="source-link" href="https://developer.mozilla.org/es/docs/Web/API/Fetch_API" target="_blank">MDN — Fetch</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Promise.all</h2>
+        <p class="mb-3">Ejecuta varias llamadas en paralelo y espera todas. Útil para cargar datos de eliminatoria.</p>
+        <pre>const [partidos, equipos, estadios] = await Promise.all([
+  fetch('/api/partidos'),
+  fetch('/api/equipos'),
+  fetch('/api/estadios')
+]);</pre>
+        <p class="mt-3">Ejemplo real: <a class="source-link" href="../knockout/knockout.html" target="_blank">[Fuente: ../knockout/knockout.html]</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Recursos recomendados</h2>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><a class="source-link" href="https://developer.mozilla.org/es/docs/Learn/JavaScript" target="_blank">MDN — JavaScript</a></li>
+          <li><a class="source-link" href="https://web.dev/learn/javascript" target="_blank">Web.dev — JavaScript</a></li>
+          <li><a class="source-link" href="https://javascript.info" target="_blank">JavaScript.info — Guía moderna</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="explanation-en hidden">
+      <h1 class="text-3xl font-black text-[#4f378a] mb-6">⚡ JavaScript</h1>
+
+      <div class="tip-box mb-8">
+        <strong>📖 For beginners: basic JS concepts</strong>
+        <ol class="list-decimal pl-5 mt-2 space-y-2 text-sm">
+          <li>
+            <strong>Variable</strong> — A named box where you store a value.<br>
+            <code>let name = 'Brazil';</code> // string<br>
+            <code>const PI = 3.14;</code> // number, cannot be reassigned<br>
+            <code>var old = 'do not use';</code> // deprecated<br>
+            <code>let teams = [];</code> // empty array<br>
+            <code>let data = {};</code> // empty object
+          </li>
+          <li>
+            <strong>Array</strong> — Ordered list of values. Index starts at 0.<br>
+            <code>let countries = ['Brazil', 'Argentina', 'Spain'];</code><br>
+            <code>countries[0]</code> → <code>'Brazil'</code> &nbsp;|&nbsp; <code>countries.length</code> → <code>3</code> &nbsp;|&nbsp; <code>countries.push('Mexico')</code> // adds to end
+          </li>
+          <li>
+            <strong>Object</strong> — Collection of <code>key: value</code> properties.<br>
+            <code>let team = { name: 'Brazil', goals: 2, qualified: true };</code><br>
+            <code>team.name</code> → <code>'Brazil'</code> &nbsp;|&nbsp; <code>team['goals']</code> → <code>2</code>
+          </li>
+          <li>
+            <strong>Function</strong> — Reusable block of code called by its name.<br>
+            <code>function add(a, b) { return a + b; }</code><br>
+            <code>add(2, 3)</code> → <code>5</code><br>
+            <code>const subtract = (a, b) => a - b;</code> // arrow function
+          </li>
+          <li>
+            <strong>DOM</strong> — Document Object Model. The browser turns HTML into an object tree JS can interact with:<br>
+            <code>document.getElementById('id')</code><br>
+            <code>document.querySelector('.class')</code><br>
+            <code>document.querySelectorAll('div')</code>
+          </li>
+          <li>
+            <strong>Event</strong> — User action: click, key press, form submission.<br>
+            <code>button.addEventListener('click', () => { alert('Clicked!'); });</code>
+          </li>
+          <li>
+            <strong>Promise</strong> — "I don't know the result yet, but I will soon". 3 states: <code>pending</code> (waiting), <code>resolved</code> (success), <code>rejected</code> (error).
+          </li>
+          <li>
+            <strong>async/await</strong> — Syntactic sugar for Promises. <code>async</code> marks a function as async; <code>await</code> waits for the result.<br>
+            <code>async function loadData() {</code><br>
+            <code>&nbsp;&nbsp;const response = await fetch('url');</code><br>
+            <code>&nbsp;&nbsp;const data = await response.json();</code><br>
+            <code>&nbsp;&nbsp;return data;</code><br>
+            <code>}</code>
+          </li>
+        </ol>
+      </div>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">What is JavaScript?</h2>
+        <p class="mb-3">JavaScript is the language that turns a static page into an <strong>interactive</strong> experience: it responds to clicks, loads data, and updates content without reloading. In this project we use Vanilla JS — no frameworks.</p>
+        <p class="mb-3">Project source: <a class="source-link" href="../js/api.js" target="_blank">[Source: ../js/api.js]</a>.</p>
+        <p class="mt-3">Resource: <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">MDN — JavaScript</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">DOM: connecting HTML and JS</h2>
+        <p class="mb-3">The DOM represents HTML as a tree of nodes. With JS you can:</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Find elements by id, class, or selector <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById" target="_blank">MDN — getElementById</a></li>
+          <li>Create, modify and delete nodes <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement" target="_blank">MDN — createElement</a></li>
+          <li>Respond to user events <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener" target="_blank">MDN — addEventListener</a></li>
+        </ul>
+        <p class="mb-3">Real examples from: <a class="source-link" href="../js/menu.js" target="_blank">[Source: ../js/menu.js]</a>.</p>
+        <pre>// Find by id
+const menu = document.getElementById('mobile-menu-overlay');
+
+// Find by class
+const cards = document.querySelectorAll('.match-card');
+
+// Create element
+const div = document.createElement('div');
+
+// Modify classes
+div.classList.add('hidden');
+div.classList.remove('hidden');
+
+// Listen for a click
+button.addEventListener('click', () => {
+  menu.classList.remove('hidden');
+});</pre>
+        <div class="tip-box mt-4">
+          <strong>💡 Rule:</strong> use <code>querySelector('#id')</code> or <code>querySelector('.class')</code> for a single element, <code>querySelectorAll</code> for many.
+        </div>
+        <p class="mt-3">Resource: <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" target="_blank">MDN — DOM</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Functions</h2>
+        <p class="mb-3">A function groups reusable steps. In this project, shared functions like <code>fetchApi()</code> live in <a class="source-link" href="../js/api.js" target="_blank">[Source: ../js/api.js]</a>.</p>
+        <pre>// Traditional declaration
+function greet(name) {
+  return 'Hello, ' + name;
+}
+
+// Arrow function
+const add = (a, b) => a + b;
+
+// Async function
+async function fetchData() {
+  // ...
+}</pre>
+        <p class="mt-3">Resource: <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions" target="_blank">MDN — Functions</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Async / Await</h2>
+        <p class="mb-3">Used to wait without freezing the page. <code>async</code> declares the function; <code>await</code> pauses that line until the operation resolves.</p>
+        <pre>async function fetchData() {
+  try {
+    const response = await fetch('https://api.example.com/data');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}</pre>
+        <p class="mt-3">In the project it's used to load matches, groups, knockout and stats from <a class="source-link" href="../js/api.js" target="_blank">[Source: ../js/api.js]</a>.</p>
+        <p class="mt-3">Resource: <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous" target="_blank">MDN — Asynchronous JavaScript</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Fetch API</h2>
+        <p class="mb-3"><code>fetch()</code> makes HTTP requests from the browser. In this project we have two flows:</p>
+        <ol class="list-decimal pl-6 space-y-1">
+          <li><strong>Proxy (serverless)</strong>: <code>fetch('/api/proxy?endpoint=...')</code></li>
+          <li><strong>Direct</strong>: <code>fetch('https://api.football-data.org/...')</code></li>
+        </ol>
+        <p class="mb-3">Project source: <a class="source-link" href="../js/api.js" target="_blank">[Source: ../js/api.js]</a>.</p>
+        <pre>const response = await fetch('https://api.football-data.org/v4/competitions/WC/matches');
+const data = await response.json();</pre>
+        <div class="tip-box mt-4">
+          <strong>⚠️ Common mistake:</strong> <code>fetch()</code> only throws on network failures; for HTTP errors you must check <code>response.ok</code>.
+        </div>
+        <p class="mt-3"><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank">MDN — Fetch</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Promise.all</h2>
+        <p class="mb-3">Runs several requests in parallel and waits for all of them. Useful when loading knockout data.</p>
+        <pre>const [matches, teams, stadiums] = await Promise.all([
+  fetch('/api/matches'),
+  fetch('/api/teams'),
+  fetch('/api/stadiums')
+]);</pre>
+        <p class="mt-3">Real example: <a class="source-link" href="../knockout/knockout.html" target="_blank">[Source: ../knockout/knockout.html]</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Recommended resources</h2>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript" target="_blank">MDN — JavaScript</a></li>
+          <li><a class="source-link" href="https://web.dev/learn/javascript" target="_blank">Web.dev — JavaScript</a></li>
+          <li><a class="source-link" href="https://javascript.info" target="_blank">JavaScript.info — Modern guide</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="flex justify-between mt-10 pt-6 border-t border-[#cbc4d2]">
+      <a href="01-html-css-tailwind.html" class="text-[#4f378a] font-semibold hover:underline">← Previous: HTML, CSS & Tailwind</a>
+      <a href="03-api-proxy.html" class="bg-[#4f378a] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#6750a4] transition">Next: API & Proxy →</a>
+    </div>
+  </main>
+
+  <footer class="bg-[#322f35] text-white py-4 px-4 mt-8">
+    <div class="max-w-4xl mx-auto text-center text-xs opacity-70">© 2026 Educational Project</div>
+  </footer>
+  <script src="js/learn.js"></script>
+</body>
+</html>

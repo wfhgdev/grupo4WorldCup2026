@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>06 · Inicio - Aprende WC2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700,900&amp;family=Montserrat:wght@700,900&amp;display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1,h2,h3,h4 { font-family: 'Montserrat', sans-serif; }
+    code { background: #f2ecf4; padding: 0.1em 0.3em; border-radius: 4px; font-size: 0.9em; }
+    pre { background: #1d1b20; color: #fdf7ff; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85em; line-height: 1.6; }
+    .lang-btn { transition: all 0.2s ease; }
+    .lang-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(79,55,138,0.3); }
+    .source-link { color: #6750a4; }
+    .source-link:hover { text-decoration: underline; }
+    .tip-box { background: #f3edff; border-left: 4px solid #4f378a; padding: 0.75rem 1rem; border-radius: 8px; }
+  </style>
+</head>
+<body class="bg-[#fdf7ff] text-[#1d1b20] min-h-screen flex flex-col">
+  <header class="bg-white border-b border-[#cbc4d2] sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="index.html" class="font-['Montserrat'] text-lg font-black text-[#4f378a] italic tracking-tighter">← Dashboard</a>
+      <span class="text-sm text-[#494551]">06 / 12</span>
+      <button type="button" id="lang-toggle" class="lang-btn bg-[#4f378a] text-white text-xs px-3 py-1.5 rounded-full font-semibold">🇬🇧 English</button>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+    <div class="explanation-es">
+      <h1 class="text-3xl font-black text-[#4f378a] mb-6">🏠 Página de Inicio</h1>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">📖 Para principiantes: conceptos clave</h2>
+        <ol class="list-decimal pl-6 space-y-3">
+          <li><strong>Hero section</strong> — La primera pantalla del sitio. Debe explicar inmediatamente de qué trata la web.</li>
+          <li><strong>CSS Grid</strong> — Forma de organizar elementos en una cuadrícula.<br>
+            <code>grid-template-columns: repeat(12, 1fr)</code> — 12 columnas iguales.</li>
+          <li><strong>Bento Grid</strong> — Cuadrícula de tarjetas de diferentes tamaños, como una caja japonesa bento.</li>
+          <li><strong>Rutas relativas</strong> — Desde <code>learn/</code> hacia la raíz: <code>../</code> → subir un nivel.</li>
+        </ol>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Estructura General</h2>
+        <p class="mb-3">La página principal usa una estructura clara pensada para storytelling y navegación. Código real del proyecto en <a class="source-link" href="../index.html" target="_blank">[Fuente: ../index.html]</a>:</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong>Header</strong> — Navegación superior, en desktop incluye enlaces directos y en móvil el botón hamburguesa que abre el menú overlay.</li>
+          <li><strong>Hero</strong> — Imagen grande, gradiente y título principal con llamado a la acción.</li>
+          <li><strong>Bento Grid</strong> — Tarjetas hacia Partidos, Grupos, Eliminatorias y Estadísticas.</li>
+          <li><strong>Footer</strong> — Información legal y secundaria.</li>
+        </ul>
+        <div class="tip-box mt-4">
+          <strong>🧱 Para recordar:</strong> Esta página es básicamente HTML + diseño. La lógica real está en JS.
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Hero Section</h2>
+        <p class="mb-3">El objetivo del hero es fijar el tema del sitio. La técnica usada es <strong>imagen de fondo + capa de gradiente</strong> sobre texto.</p>
+        <p class="mb-3">Ejemplo conceptual desde <a class="source-link" href="../index.html" target="_blank">[Fuente: ../index.html]</a>:</p>
+        <pre>&lt;section class="relative w-full h-[600px] md:h-[700px] flex items-center justify-center overflow-hidden"&gt;
+  &lt;div class="absolute inset-0 bg-cover bg-center" style="background-image: url('...')"&gt;&lt;/div&gt;
+  &lt;div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"&gt;&lt;/div&gt;
+  &lt;div class="relative z-10 text-center ..."&gt;
+    &lt;h1&gt;COPA MUNDIAL 2026...&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</pre>
+        <p class="mt-3"><code>z-10</code>/<code>z-20</code> colocan capas. Docs recomendadas: <a class="source-link" href="https://tailwindcss.com/docs/position" target="_blank">Tailwind — position</a>, <a class="source-link" href="https://tailwindcss.com/docs/background-image" target="_blank">Tailwind — background-image</a>, <a class="source-link" href="https://developer.mozilla.org/es/docs/Web/CSS/CSS_backgrounds_and_borders/Using_CSS_backgrounds" target="_blank">MDN — fondos en CSS</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Bento Grid</h2>
+        <p class="mb-3">El grid usa CSS Grid con columnas adaptativas. Ejemplo desde <a class="source-link" href="../index.html" target="_blank">[Fuente: ../index.html]</a>:</p>
+        <pre>&lt;div class="grid grid-cols-1 md:grid-cols-12 gap-gutter"&gt;
+  &lt;!-- Partidos --&gt;
+  &lt;a href="../matches/matches.html" class="col-span-1 md:col-span-6"&gt;...&lt;/a&gt;
+  &lt;!-- Grupos --&gt;
+  &lt;a href="../groups/groups.html" class="col-span-1 md:col-span-3"&gt;...&lt;/a&gt;
+  &lt;!-- Eliminatorias --&gt;
+  &lt;a href="../knockout/knockout.html" class="col-span-1 md:col-span-3"&gt;...&lt;/a&gt;
+  &lt;!-- Estadísticas --&gt;
+  &lt;a href="../stats/stats.html" class="col-span-1 md:col-span-12"&gt;...&lt;/a&gt;
+&lt;/div&gt;</pre>
+        <p class="mt-2">Recursos: <a class="source-link" href="https://tailwindcss.com/docs/grid-template-columns" target="_blank">Tailwind — Grid</a>, <a class="source-link" href="https://developer.mozilla.org/es/docs/Web/CSS/CSS_grid_layout" target="_blank">MDN — CSS Grid</a>.</p>
+        <div class="tip-box mt-4">
+          <strong>💡 Para principiantes:</strong> <code>grid-cols-1</code> = 1 columna en móvil. <code>md:grid-cols-12</code> = 12 columnas en desktop. <code>col-span-6</code> = la tarjeta ocupa la mitad.
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Rutas desde learn/</h2>
+        <p class="mb-3">Un detalle fácil de olvidar: desde <code>learn/</code> los enlaces usan <code>../</code> para subir a la raíz. Por ejemplo:</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><code>../index.html</code></li>
+          <li><code>../matches/matches.html</code></li>
+          <li><code>../js/menu.js</code></li>
+        </ul>
+        <p class="mt-3">Esto es importante para no crear rutas rotas cuando abras los archivos como <code>file:///C:/.../learn/06-home.html</code>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Recursos recomendados</h2>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><a class="source-link" href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank">MDN — HTML</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/es/docs/Web/CSS" target="_blank">MDN — CSS</a></li>
+          <li><a class="source-link" href="https://tailwindcss.com/docs/grid-template-columns" target="_blank">Tailwind — Grid</a></li>
+          <li><a class="source-link" href="https://web.dev/learn" target="_blank">Web.dev — Guías prácticas</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="explanation-en hidden">
+      <h1 class="text-3xl font-black text-[#4f378a] mb-6">🏠 Home Page</h1>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">📖 For beginners: key concepts</h2>
+        <ol class="list-decimal pl-6 space-y-3">
+          <li><strong>Hero section</strong> — The first screen of a website. It should immediately explain what the site is about.</li>
+          <li><strong>CSS Grid</strong> — A way to arrange elements in a table-like structure.<br>
+            <code>grid-template-columns: repeat(12, 1fr)</code> — 12 equal columns.</li>
+          <li><strong>Bento Grid</strong> — A grid of different-sized cards, like a Japanese bento box.</li>
+          <li><strong>Relative paths</strong> — From <code>learn/</code> to root: <code>../</code> → go up one level.</li>
+        </ol>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">General structure</h2>
+        <p class="mb-3">Header, hero, bento grid and footer. Source: <a class="source-link" href="../index.html" target="_blank">[Source: ../index.html]</a>.</p>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Hero</h2>
+        <p class="mb-3">Background image + gradient overlay + headline. Docs: <a class="source-link" href="https://tailwindcss.com/docs/background-image" target="_blank">Tailwind — background-image</a>, <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_backgrounds_and_borders/Using_CSS_backgrounds" target="_blank">MDN — backgrounds</a>.</p>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Bento Grid</h2>
+        <p class="mb-3">Links to 4 sections with responsive column spans. Docs: <a class="source-link" href="https://tailwindcss.com/docs/grid-template-columns" target="_blank">Tailwind — Grid</a>, <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout" target="_blank">MDN — CSS Grid</a>.</p>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Paths</h2>
+        <p class="mb-3">From <code>learn/</code>, use <code>../</code> prefixes so links work locally.</p>
+      </section>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Recommended resources</h2>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">MDN — HTML</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">MDN — CSS</a></li>
+          <li><a class="source-link" href="https://tailwindcss.com/docs/utility-first" target="_blank">Tailwind — Utility-First</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="flex justify-between mt-10 pt-6 border-t border-[#cbc4d2]">
+      <a href="05-i18n.html" class="text-[#4f378a] font-semibold hover:underline">← Anterior: i18n</a>
+      <a href="07-matches.html" class="bg-[#4f378a] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#6750a4] transition">Siguiente: Partidos →</a>
+    </div>
+  </main>
+
+  <footer class="bg-[#322f35] text-white py-4 px-4 mt-8">
+    <div class="max-w-4xl mx-auto text-center text-xs opacity-70">© 2026 Proyecto Educativo</div>
+  </footer>
+  <script src="js/learn.js"></script>
+</body>
+</html>

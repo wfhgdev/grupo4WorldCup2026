@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03 · API & Proxy (Serverless) - Aprende WC2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700,900&family=Montserrat:wght@700,900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1,h2,h3,h4 { font-family: 'Montserrat', sans-serif; }
+    code { background: #f2ecf4; padding: 0.1em 0.3em; border-radius: 4px; font-size: 0.9em; }
+    pre { background: #1d1b20; color: #fdf7ff; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85em; line-height: 1.6; }
+    .lang-btn { transition: all 0.2s ease; }
+    .lang-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(79,55,138,0.3); }
+    .source-link { color: #6750a4; }
+    .source-link:hover { text-decoration: underline; }
+    .tip-box { background: #f3edff; border-left: 4px solid #4f378a; padding: 0.75rem 1rem; border-radius: 8px; }
+  </style>
+</head>
+<body class="bg-[#fdf7ff] text-[#1d1b20] min-h-screen flex flex-col">
+  <header class="bg-white border-b border-[#cbc4d2] sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="index.html" class="font-['Montserrat'] text-lg font-black text-[#4f378a] italic tracking-tighter">← Dashboard</a>
+      <span class="text-sm text-[#494551]">03 / 12</span>
+      <button type="button" id="lang-toggle" class="lang-btn bg-[#4f378a] text-white text-xs px-3 py-1.5 rounded-full font-semibold">🇬🇧 English</button>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+    <div class="explanation-es">
+      <h1 class="text-3xl font-black text-[#4f378a] mb-6">🔌 API & Proxy (JS / Serverless)</h1>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">📖 Para principiantes: conceptos básicos</h2>
+
+        <div class="tip-box mb-4">
+          <strong>1. HTTP</strong> — Protocolo de transferencia de datos en internet. Cuando el navegador pide una página, envía una solicitud HTTP. El servidor responde con una respuesta HTTP.<br>
+          Métodos: GET (obtener), POST (enviar), PUT (actualizar), DELETE (eliminar).<br>
+          Códigos de respuesta: 200 OK, 404 Not Found, 500 Server Error.
+        </div>
+
+        <div class="tip-box mb-4">
+          <strong>2. API Endpoint</strong> — Una URL concreta desde la que se pueden obtener datos.<br>
+          <code>https://api.football-data.org/v4/competitions/WC/matches</code><br>
+          <code>https://api.football-data.org/v4/competitions/WC/scorers</code>
+        </div>
+
+        <div class="tip-box mb-4">
+          <strong>3. JSON</strong> — Formato de datos. Es similar a un objeto de JavaScript, pero es texto.<br>
+          <code>{ "matches": [ { "id": 1, "status": "FINISHED" } ] }</code>
+        </div>
+
+        <div class="tip-box mb-4">
+          <strong>4. Token (API key)</strong> — Clave secreta para acceder a la API. football-data.org requiere la cabecera X-Auth-Token.
+        </div>
+
+        <div class="tip-box mb-4">
+          <strong>5. CORS</strong> — El navegador bloquea peticiones a otro dominio si éste no lo permite. El proxy evita esto porque la petición va desde el servidor, no desde el navegador.
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">¿Qué problema resuelve el proxy?</h2>
+        <p class="mb-3">El navegador bloquea peticiones a dominios distintos por seguridad (CORS). Nuestro proxy recibe la petición, la reenvía a la API y devuelve la respuesta. Así el navegador solo ve tráfico a tu propio servidor. Código real: <a class="source-link" href="../api/proxy.js" target="_blank">[Fuente: ../api/proxy.js]</a>.</p>
+        <p class="mt-3">Recurso: <a class="source-link" href="https://developer.mozilla.org/es/docs/Web/HTTP/CORS" target="_blank">MDN — CORS en español</a> · <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" target="_blank">MDN — CORS EN</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Flujo de una llamada</h2>
+        <pre>1. fetch('/api/proxy?endpoint=competitions/WC/matches')
+2. La función serverless (api/proxy.js) recibe la petición
+3. Añade cabeceras (X-Auth-Token, User-Agent)
+4. Reenvía con fetch() a api.football-data.org/v4/...
+5. Devuelve la respuesta JSON al navegador</pre>
+        <p class="mt-3">Las funciones de ayuda están en <a class="source-link" href="../js/api.js" target="_blank">[Fuente: ../js/api.js]</a>.</p>
+        <p class="mt-3">Recurso: <a class="source-link" href="https://developer.mozilla.org/es/docs/Web/API/Fetch_API" target="_blank">MDN — Fetch ES</a> · <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank">MDN — Fetch EN</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Seguridad: ocultar tokens</h2>
+        <p class="mb-3">El token se guarda en el servidor (en la función serverless <code>api/proxy.js</code>), no en el HTML. Si alguien ve tu HTML solo verá la llamada al proxy, no la clave secreta.</p>
+        <p class="mt-3">Recurso: <a class="source-link" href="https://developer.mozilla.org/es/docs/Web/Security" target="_blank">MDN — Seguridad web</a>.</p>
+        <div class="tip-box mt-4">
+          <strong>⚠️ Importante:</strong> nunca expongas tokens en el frontend. Úsalos solo en el servidor o en variables de entorno.
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Recursos recomendados</h2>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><a class="source-link" href="https://developer.mozilla.org/es/docs/Web/HTTP/CORS" target="_blank">CORS — MDN ES</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" target="_blank">CORS — MDN EN</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/es/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data" target="_blank">Peticiones con JS — MDN ES</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank">Fetch API — MDN EN</a></li>
+          <li><a class="source-link" href="https://vercel.com/docs/functions/serverless-functions" target="_blank">Vercel Serverless Functions — Documentación oficial</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="explanation-en hidden">
+      <h1 class="text-3xl font-black text-[#4f378a] mb-6">🔌 API & Proxy (JS / Serverless)</h1>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">📖 For beginners: basic concepts</h2>
+
+        <div class="tip-box mb-4">
+          <strong>1. HTTP</strong> — Data transfer protocol on the internet. When the browser requests a page, it sends an HTTP request. The server replies with an HTTP response.<br>
+          Methods: GET (obtain), POST (send), PUT (update), DELETE (delete).<br>
+          Response codes: 200 OK, 404 Not Found, 500 Server Error.
+        </div>
+
+        <div class="tip-box mb-4">
+          <strong>2. API Endpoint</strong> — A specific URL from which you can get data.<br>
+          <code>https://api.football-data.org/v4/competitions/WC/matches</code><br>
+          <code>https://api.football-data.org/v4/competitions/WC/scorers</code>
+        </div>
+
+        <div class="tip-box mb-4">
+          <strong>3. JSON</strong> — Data format. It looks like a JavaScript object, but it's text.<br>
+          <code>{ "matches": [ { "id": 1, "status": "FINISHED" } ] }</code>
+        </div>
+
+        <div class="tip-box mb-4">
+          <strong>4. Token (API key)</strong> — Secret key to access the API. football-data.org requires the X-Auth-Token header.
+        </div>
+
+        <div class="tip-box mb-4">
+          <strong>5. CORS</strong> — The browser blocks requests to another domain if it doesn't allow it. The proxy bypasses this because the request goes from the server, not the browser.
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">What problem does the proxy solve?</h2>
+        <p class="mb-3">The browser blocks requests to different domains for security (CORS). Our proxy receives the request, forwards it to the API, and returns the response. The browser only sees traffic to your own server. Real code: <a class="source-link" href="../api/proxy.js" target="_blank">[Source: ../api/proxy.js]</a>.</p>
+        <p class="mt-3">Resource: <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" target="_blank">MDN — CORS EN</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Request flow</h2>
+        <pre>1. fetch('/api/proxy?endpoint=competitions/WC/matches')
+2. The serverless function (api/proxy.js) receives the request
+3. Adds headers (X-Auth-Token, User-Agent)
+4. Forwards via fetch() to api.football-data.org/v4/...
+5. Returns JSON response to the browser</pre>
+        <p class="mt-3">Helper functions in <a class="source-link" href="../js/api.js" target="_blank">[Source: ../js/api.js]</a>.</p>
+        <p class="mt-3">Resource: <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank">MDN — Fetch EN</a>.</p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Security: hiding tokens</h2>
+        <p class="mb-3">The token is stored on the server (in the serverless function <code>api/proxy.js</code>), not in the HTML. If someone inspects your HTML, they only see the proxy call, not the secret key.</p>
+        <p class="mt-3">Resource: <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/Security" target="_blank">MDN — Web security</a>.</p>
+        <div class="tip-box mt-4">
+          <strong>⚠️ Important:</strong> never expose tokens in the frontend. Use them only on the server or in environment variables.
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Recommended resources</h2>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" target="_blank">CORS — MDN EN</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank">Fetch API — MDN EN</a></li>
+          <li><a class="source-link" href="https://vercel.com/docs/functions/serverless-functions" target="_blank">Vercel Serverless Functions — Official docs</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="flex justify-between mt-10 pt-6 border-t border-[#cbc4d2]">
+      <a href="02-javascript.html" class="text-[#4f378a] font-semibold hover:underline">← Previous: JavaScript</a>
+      <a href="04-cache.html" class="bg-[#4f378a] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#6750a4] transition">Next: Cache System →</a>
+    </div>
+  </main>
+
+  <footer class="bg-[#322f35] text-white py-4 px-4 mt-8">
+    <div class="max-w-4xl mx-auto text-center text-xs opacity-70">© 2026 Proyecto Educativo</div>
+  </footer>
+  <script src="js/learn.js"></script>
+</body>
+</html>

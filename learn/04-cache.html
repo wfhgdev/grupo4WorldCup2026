@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04 · Sistema de Caché - Aprende WC2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700,900&family=Montserrat:wght@700,900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1,h2,h3,h4 { font-family: 'Montserrat', sans-serif; }
+    code { background: #f2ecf4; padding: 0.1em 0.3em; border-radius: 4px; font-size: 0.9em; }
+    pre { background: #1d1b20; color: #fdf7ff; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85em; line-height: 1.6; }
+    .lang-btn { transition: all 0.2s ease; }
+    .lang-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(79,55,138,0.3); }
+    .source-link { color: #6750a4; }
+    .source-link:hover { text-decoration: underline; }
+    .tip-box { background: #f3edff; border-left: 4px solid #4f378a; padding: 0.75rem 1rem; border-radius: 8px; }
+  </style>
+</head>
+<body class="bg-[#fdf7ff] text-[#1d1b20] min-h-screen flex flex-col">
+  <header class="bg-white border-b border-[#cbc4d2] sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="index.html" class="font-['Montserrat'] text-lg font-black text-[#4f378a] italic tracking-tighter">← Dashboard</a>
+      <span class="text-sm text-[#494551]">04 / 12</span>
+      <button type="button" id="lang-toggle" class="lang-btn bg-[#4f378a] text-white text-xs px-3 py-1.5 rounded-full font-semibold">🇬🇧 English</button>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+    <div class="explanation-es">
+      <h1 class="text-3xl font-black text-[#4f378a] mb-6">💾 Sistema de Caché</h1>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">📖 Para principiantes: conceptos básicos</h2>
+
+        <div class="tip-box mb-4">
+          <strong>1. localStorage</strong> — Almacenamiento persistente en el navegador. Los datos sobreviven al reinicio.<br>
+          Límite: ~5MB por dominio.
+        </div>
+
+        <div class="tip-box mb-4">
+          <strong>2. TTL</strong> — Time To Live. Tiempo de vida de la caché. En el proyecto son 5 minutos.
+        </div>
+
+        <div class="tip-box mb-4">
+          <strong>3. JSON.parse/stringify</strong> — Conversión entre objeto y cadena.<br>
+          localStorage solo guarda texto. Los objetos hay que convertirlos.
+        </div>
+
+        <div class="tip-box mb-4">
+          <strong>4. Estrategia de caché</strong> — Primero revisar localStorage. Si los datos existen y no están obsoletos, úsalos. Si no, solicita a la API, guarda en localStorage, devuelve.
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">¿Qué es la caché?</h2>
+        <p class="mb-3">Es memoria temporal para no repetir la misma consulta una y otra vez. En este proyecto guardamos respuestas JSON en <code>localStorage</code> con TTL de 5 minutos. Código real: <a class="source-link" href="../js/api.js" target="_blank">[Fuente: ../js/api.js]</a>.</p>
+        <p><a class="source-link" href="https://developer.mozilla.org/es/docs/Web/HTTP/Caching" target="_blank">HTTP cache — MDN ES</a> · <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching" target="_blank">HTTP cache — MDN EN</a></p>
+        <div class="tip-box mt-4">
+          <strong>🧱 Modelo mental:</strong> la web primero recurre a la red; la caché es tu atajo local. Si sirve datos recientes, ahorras tiempo y llamadas.
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">localStorage paso a paso</h2>
+        <p class="mb-3">API del navegador para pares clave-valor como texto.</p>
+        <pre>// Guardar objeto
+localStorage.setItem('clave', JSON.stringify(objeto));
+
+// Leer objeto
+const dato = JSON.parse(localStorage.getItem('clave'));
+
+// Borrar una clave
+localStorage.removeItem('clave');
+
+// Borrar todo
+localStorage.clear();</pre>
+        <p class="mt-3">Fuente en el proyecto: <a class="source-link" href="../js/api.js" target="_blank">[Fuente: ../js/api.js]</a>.</p>
+        <p><a class="source-link" href="https://developer.mozilla.org/es/docs/Web/API/Window/localStorage" target="_blank">localStorage — MDN ES</a> · <a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank">localStorage — MDN EN</a></p>
+        <div class="tip-box mt-4">
+          <strong>⚠️ Importante:</strong> localStorage guarda texto. Para objetos usa siempre <code>JSON.stringify()</code> al guardar y <code>JSON.parse()</code> al leer.
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">TTL y limpieza</h2>
+        <p class="mb-3">Cada entrada incluye <code>expiresAt</code> y un prefijo configurable. Antes de guardar, limpiamos expirados y respetamos <code>maxEntries</code>.</p>
+        <pre>const CACHE_CONFIG = {
+  ttl: 5 * 60 * 1000,
+  prefix: 'wc2026_cache_',
+  maxEntries: 30
+};</pre>
+        <p class="mt-3"><a class="source-link" href="../js/api.js" target="_blank">[Fuente: ../js/api.js]</a></p>
+        <p><a class="source-link" href="https://web.dev/learn/pwa/data-storage" target="_blank">Web.dev — almacenamiento EN</a></p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Recursos recomendados</h2>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><a class="source-link" href="https://developer.mozilla.org/es/docs/Web/API/Window/localStorage" target="_blank">localStorage — MDN ES</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank">localStorage — MDN EN</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/es/docs/Web/HTTP/Caching" target="_blank">HTTP cache — MDN ES</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching" target="_blank">HTTP cache — MDN EN</a></li>
+          <li><a class="source-link" href="https://web.dev/learn/pwa/data-storage" target="_blank">Web.dev — almacenamiento EN</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="explanation-en hidden">
+      <h1 class="text-3xl font-black text-[#4f378a] mb-6">💾 Cache System</h1>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">📖 For beginners: key concepts</h2>
+
+        <div class="tip-box mb-4">
+          <strong>1. localStorage</strong> — Persistent browser storage. Data survives restarts. Limit: ~5MB per domain.
+        </div>
+
+        <div class="tip-box mb-4">
+          <strong>2. TTL</strong> — Time To Live. How long the cache is valid. In this project: 5 minutes.
+        </div>
+
+        <div class="tip-box mb-4">
+          <strong>3. JSON.parse/stringify</strong> — Convert between objects and strings. localStorage only stores strings, so objects must be converted.
+        </div>
+
+        <div class="tip-box mb-4">
+          <strong>4. Cache strategy</strong> — Check localStorage first. If data exists and is fresh, use it. If not, fetch from API, save to localStorage, return.
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">What is Cache?</h2>
+        <p class="mb-3">Temporary memory to avoid repeating the same request over and over. In this project we store JSON responses in <code>localStorage</code> with a 5-minute TTL. Real code: <a class="source-link" href="../js/api.js" target="_blank">[Source: ../js/api.js]</a>.</p>
+        <p><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching" target="_blank">HTTP cache — MDN EN</a></p>
+        <div class="tip-box mt-4">
+          <strong>🧱 Mental model:</strong> the web first reaches out to the network; the cache is your local shortcut. If it serves recent data, you save time and API calls.
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">localStorage step by step</h2>
+        <p class="mb-3">Browser API for key-value pairs stored as text.</p>
+        <pre>// Save object
+localStorage.setItem('key', JSON.stringify(object));
+
+// Read object
+const data = JSON.parse(localStorage.getItem('key'));
+
+// Remove one key
+localStorage.removeItem('key');
+
+// Clear all
+localStorage.clear();</pre>
+        <p class="mt-3">Project source: <a class="source-link" href="../js/api.js" target="_blank">[Source: ../js/api.js]</a>.</p>
+        <p><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank">localStorage — MDN EN</a></p>
+        <div class="tip-box mt-4">
+          <strong>⚠️ Important:</strong> localStorage stores text. For objects always use <code>JSON.stringify()</code> when saving and <code>JSON.parse()</code> when reading.
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">TTL and cleanup</h2>
+        <p class="mb-3">Each entry includes <code>expiresAt</code> and a configurable prefix. Before saving, we clean expired entries and respect <code>maxEntries</code>.</p>
+        <pre>const CACHE_CONFIG = {
+  ttl: 5 * 60 * 1000,
+  prefix: 'wc2026_cache_',
+  maxEntries: 30
+};</pre>
+        <p class="mt-3"><a class="source-link" href="../js/api.js" target="_blank">[Source: ../js/api.js]</a></p>
+        <p><a class="source-link" href="https://web.dev/learn/pwa/data-storage" target="_blank">Web.dev — data storage EN</a></p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-[#4f378a] mb-3">Recommended resources</h2>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank">localStorage — MDN EN</a></li>
+          <li><a class="source-link" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching" target="_blank">HTTP cache — MDN EN</a></li>
+          <li><a class="source-link" href="https://web.dev/learn/pwa/data-storage" target="_blank">Web.dev — data storage EN</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="flex justify-between mt-10 pt-6 border-t border-[#cbc4d2]">
+      <a href="03-api-proxy.html" class="text-[#4f378a] font-semibold hover:underline">← Previous: API & Proxy (Serverless)</a>
+      <a href="05-i18n.html" class="bg-[#4f378a] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#6750a4] transition">Next: Internationalization →</a>
+    </div>
+  </main>
+
+  <footer class="bg-[#322f35] text-white py-4 px-4 mt-8">
+    <div class="max-w-4xl mx-auto text-center text-xs opacity-70">© 2026 Proyecto Educativo</div>
+  </footer>
+  <script src="js/learn.js"></script>
+</body>
+</html>
