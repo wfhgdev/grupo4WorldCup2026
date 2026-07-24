@@ -14,11 +14,15 @@
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
 }
 
-/* elegant border for team crests from API so they don't blend into the background */
+/* Borde contrastado para crests de equipos (flags/emblemas)
+   Evita que se fusionen con el fondo claro o la tarjeta.
+   Usa outline + una sutíl sombra blanca interior para recortar bordes oscuros. */
 .crest-border {
-  box-shadow: 0 0 0 2px rgba(50, 47, 53, 0.22), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-  transition: box-shadow 0.2s ease;
+  outline: 1.5px solid rgba(0, 0, 0, 0.15);
+  outline-offset: -0.5px;
+  background-color: #ffffff;
+  transition: outline-color 0.2s ease;
 }
 .crest-border:hover {
-  box-shadow: 0 0 0 2px rgba(50, 47, 53, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  outline-color: rgba(0, 0, 0, 0.35);
 }
