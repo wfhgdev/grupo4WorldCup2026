@@ -8,11 +8,11 @@ const API_CONFIG = {
 };
 
 // ============================================
-// Caché de respuestas API (localStorage, 5 seg)
+// Caché de respuestas API (localStorage, 5 min)
 // ============================================
 
 const CACHE_CONFIG = {
-  ttl: 5 * 1000,                // 5 segundos en milisegundos
+  ttl: 5 * 60 * 1000,           // 5 minutos en milisegundos
   prefix: 'wc2026_cache_',      // prefijo de claves en localStorage
   maxEntries: 30                // máx. entradas en caché (limpieza de antiguas)
 };
@@ -150,7 +150,7 @@ function cleanupCache() {
 
 /**
  * Función universal para llamar a la API a través del proxy
- * Con caché de respuestas de 5 segundos
+ * Con caché de respuestas de 5 minutos
  * Estrategia:
  * 1. Verificar caché (localStorage)
  * 2. Si la caché está vacía — llamar al proxy serverless
