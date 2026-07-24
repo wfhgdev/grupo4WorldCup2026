@@ -5,3 +5,5 @@ apitoken.js
 .vscode/settings.json
 PROJECT_RULES.md
 proxy.php
+package-lock.json
+package.json
